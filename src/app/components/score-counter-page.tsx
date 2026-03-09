@@ -10,6 +10,7 @@ const heroImage = "/images/score-counter-hero.png";
 const testimonialsImage = "/images/score-counter-testimonials.png";
 const flowImage = "/images/score-counter-flow.png";
 const unexpectedUseCasesImage = "/images/score-counter-unexpected-uses.png";
+const evolutionImage = "/images/score-counter-evolution.png";
 
 const fluidBase = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
 const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
@@ -22,7 +23,7 @@ const innerGap = "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)";
 /* ── Data ─────────────────────────────────────────────── */
 
 const metadata = [
-  { label: "Role", value: "Creator \u2014 Design & Development" },
+  { label: "Role", value: "Creator, Design & Development" },
   { label: "Timeframe", value: "2016 \u2013 Present" },
   { label: "Platform", value: "Android" },
   { label: "Team", value: "Solo (with\u00a0community contributors)" },
@@ -37,7 +38,7 @@ const snapshotRows = [
   {
     key: "Audience",
     value:
-      "Board game players, families, tabletop groups \u2014 anyone replacing pen\u00a0& paper score tracking",
+      "Board game players, families, tabletop groups (anyone replacing pen\u00a0& paper score tracking)",
   },
   {
     key: "Key use cases",
@@ -56,14 +57,14 @@ const snapshotRows = [
   },
   {
     key: "Monetization",
-    value: "Zero ads \u2014 and\u00a0keeping it\u00a0that way",
+    value: "Zero ads, and\u00a0keeping it\u00a0that way",
   },
 ];
 
 const successCriteria = [
   "Time from launch to\u00a0first score entry: under 10\u00a0seconds",
   "Maintain a\u00a04.8+ rating on\u00a0Google Play",
-  "Grow through word-of-mouth only \u2014 zero marketing budget",
+  "Grow through word-of-mouth only (zero marketing budget)",
 ];
 
 const impactStats = [
@@ -74,15 +75,15 @@ const impactStats = [
 ];
 
 const proudOf = [
-  "Sustained quality over nine years. This isn't a\u00a0portfolio piece I\u00a0shipped and\u00a0forgot \u2014 it's a\u00a0living product with\u00a0108 commits in\u00a02025 alone, real users, and\u00a0a\u00a04.9 rating that has been maintained, not inflated by\u00a0launch spikes.",
-  "Growth without marketing. 600K installs driven entirely by\u00a0product quality, word-of-mouth, and\u00a0organic discovery. That's evidence that design decisions \u2014 simplicity, no ads, respect for\u00a0the\u00a0user \u2014 compound over time.",
+  "Sustained quality over nine years. This isn't a\u00a0portfolio piece I\u00a0shipped and\u00a0forgot. It's a\u00a0living product with\u00a0108 commits in\u00a02025 alone, real users, and\u00a0a\u00a04.9 rating that has been maintained, not inflated by\u00a0launch spikes.",
+  "Growth without marketing. 600K installs driven entirely by\u00a0product quality, word-of-mouth, and\u00a0organic discovery. That's evidence that design decisions (simplicity, no ads, respect for\u00a0the\u00a0user) compound over time.",
   "Community impact. A\u00a0contributor was inspired enough to\u00a0build a\u00a0web version. Others volunteer translations. The\u00a0app has become something people care about beyond just using it, and\u00a0that's the\u00a0most meaningful signal I\u00a0can point to.",
 ];
 
 const doDifferently = [
   "Document the\u00a0design process earlier. For\u00a0years I\u00a0iterated without saving artifacts. If\u00a0I'd kept a\u00a0design journal from the\u00a0start, this case study would be\u00a0richer with\u00a0before/after evidence.",
   "Explore lightweight analytics sooner. Understanding which features are actually used (vs. requested) would have sharpened prioritization.",
-  "Consider cross-platform earlier. The\u00a0fan-made web version proved there's demand beyond Android \u2014 I\u00a0should have explored that signal sooner.",
+  "Consider cross-platform earlier. The\u00a0fan-made web version proved there's demand beyond Android. I\u00a0should have explored that signal sooner.",
 ];
 
 
@@ -96,6 +97,17 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     >
       {children}
     </h2>
+  );
+}
+
+function BoldLead({ text }: { text: string }) {
+  const i = text.indexOf(". ");
+  if (i === -1) return <>{nbsp(text)}</>;
+  return (
+    <>
+      <strong>{nbsp(text.slice(0, i + 1))}</strong>{" "}
+      {nbsp(text.slice(i + 2))}
+    </>
   );
 }
 
@@ -228,14 +240,14 @@ export function ScoreCounterPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            Score Counter — From side project to 600K installs with zero
+            Score Counter: From side project to 600K installs with zero
             marketing
           </h1>
           <p
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I designed and built an Android utility app that grew entirely through product quality, reaching 180K+ monthly active users and a 4.9 rating \u2014 without spending a dollar on marketing.")}
+            {nbsp("I designed and built an Android utility app that grew entirely through product quality, reaching 180K+ monthly active users and a 4.9 rating, all without spending a dollar on marketing.")}
           </p>
         </div>
       </SectionAnimate>
@@ -299,29 +311,38 @@ export function ScoreCounterPage() {
       <SectionAnimate delay={0.14}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
           <SectionHeading>Context</SectionHeading>
-          <div className="flex flex-col gap-4">
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("Score Counter started in 2016 as a personal itch: I needed a simple way to track scores during board game nights without fumbling for pen and paper. At the time, I was transitioning from Android development to product design at Eventssion, so building a small utility app felt natural \u2014 a way to practice both craft and product thinking.")}
-            </p>
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("What surprised me was the demand. The app kept growing organically, year after year, eventually crossing 600K installs. Nine years later, I still maintain it \u2014 shipping updates, responding to user feedback, and treating it as a living product rather than a one-time release.")}
-            </p>
-          </div>
+          <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+            {nbsp("Score Counter started in 2016 as a personal itch: I needed a simple way to track scores during board game nights without fumbling for pen and paper. I was transitioning from Android development to product design at the time, so building this solo (owning everything from UX to release management) felt like a natural proving ground. The dual role as designer and developer gives me an unusual feedback loop: I can validate a decision in code within hours, ship it, and watch real usage data confirm or correct course. What surprised me was the demand: the app kept growing organically, year after year, eventually crossing 600K installs with zero marketing spend.")}
+          </p>
         </div>
+      </SectionAnimate>
+
+      {/* App evolution image */}
+      <SectionAnimate delay={0.145}>
+        <div className="-mx-4 sm:mx-0">
+          <ImageWithFallback
+            src={evolutionImage}
+            alt="Side-by-side comparison of Score Counter in 2018 (numbered rows with colored backgrounds and arrow controls) and 2025 (full-bleed player cards with large +/− buttons and named counters)"
+            className="w-full rounded-none sm:rounded-xl"
+            loading="lazy"
+          />
+        </div>
+      </SectionAnimate>
+
+      {/* App evolution caption */}
+      <SectionAnimate delay={0.148}>
+        <p className="text-foreground/60" style={{ fontSize: fluidSmall, lineHeight: 1.75 }}>
+          {nbsp("Nine years of iteration show up clearly in the UI. The 2018 version was functional but dense — numbered rows, arrow-tap controls, no player names on the main view. By 2025 the interface had been stripped back and rebuilt: full-bleed player cards, large \u2212/+ targets, named counters, and a bottom nav that surfaces tools only when needed. Same core job-to-be-done, dramatically less friction.")}
+        </p>
       </SectionAnimate>
 
       {/* Problem & Goals */}
       <SectionAnimate delay={0.16}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
           <SectionHeading>Problem &amp; Goals</SectionHeading>
-          <div className="flex flex-col gap-4">
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("The core problem was straightforward: people playing board games, card games, or any group activity need a fast, reliable way to track scores. The existing solutions were either bloated with ads, overly complicated, or aesthetically dated.")}
-            </p>
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("My goal was to build something that felt effortless \u2014 an app that disappears into the background of a game night. Open it, add players, start counting. No onboarding walls, no ad interruptions, no unnecessary features.")}
-            </p>
-          </div>
+          <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+            {nbsp("The core problem was straightforward: people playing board games, card games, or any group activity need a fast, reliable way to track scores. The existing solutions were either bloated with ads, overly complicated, or aesthetically dated. My goal was to build something that felt effortless: open it, add players, start counting.")}
+          </p>
         </div>
       </SectionAnimate>
 
@@ -337,46 +358,12 @@ export function ScoreCounterPage() {
         </div>
       </SectionAnimate>
 
-      {/* Success criteria callout */}
-      <SectionAnimate delay={0.17}>
-        <CalloutBox>
-          <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-            <strong>Success criteria I set for myself:</strong>
-          </p>
-          <ul className="flex flex-col gap-1 pl-5 list-disc">
-            {successCriteria.map((c, i) => (
-              <li
-                key={i}
-                style={{ fontSize: "0.875rem", lineHeight: 1.6 }}
-              >
-                {nbsp(c)}
-              </li>
-            ))}
-          </ul>
-        </CalloutBox>
-      </SectionAnimate>
-
-      {/* My Role & Responsibilities */}
-      <SectionAnimate delay={0.2}>
-        <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading>My Role &amp; Responsibilities</SectionHeading>
-          <div className="flex flex-col gap-4">
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("This is a solo project. I own everything: product strategy, UX/UI design, Android development, release management, and user support. Over the years, the community has contributed translations (the app now supports multiple languages), and one contributor was so inspired that he built an independent web version.")}
-            </p>
-            <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("The dual hat \u2014 designer and developer \u2014 gives me an unusual feedback loop. I can validate a design decision in code within hours, ship it, and watch real usage data to confirm or correct course.")}
-            </p>
-          </div>
-        </div>
-      </SectionAnimate>
-
-      {/* Design Principles */}
+      {/* Design Constraints */}
       <SectionAnimate delay={0.22}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading>Design Principles</SectionHeading>
+          <SectionHeading>Design Constraints</SectionHeading>
           <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            {nbsp("Three principles have guided every decision over nine years of building Score Counter. They work as both a creative compass and a set of constraints \u2014 especially when saying no to a feature request or resisting a monetization shortcut.")}
+            {nbsp("Three constraints have guided every decision over nine years of building Score Counter, especially when saying no to a feature request or resisting a monetization shortcut.")}
           </p>
           <div className="flex flex-col gap-4 mt-2">
             <div className="flex flex-col gap-1">
@@ -384,7 +371,7 @@ export function ScoreCounterPage() {
                 <strong>Simplicity over feature richness</strong>
               </h3>
               <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-                {nbsp("The primary flow is three steps: open, add counters, count. Every feature request is measured against that loop \u2014 if it adds cognitive load to the core path, it doesn't ship. This constraint kept the app focused while competitors kept adding complexity.")}
+                {nbsp("The primary flow is three steps: open, add counters, count. Every feature request is measured against that loop. If it adds cognitive load to the core path, it doesn't ship. This constraint kept the app focused while competitors kept adding complexity.")}
               </p>
             </div>
             <div className="flex flex-col gap-1">
@@ -392,7 +379,7 @@ export function ScoreCounterPage() {
                 <strong>Never show ads</strong>
               </h3>
               <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-                {nbsp("Not showing ads isn't just an ethical choice \u2014 it's a design constraint. Without ad placements competing for screen real estate, the UI has to earn its keep on usability alone. The result is a clean, fast experience that users trust enough to recommend, which is how the app grew to 600K installs with zero marketing spend.")}
+                {nbsp("Not showing ads isn't just an ethical choice; it's a design constraint. Without ad placements competing for screen real estate, the UI has to earn its keep on usability alone. The result is a clean, fast experience that users trust enough to recommend, which is how the app grew to 600K installs with zero marketing spend.")}
               </p>
             </div>
             <div className="flex flex-col gap-1">
@@ -400,7 +387,7 @@ export function ScoreCounterPage() {
                 <strong>Respect the platform ecosystem</strong>
               </h3>
               <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-                {nbsp("Score Counter follows Material Design conventions, supports the latest Android versions early (Android 16 compatibility shipped in 2025), and embraces community contributions for localization. Instead of fighting the platform, the app leans into it \u2014 which keeps maintenance sustainable and the experience native.")}
+                {nbsp("Score Counter follows Material Design conventions, supports the latest Android versions early (Android 16 compatibility shipped in 2025), and embraces community contributions for localization. Instead of fighting the platform, the app leans into it, which keeps maintenance sustainable and the experience native.")}
               </p>
             </div>
           </div>
@@ -412,7 +399,7 @@ export function ScoreCounterPage() {
         <div className="-mx-4 sm:mx-0">
           <ImageWithFallback
             src={flowImage}
-            alt="Hand-drawn primary flow diagram: 1. Open — 2. Add Counters — 3. Count"
+            alt="Hand-drawn primary flow diagram: 1. Open, 2. Add Counters, 3. Count"
             className="w-full rounded-none sm:rounded-xl"
             loading="lazy"
           />
@@ -425,7 +412,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Outcome &amp; Impact</SectionHeading>
           <ImpactStatsGrid />
           <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            {nbsp("Active devices grew from 109K in January 2025 to approximately 170K by year's end \u2014 a 56% increase in a single year, entirely organic. The app has inspired community contributions (translations, a fan-made web version) and remains a top-rated utility in its category.")}
+            {nbsp("Active devices grew from 109K in January 2025 to approximately 170K by year's end, representing a 56% increase in a single year, entirely organic. The app has inspired community contributions (translations, a fan-made web version) and remains a top-rated utility in its category.")}
           </p>
         </div>
       </SectionAnimate>
@@ -441,7 +428,7 @@ export function ScoreCounterPage() {
                 className="text-foreground/80"
                 style={{ fontSize: fluidBase, lineHeight: 1.7 }}
               >
-                {nbsp(item)}
+                <BoldLead text={item} />
               </li>
             ))}
           </ul>
@@ -471,7 +458,7 @@ export function ScoreCounterPage() {
                 className="text-foreground/80"
                 style={{ fontSize: fluidBase, lineHeight: 1.7 }}
               >
-                {item}
+                <BoldLead text={item} />
               </li>
             ))}
           </ul>
@@ -484,7 +471,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Bonus: Unexpected Use Cases</SectionHeading>
           <div className="flex flex-col gap-4">
             <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-              {nbsp("I built Score Counter for board game nights. What I didn't expect was how far beyond that people would take it. Over the years, Play Store reviews and emails have revealed use cases I never designed for \u2014 scoring camogie matches in Ireland, counting beers, tracking vehicles on a road, and one user who created a tally called \"little spoiled brats\" to count every time a child annoyed them (227 reasons and counting).")}
+              {nbsp("I built Score Counter for board game nights. What I didn't expect was how far beyond that people would take it. Over the years, Play Store reviews and emails have revealed use cases I never designed for, such as scoring camogie matches in Ireland, counting beers, tracking vehicles on a road, and one user who created a tally called \"little spoiled brats\" to count every time a child annoyed them (227 reasons and counting).")}
             </p>
             <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
               {nbsp("These stories are my favorite proof that simplicity scales. When you build a tool that does one thing well and stays out of the way, people will find uses you never imagined.")}
