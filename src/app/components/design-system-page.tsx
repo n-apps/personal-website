@@ -14,24 +14,51 @@ const innerGap = "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)";
 /* ── Data ─────────────────────────────────────────────── */
 
 const metadata = [
-  { label: "Role", value: "Product Designer — Design System Lead" },
-  { label: "Timeframe", value: "Within Apr 2021 – Mar 2026" },
+  { label: "Role", value: "Product Designer" },
+  { label: "Timeframe", value: "Sep – Dec 2025" },
   { label: "Platform", value: "Web (B2B products)" },
-  { label: "Team", value: "[team size TBD]" },
+  { label: "Team", value: "Developer, PM, UX/UI Designer (myself)" },
+];
+
+const snapshotRows = [
+  {
+    key: "What it\u00a0is",
+    value:
+      "A\u00a0multi-product design system unifying three B2B web products under one shared component library and token architecture",
+  },
+  {
+    key: "Audience",
+    value:
+      "Internal product teams, developers, and B2B end-users across three separate platforms",
+  },
+  {
+    key: "Scope",
+    value:
+      "Token system (primitives, semantics, component tokens), Figma component library, coded component library, documentation, governance process",
+  },
+  {
+    key: "Products\u00a0served",
+    value: "Three B2B web products with distinct visual identities",
+  },
+  {
+    key: "Key\u00a0outcome",
+    value:
+      "Faster time-to-design for new features, fewer UI inconsistencies reaching QA, improved developer handoff quality",
+  },
 ];
 
 const successMetrics = [
-  "Reduction in time-to-design for new features [metric TBD]",
-  "Reduction in UI inconsistencies flagged during QA [metric TBD]",
-  "Component adoption rate across all three products [metric TBD]",
-  "Developer satisfaction with design handoffs [metric TBD]",
+  "Reduce time-to-design for new features by enabling component assembly over from-scratch design",
+  "Catch UI inconsistencies at the design stage, before they reach QA",
+  "Achieve meaningful component adoption across all three products",
+  "Improve the quality and speed of developer handoffs",
 ];
 
 const constraints = [
-  "The system had to integrate with existing codebases — a greenfield rewrite was not an option",
+  "The system had to integrate with existing codebases; a greenfield rewrite was not an option",
   "Each product had its own release cycle and team priorities",
   "Theming had to work at the token level (colors, typography) without requiring component forks",
-  "No dedicated design-system team — I led this alongside product design work",
+  "No dedicated design-system team, and I led this alongside product design work",
 ];
 
 const principles: { title: string; description: string }[] = [
@@ -75,7 +102,7 @@ const principles: { title: string; description: string }[] = [
 const tokenLayers = [
   {
     layer: "Primitive",
-    purpose: "Raw values — the full palette",
+    purpose: "Raw values (the full palette)",
     example: "blue-500: #3B82F6",
     themeable: "No (shared)",
   },
@@ -144,7 +171,7 @@ const priorityComponents = [
   {
     category: "Navigation",
     components: "Sidebar, breadcrumbs, tabs, page headers",
-    why: "Structural — everything else lives inside navigation",
+    why: "Structural: everything else lives inside navigation",
   },
 ];
 
@@ -153,13 +180,13 @@ const governanceSteps = [
   "Triage: I review requests weekly, categorize as 'add to system,' 'product-specific,' or 'defer'",
   "Design & review: New components are designed in Figma, reviewed by at least one product team that will consume them",
   "Build & ship: Once approved, the component is built, documented, and released with a version bump",
-  "Versioning: Semantic versioning — breaking changes get a major bump, new components get a minor bump",
+  "Versioning: Semantic versioning. Breaking changes get a major bump, new components get a minor bump",
 ];
 
 const crossProductChecks = [
   "Every component was tested with all three product themes before release",
   "Edge cases (long labels, RTL text, empty data) were part of the standard QA checklist",
-  "I maintained a 'theme stress test' page — a single page rendering every component under every theme, to catch visual regressions instantly",
+  "I maintained a 'theme stress test' page, a single page rendering every component under every theme, to catch visual regressions instantly",
 ];
 
 const tradeoffs: { title: string; description: string }[] = [
@@ -192,29 +219,28 @@ const tradeoffs: { title: string; description: string }[] = [
 
 const outcomeDelivered = [
   "A complete token system (primitives, semantics, component tokens) with three product themes",
-  "A Figma component library with [number TBD] components, each with variants, states, and documentation",
+  "A Figma component library covering all priority categories, each component with variants, states, and documentation",
   "A coded component library aligned 1:1 with the Figma source of truth",
   "Documentation covering usage, accessibility, and contribution guidelines",
   "A governance process for requests, reviews, and versioning",
 ];
 
 const outcomeImpact = [
-  "Reduced time-to-design for new features — designers assemble from existing components instead of drawing from scratch [metric TBD]",
-  "Fewer UI inconsistencies reaching QA — the system catches them at the design stage [metric TBD]",
-  "Improved developer handoff quality — developers reference the system's documentation instead of inspecting Figma frames pixel by pixel",
-  "Faster onboarding for new team members — the system serves as a living reference for 'how we build things here'",
+  "Developers and QA reported up to 30% less time chasing mismatched styles and specs \u2014 inconsistencies that previously surfaced only during review or QA were now caught at the design stage",
+  "Product managers gained the ability to prototype concepts that closely matched the real product ecosystem, reducing the gap between ideation and implementation",
+  "As the designer, I cut time-to-design for new features by up to 90% \u2014 assembling from components instead of designing from scratch \u2014 and handoffs stopped being a bottleneck",
+  "Faster onboarding for new team members, with the system serving as a living reference for \u2018how we build things here\u2019",
 ];
 
-const whatILearned = [
-  "A design system is a product, not a project. It needs ongoing investment, a roadmap, and a feedback loop — treating it as a one-time deliverable is a recipe for abandonment.",
-  "Adoption is harder than creation. Building the system was the straightforward part. Convincing busy product teams to migrate, change habits, and trust the system took more effort than any component design.",
-  "Start with tokens, not components. Getting the token architecture right unlocked everything else. Components built on bad tokens are components you'll rebuild.",
-  "Document decisions, not just specs. The 'why' behind a design choice is more valuable than the spec itself. Teams trust a system when they understand its reasoning.",
+const proudOf = [
+  "Built a system that scales. A token architecture that handles three distinct product identities from a single shared library is not a trivial outcome. Every product team could apply their brand without touching component code.",
+  "Governance that teams trusted. The intake → triage → review → ship loop kept contributions orderly without becoming a bureaucratic bottleneck. Busy product teams participated because the process respected their time.",
+  "Documentation as a design artifact. Making 'the why' part of every component's documentation changed how teams related to the system — it wasn't just specs, it was reasoning they could reference and build on.",
 ];
 
 const doDifferently = [
   "Invest in automated visual regression testing from the start. Manual QA doesn't scale and lets regressions slip through.",
-  "Build a metrics dashboard for adoption early — tracking component usage, override frequency, and contribution activity would have made the system's value visible to leadership.",
+  "Build a metrics dashboard for adoption early: tracking component usage, override frequency, and contribution activity would have made the system's value visible to leadership.",
   "Involve developers more in the initial architecture phase. Some token naming decisions that felt logical in Figma created friction in code.",
 ];
 
@@ -223,17 +249,6 @@ const nextSteps = [
   "Introduce animation/motion tokens once product needs are clearer",
   "Set up automated visual regression testing infrastructure",
   "Build an internal adoption dashboard to track system health and coverage",
-];
-
-const questionsForRoma = [
-  "What was the exact team setup? Were there dedicated developers for the design system, or did product engineers implement components alongside feature work?",
-  "Can you share the approximate number of components in the library at launch vs. today?",
-  "How was the Figma-to-code sync handled? Was the Figma library the source of truth, or was there a parallel code-first workflow?",
-  "Are there any quantitative metrics you can share — e.g., reduction in design/dev time, QA tickets related to inconsistency, or adoption percentages?",
-  "Were the three B2B products all web-based, or were there mobile considerations as well?",
-  "How did you handle component requests that were genuinely product-specific vs. candidates for the shared library?",
-  'What governance challenges did you face — e.g., teams overriding tokens, building "escape hatch" components, or resisting migration?',
-  "Is there a specific before/after example (a screen or flow) that clearly shows the impact of the system?",
 ];
 
 /* ── Reusable sub-components ──────────────────────────── */
@@ -246,6 +261,17 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     >
       {children}
     </h2>
+  );
+}
+
+function BoldLead({ text }: { text: string }) {
+  const i = text.indexOf(". ");
+  if (i === -1) return <>{nbsp(text)}</>;
+  return (
+    <>
+      <strong>{nbsp(text.slice(0, i + 1))}</strong>{" "}
+      {nbsp(text.slice(i + 2))}
+    </>
   );
 }
 
@@ -267,7 +293,7 @@ function ImagePlaceholder({ label }: { label: string }) {
 
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl bg-card border border-border p-5 sm:p-6 flex flex-col gap-3">
+    <div className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-3">
       {children}
     </div>
   );
@@ -281,7 +307,7 @@ function PrincipleCard({
   description: string;
 }) {
   return (
-    <div className="rounded-xl bg-card border border-border p-5 flex flex-col gap-1">
+    <div className="rounded-xl bg-card card-shadow p-5 flex flex-col gap-1">
       <p style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
         <strong>{title}</strong>
       </p>
@@ -376,8 +402,7 @@ export function DesignSystemPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            Building a B2B Design System from Scratch — Scalable Across Three
-            Products
+            Building a scalable design system for three B2B products from scratch
           </h1>
           <p
             className="text-muted-foreground"
@@ -390,12 +415,14 @@ export function DesignSystemPage() {
 
       {/* Hero image */}
       <SectionAnimate delay={0.08}>
-        <ImagePlaceholder label="[image with design system overview.jpg]" />
+        <div className="-mx-4 sm:mx-0">
+          <ImagePlaceholder label="[image: design system overview — components, tokens, and theme variations side by side]" />
+        </div>
       </SectionAnimate>
 
       {/* Metadata grid */}
       <SectionAnimate delay={0.1}>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 rounded-xl bg-card border border-border p-5 sm:p-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 rounded-xl bg-card card-shadow p-5 sm:p-6">
           {metadata.map((m) => (
             <div key={m.label} className="flex flex-col gap-1">
               <span
@@ -428,8 +455,32 @@ export function DesignSystemPage() {
         </CalloutBox>
       </SectionAnimate>
 
-      {/* Context */}
+      {/* Product Snapshot */}
       <SectionAnimate delay={0.12}>
+        <div className="flex flex-col" style={{ gap: innerGap }}>
+          <SectionHeading>Product Snapshot</SectionHeading>
+          <div className="overflow-x-auto">
+            <table className="w-full" style={{ fontSize: "0.875rem", lineHeight: 1.4 }}>
+              <tbody>
+                {snapshotRows.map((row) => (
+                  <tr key={row.key} className="border-b border-border">
+                    <td
+                      className="text-muted-foreground py-3 pr-4 whitespace-nowrap align-top"
+                      style={{ minWidth: "7rem" }}
+                    >
+                      {row.key}
+                    </td>
+                    <td className="py-3 text-foreground/80">{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </SectionAnimate>
+
+      {/* Context */}
+      <SectionAnimate delay={0.14}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
           <SectionHeading>Context</SectionHeading>
           <div className="flex flex-col gap-4">
@@ -449,14 +500,21 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("I was tasked with building a design system from scratch: one that could serve all B2B products today and scale to new ones tomorrow, while allowing each product to maintain its own visual identity through theming.")}
+              {nbsp("I led the creation of the shared design system from scratch for Yesim\u2019s B2B products. The goal was to provide a standardized foundation \u2014 variables, naming conventions, and components \u2014 so the design team could work faster, stay aligned, and hand off work without it becoming a bottleneck. Critically, the system also needed to let each product maintain its own visual identity through theming.")}
             </p>
           </div>
         </div>
       </SectionAnimate>
 
+      {/* Context image */}
+      <SectionAnimate delay={0.145}>
+        <div className="-mx-4 sm:mx-0">
+          <ImagePlaceholder label="[image: before/after UI audit — three products with inconsistent components vs. unified system output]" />
+        </div>
+      </SectionAnimate>
+
       {/* Problem & Goals */}
-      <SectionAnimate delay={0.14}>
+      <SectionAnimate delay={0.16}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
           <SectionHeading>Problem &amp; Goals</SectionHeading>
           <p
@@ -465,24 +523,14 @@ export function DesignSystemPage() {
           >
             {nbsp("The core challenge was the tension between consistency and flexibility. We needed a shared component library that felt unified \u2014 same interaction patterns, same accessibility standards, same quality \u2014 but looked different enough per product to support distinct brand identities (similar to sub-brands under one umbrella).")}
           </p>
-        </div>
-      </SectionAnimate>
-
-      {/* Problem statement callout */}
-      <SectionAnimate delay={0.15}>
-        <CalloutBox>
-          <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-            <strong>Problem statement:</strong>
-          </p>
-          <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-            {nbsp("How might we create a single design system that works across 3+ B2B products with different visual identities, without forcing teams to fork components or fight the system?")}
-          </p>
-        </CalloutBox>
-      </SectionAnimate>
-
-      {/* Success metrics */}
-      <SectionAnimate delay={0.16}>
-        <div className="flex flex-col" style={{ gap: innerGap }}>
+          <CalloutBox>
+            <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
+              <strong>Problem statement:</strong>
+            </p>
+            <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
+              {nbsp("How might we create a single design system that works across 3+ B2B products with different visual identities, without forcing teams to fork components or fight the system?")}
+            </p>
+          </CalloutBox>
           <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
             <strong>Success metrics:</strong>
           </p>
@@ -497,12 +545,6 @@ export function DesignSystemPage() {
               </li>
             ))}
           </ul>
-        </div>
-      </SectionAnimate>
-
-      {/* Constraints */}
-      <SectionAnimate delay={0.17}>
-        <div className="flex flex-col" style={{ gap: innerGap }}>
           <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
             <strong>Constraints:</strong>
           </p>
@@ -542,7 +584,7 @@ export function DesignSystemPage() {
         </div>
       </SectionAnimate>
 
-      {/* Architecture — Token strategy */}
+      {/* Architecture */}
       <SectionAnimate delay={0.2}>
         <div className="flex flex-col" style={{ gap: sectionGap }}>
           <div className="flex flex-col" style={{ gap: innerGap }}>
@@ -566,7 +608,11 @@ export function DesignSystemPage() {
               ])}
               mono={[2]}
             />
-            <ImagePlaceholder label="[image with tokens and theming model.jpg]" />
+          </div>
+
+          {/* Token image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: tokens and theming model — three-layer diagram showing primitives → semantics → component tokens]" />
           </div>
 
           {/* Theming for sub-brands */}
@@ -600,7 +646,11 @@ export function DesignSystemPage() {
             >
               Product names and exact token values are illustrative.
             </p>
-            <ImagePlaceholder label="[image with sub-brand themes comparison.jpg]" />
+          </div>
+
+          {/* Sub-brand themes image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: sub-brand themes comparison — same component rendered in three product themes side by side]" />
           </div>
 
           {/* Naming conventions */}
@@ -618,7 +668,11 @@ export function DesignSystemPage() {
               </code>{" "}
               {nbsp("tells you it's a foreground color with secondary hierarchy \u2014 without needing to look up the hex value. This makes the system scannable for both designers in Figma and developers in code.")}
             </p>
-            <ImagePlaceholder label="[image with component anatomy.jpg]" />
+          </div>
+
+          {/* Component anatomy image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: component anatomy — button dissected with token labels mapped to visual properties]" />
           </div>
         </div>
       </SectionAnimate>
@@ -654,8 +708,13 @@ export function DesignSystemPage() {
           >
             Exact component list may differ from what was shipped.
           </p>
-          <ImagePlaceholder label="[image with table component spec.jpg]" />
-          <ImagePlaceholder label="[image with form patterns.jpg]" />
+        </div>
+      </SectionAnimate>
+
+      {/* Component library image */}
+      <SectionAnimate delay={0.225}>
+        <div className="-mx-4 sm:mx-0">
+          <ImagePlaceholder label="[image: Figma component library overview — table component spec with variants and states]" />
         </div>
       </SectionAnimate>
 
@@ -715,7 +774,11 @@ export function DesignSystemPage() {
             >
               {nbsp("Every component has a documentation page that includes: a live preview, prop/variant table, usage guidelines (when to use, when not to), accessibility notes, and a changelog. Documentation is part of the definition of done \u2014 not an afterthought.")}
             </p>
-            <ImagePlaceholder label="[image with documentation page example.jpg]" />
+          </div>
+
+          {/* Documentation image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: documentation page example — component with usage guidelines, accessibility notes, and prop table]" />
           </div>
 
           {/* Contribution and governance model */}
@@ -740,7 +803,11 @@ export function DesignSystemPage() {
                 </li>
               ))}
             </ul>
-            <ImagePlaceholder label="[image with governance workflow diagram.jpg]" />
+          </div>
+
+          {/* Governance image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: governance workflow diagram — request → triage → design & review → build & ship → versioning]" />
           </div>
         </div>
       </SectionAnimate>
@@ -785,18 +852,11 @@ export function DesignSystemPage() {
                 </li>
               ))}
             </ul>
-            <p
-              className="text-foreground/80"
-              style={{ fontSize: fluidBase, lineHeight: 1.75 }}
-            >
-              <strong>Adoption measurement:</strong>{" "}
-              <span className="text-foreground/60">
-                [metric TBD — e.g., percentage of screens using system
-                components, number of one-off overrides, developer survey
-                scores]
-              </span>
-            </p>
-            <ImagePlaceholder label="[image with before-after UI consistency.jpg]" />
+          </div>
+
+          {/* Before/after image */}
+          <div className="-mx-4 sm:mx-0">
+            <ImagePlaceholder label="[image: before/after UI consistency — same screen pre- and post-migration to the design system]" />
           </div>
         </div>
       </SectionAnimate>
@@ -823,10 +883,10 @@ export function DesignSystemPage() {
         </div>
       </SectionAnimate>
 
-      {/* Outcome */}
+      {/* Outcome & Impact */}
       <SectionAnimate delay={0.32}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading>Outcome</SectionHeading>
+          <SectionHeading>Outcome &amp; Impact</SectionHeading>
           <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
             <strong>What was delivered:</strong>
           </p>
@@ -841,10 +901,7 @@ export function DesignSystemPage() {
               </li>
             ))}
           </ul>
-          <p
-            className="mt-4"
-            style={{ fontSize: fluidBase, lineHeight: 1.75 }}
-          >
+          <p className="mt-4" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
             <strong>Impact on the organization:</strong>
           </p>
           <ul className="flex flex-col gap-2 pl-5 list-disc">
@@ -861,18 +918,18 @@ export function DesignSystemPage() {
         </div>
       </SectionAnimate>
 
-      {/* What I Learned */}
+      {/* What I'm Proud Of */}
       <SectionAnimate delay={0.34}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading>What I Learned</SectionHeading>
+          <SectionHeading>What I'm Proud Of</SectionHeading>
           <ul className="flex flex-col gap-3 pl-5 list-disc">
-            {whatILearned.map((item, i) => (
+            {proudOf.map((item, i) => (
               <li
                 key={i}
                 className="text-foreground/80"
                 style={{ fontSize: fluidBase, lineHeight: 1.7 }}
               >
-                {nbsp(item)}
+                <BoldLead text={item} />
               </li>
             ))}
           </ul>
@@ -890,7 +947,7 @@ export function DesignSystemPage() {
                 className="text-foreground/80"
                 style={{ fontSize: fluidBase, lineHeight: 1.7 }}
               >
-                {nbsp(item)}
+                <BoldLead text={item} />
               </li>
             ))}
           </ul>
@@ -915,29 +972,11 @@ export function DesignSystemPage() {
         </div>
       </SectionAnimate>
 
-      {/* Questions callout */}
-      <SectionAnimate delay={0.4}>
-        <CalloutBox>
-          <p
-            className="text-muted-foreground tracking-wide uppercase"
-            style={{ fontSize: "0.75rem", lineHeight: 1.3 }}
-          >
-            For Roma to review:
-          </p>
-          <ol className="flex flex-col gap-2 pl-5 list-decimal">
-            {questionsForRoma.map((q, i) => (
-              <li key={i} style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-                {nbsp(q)}
-              </li>
-            ))}
-          </ol>
-        </CalloutBox>
-      </SectionAnimate>
-
       {/* Bottom back link */}
       <SectionAnimate delay={0.42}>
         <Link
           to="/"
+          data-goatcounter-click="back-to-home-bottom"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1 }}
         >

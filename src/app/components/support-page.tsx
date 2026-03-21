@@ -215,7 +215,7 @@ export function SupportPage() {
                 data-goatcounter-click={`support-${option.label.toLowerCase().replace(/\s+/g, '-')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all duration-200"
+                className="group flex items-center gap-3 p-4 rounded-xl card-shadow bg-card hover:border-foreground/20 transition-all duration-200"
               >
                 <span className="text-xl shrink-0">{option.emoji}</span>
                 <div className="flex-1 min-w-0">

@@ -23,6 +23,13 @@
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
   --border: rgba(0, 0, 0, 0.08);
+  --image-outline: rgba(0, 0, 0, 0.1);
+  --shadow-border-1: rgba(0, 0, 0, 0.06);
+  --shadow-border-2: rgba(0, 0, 0, 0.06);
+  --shadow-border-3: rgba(0, 0, 0, 0.04);
+  --shadow-border-hover-1: rgba(0, 0, 0, 0.08);
+  --shadow-border-hover-2: rgba(0, 0, 0, 0.08);
+  --shadow-border-hover-3: rgba(0, 0, 0, 0.06);
   --input: transparent;
   --input-background: #f3f3f5;
   --switch-background: #cbced4;
@@ -66,6 +73,13 @@
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: rgba(255, 255, 255, 0.08);
+  --image-outline: rgba(255, 255, 255, 0.1);
+  --shadow-border-1: rgba(255, 255, 255, 0.06);
+  --shadow-border-2: rgba(255, 255, 255, 0.06);
+  --shadow-border-3: rgba(255, 255, 255, 0.04);
+  --shadow-border-hover-1: rgba(255, 255, 255, 0.08);
+  --shadow-border-hover-2: rgba(255, 255, 255, 0.08);
+  --shadow-border-hover-3: rgba(255, 255, 255, 0.06);
   --input: #2a2a2a;
   --ring: #555555;
   --font-weight-medium: 500;
@@ -182,5 +196,31 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+
+  img {
+    outline: 1px solid var(--image-outline);
+    outline-offset: -1px;
+  }
+
+  .card-shadow img {
+    outline: none;
+  }
+}
+
+@utility card-shadow {
+  box-shadow:
+    0px 0px 0px 1px var(--shadow-border-1),
+    0px 1px 2px -1px var(--shadow-border-2),
+    0px 2px 4px 0px var(--shadow-border-3);
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+
+  &:hover {
+    box-shadow:
+      0px 0px 0px 1px var(--shadow-border-hover-1),
+      0px 1px 2px -1px var(--shadow-border-hover-2),
+      0px 2px 4px 0px var(--shadow-border-hover-3);
   }
 }

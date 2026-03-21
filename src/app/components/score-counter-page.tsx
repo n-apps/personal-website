@@ -49,7 +49,7 @@ const snapshotRows = [
   {
     key: "Active users",
     value:
-      "180K+ monthly active devices (grew from 109K to\u00a0170K in\u00a02025 alone)",
+      "87.2K monthly active users; 205K average active devices",
   },
   {
     key: "Rating",
@@ -61,17 +61,11 @@ const snapshotRows = [
   },
 ];
 
-const successCriteria = [
-  "Time from launch to\u00a0first score entry: under 10\u00a0seconds",
-  "Maintain a\u00a04.8+ rating on\u00a0Google Play",
-  "Grow through word-of-mouth only (zero marketing budget)",
-];
-
 const impactStats = [
   { value: "600K+", label: "Installs" },
-  { value: "180K+", label: "Monthly active users" },
+  { value: "87.2K", label: "Monthly active users" },
+  { value: "205K", label: "Avg. active devices" },
   { value: "4.9", label: "Google Play rating" },
-  { value: "$0", label: "Marketing spend" },
 ];
 
 const proudOf = [
@@ -129,7 +123,7 @@ function ImagePlaceholder({ label }: { label: string }) {
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="rounded-xl bg-card border border-border p-5 sm:p-6 flex flex-col gap-2"
+      className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-2"
     >
       {children}
     </div>
@@ -187,7 +181,7 @@ function ImpactStatsGrid() {
       {impactStats.map((s) => (
         <div
           key={s.label}
-          className="rounded-xl bg-card border border-border p-4 sm:p-5 flex flex-col gap-1 items-center text-center"
+          className="rounded-xl bg-card card-shadow p-4 sm:p-5 flex flex-col gap-1 items-center text-center"
         >
           <span
             className="text-foreground"
@@ -247,7 +241,7 @@ export function ScoreCounterPage() {
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I designed and built an Android utility app that grew entirely through product quality, reaching 180K+ monthly active users and a 4.9 rating, all without spending a dollar on marketing.")}
+            {nbsp("I designed and built an Android utility app that grew entirely through product quality, reaching 87.2K monthly active users across 205K average active devices and a 4.9 Google Play rating \u2014 all without spending a dollar on marketing.")}
           </p>
         </div>
       </SectionAnimate>
@@ -266,7 +260,7 @@ export function ScoreCounterPage() {
 
       {/* Metadata grid */}
       <SectionAnimate delay={0.1}>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 rounded-xl bg-card border border-border p-5 sm:p-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 rounded-xl bg-card card-shadow p-5 sm:p-6">
           {metadata.map((m) => (
             <div key={m.label} className="flex flex-col gap-1">
               <span
@@ -327,13 +321,6 @@ export function ScoreCounterPage() {
             loading="lazy"
           />
         </div>
-      </SectionAnimate>
-
-      {/* App evolution caption */}
-      <SectionAnimate delay={0.148}>
-        <p className="text-foreground/60" style={{ fontSize: fluidSmall, lineHeight: 1.75 }}>
-          {nbsp("Nine years of iteration show up clearly in the UI. The 2018 version was functional but dense — numbered rows, arrow-tap controls, no player names on the main view. By 2025 the interface had been stripped back and rebuilt: full-bleed player cards, large \u2212/+ targets, named counters, and a bottom nav that surfaces tools only when needed. Same core job-to-be-done, dramatically less friction.")}
-        </p>
       </SectionAnimate>
 
       {/* Problem & Goals */}
@@ -412,7 +399,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Outcome &amp; Impact</SectionHeading>
           <ImpactStatsGrid />
           <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            {nbsp("Active devices grew from 109K in January 2025 to approximately 170K by year's end, representing a 56% increase in a single year, entirely organic. The app has inspired community contributions (translations, a fan-made web version) and remains a top-rated utility in its category.")}
+            {nbsp("The app maintains 87.2K monthly active users across 205K average active devices, growing entirely through organic discovery with zero marketing spend. It has inspired community contributions \u2014 translations from volunteers, a fan-made web version \u2014 and remains a top-rated utility in its category.")}
           </p>
         </div>
       </SectionAnimate>

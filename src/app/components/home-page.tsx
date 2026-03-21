@@ -228,7 +228,7 @@ export function HomePage() {
                 key={project.title}
                 to={project.caseStudy}
                 data-goatcounter-click={`case-study-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group block rounded-xl overflow-hidden border border-border bg-card hover:border-foreground/20 transition-all duration-300"
+                className="group block rounded-xl overflow-hidden card-shadow bg-card hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="overflow-hidden">
                   <img
