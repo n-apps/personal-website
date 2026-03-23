@@ -238,6 +238,7 @@ export function Footer() {
           style={{
             fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)",
             lineHeight: 1,
+            fontVariantNumeric: "tabular-nums",
           }}
         >
           It{"\u00a0"}is{"\u00a0"}{time || "00:00"} in{"\u00a0"}Kyiv
@@ -273,8 +274,6 @@ export function Footer() {
         <span
           className="text-muted-foreground text-right"
           style={{
-            fontFamily: "var(--font-serif)",
-            fontStyle: "italic",
             fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)",
             lineHeight: 1,
           }}

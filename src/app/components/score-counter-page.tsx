@@ -169,7 +169,7 @@ function AnimatedStatValue({
     }
   }, [isInView, spring, numericValue]);
 
-  return <motion.span>{display}</motion.span>;
+  return <motion.span style={{ fontVariantNumeric: "tabular-nums" }}>{display}</motion.span>;
 }
 
 function ImpactStatsGrid() {
@@ -234,8 +234,7 @@ export function ScoreCounterPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            Score Counter: From side project to 600K installs with zero
-            marketing
+            {nbsp("Score Counter: From side project to 600K installs with zero marketing")}
           </h1>
           <p
             className="text-muted-foreground"

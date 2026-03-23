@@ -5,6 +5,11 @@
       "source": "paramchoudhary/resumeskills",
       "sourceType": "github",
       "computedHash": "a7e523d4f31e5e7240f198521f82f0202939830f673933e030ca9dfc2963fd44"
+    },
+    "make-interfaces-feel-better": {
+      "source": "jakubkrehel/make-interfaces-feel-better",
+      "sourceType": "github",
+      "computedHash": "41c2416e08bc9ec3c696585d31bd1243481a7a81615b810b1b8a32aded9360b5"
     }
   }
 }
