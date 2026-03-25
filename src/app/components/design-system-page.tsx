@@ -2,6 +2,15 @@ import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
 import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
+import { ImageWithFallback } from "./image-with-fallback";
+
+const heroImage = "/images/design-system-hero.png";
+const beforeAfterImage = "/images/design-system-before-after.png";
+const semanticsImage = "/images/design-system-semantics.png";
+const subBrandsImage = "/images/design-system-sub-brands.png";
+const specsImage = "/images/design-system-specs.png";
+const governanceImage = "/images/design-system-governance.png";
+const prototypeImage = "/images/design-system-prototype.png";
 
 const fluidBase = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
 const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
@@ -24,7 +33,7 @@ const snapshotRows = [
   {
     key: "What it\u00a0is",
     value:
-      "A\u00a0multi-product design system unifying three B2B web products under one shared component library and token architecture",
+      "A\u00a0multi-product brand-agnostic design system unifying three B2B web products under one shared component library and token architecture",
   },
   {
     key: "Audience",
@@ -48,61 +57,67 @@ const snapshotRows = [
 ];
 
 const successMetrics = [
-  "Reduce time-to-design for new features by enabling component assembly over from-scratch design",
-  "Catch UI inconsistencies at the design stage, before they reach QA",
-  "Achieve meaningful component adoption across all three products",
-  "Improve the quality and speed of developer handoffs",
+  "Get new features to market faster by starting with components and avoiding from-scratch design",
+  "Spot UI inconsistencies at the design stage, before they reach QA",
+  "Get all three products to use the same components",
+  "Make developer handoffs better and faster",
 ];
 
 const constraints = [
-  "The system had to integrate with existing codebases; a greenfield rewrite was not an option",
+  "The system had to be integrated with the existing codebases, so a complete rewrite wasn't an option",
   "Each product had its own release cycle and team priorities",
-  "Theming had to work at the token level (colors, typography) without requiring component forks",
-  "No dedicated design-system team, and I led this alongside product design work",
+  "Theming had to work at the token level (colours, typography) without requiring component forks",
+  "There was no dedicated design-system team, and I led this alongside product design work",
 ];
 
 const principles: { title: string; description: string }[] = [
   {
-    title: "1. Consistency where it matters, flexibility where it doesn't",
+    title: "1. Be consistent where it matters, but be flexible where it doesn't",
     description:
-      "Interaction patterns, accessibility, and spacing are universal. Colors, typography, and branding are themeable. This is the core tradeoff that shapes the entire architecture.",
+      "Interaction patterns, accessibility, and spacing are universal. You can change the colours, fonts and branding. This is the core tradeoff that shapes the entire architecture.",
   },
   {
-    title: "2. Composability over completeness",
+    title: "2. Prioritise composability over completeness",
     description:
-      "Build small, composable primitives (buttons, inputs, cards) that combine into larger patterns, rather than shipping opinionated page templates that are hard to adapt.",
+      "Create small, composable building blocks (such as buttons, inputs and cards) that can be combined to form larger patterns.",
   },
   {
     title: "3. Tokens are the API",
     description:
-      "Design tokens are the contract between the system and consuming products. If it's not a token, it's not themeable. If it's not themeable, it's a deliberate decision.",
+      "Design tokens represent the agreement between the system and the products that consume it. If it's not a token, it's not themeable. If something is not themeable, this is a deliberate decision.",
   },
   {
     title: "4. Accessible by default",
     description:
-      "WCAG 2.1 AA compliance baked into every component — contrast ratios, keyboard navigation, screen reader support. Not an afterthought.",
+      "WCAG 2.1 AA compliance is built into every component, including contrast ratios and keyboard navigation.",
   },
   {
-    title: "5. Document the why, not just the what",
+    title: "5. Document the 'why', not just the 'what'",
     description:
-      "Every component includes usage guidelines explaining when to use it, when not to, and why it works the way it does. Specs without rationale are just pictures.",
+      "Every component should include usage guidelines that explain when to use it, when not to use it, and how it works.",
   },
   {
     title: "6. Adoption is a product, not a mandate",
     description:
-      "Teams adopt the system because it makes their work faster and better — not because someone said they have to. If teams resist a component, the system is wrong, not the team.",
+      "Teams adopt the system because it makes their work faster. If a team resists a component, the system is wrong, not the team.",
   },
   {
     title: "7. Ship incrementally",
     description:
-      "No big-bang launch. Components ship as they're ready, migrated product by product, validated in real context before being declared stable.",
+      "Components are shipped as they are ready, with the product being migrated and validated in a real context before being declared stable.",
   },
 ];
 
 const tokenLayers = [
   {
+    layer: "Raw values",
+    purpose: "Hardcoded (legacy)",
+    example: "#3B82F6",
+    themeable: "No (shared)",
+  },
+  {
     layer: "Primitive",
-    purpose: "Raw values (the full palette)",
+    purpose: "The full palette",
     example: "blue-500: #3B82F6",
     themeable: "No (shared)",
   },
@@ -111,13 +126,7 @@ const tokenLayers = [
     purpose: "Role-based meanings",
     example: "color-primary: {blue-500}",
     themeable: "Yes (per product)",
-  },
-  {
-    layer: "Component",
-    purpose: "Scoped to specific components",
-    example: "button-bg: {color-primary}",
-    themeable: "Inherited",
-  },
+  }
 ];
 
 const subBrandThemes = [
@@ -176,79 +185,49 @@ const priorityComponents = [
 ];
 
 const governanceSteps = [
-  "Request: Any team can request a new component or variant via a shared intake form",
-  "Triage: I review requests weekly, categorize as 'add to system,' 'product-specific,' or 'defer'",
-  "Design & review: New components are designed in Figma, reviewed by at least one product team that will consume them",
+  "Request: Any team can request a new component or variant via a dedicated Jira board",
+  "Ranking: I review requests weekly and categorize them as \"add to the system\", \"requires analysis\", or \"not applicable.\"",
+  "Design & review: New components are designed in Figma and reviewed by at least one product team that will use them",
   "Build & ship: Once approved, the component is built, documented, and released with a version bump",
   "Versioning: Semantic versioning. Breaking changes get a major bump, new components get a minor bump",
 ];
 
 const crossProductChecks = [
   "Every component was tested with all three product themes before release",
-  "Edge cases (long labels, RTL text, empty data) were part of the standard QA checklist",
-  "I maintained a 'theme stress test' page, a single page rendering every component under every theme, to catch visual regressions instantly",
-];
-
-const tradeoffs: { title: string; description: string }[] = [
-  {
-    title: "No motion/animation tokens in V1",
-    description:
-      "Animation is highly contextual per product. Standardizing it prematurely would add complexity without clear ROI. Deferred to V2.",
-  },
-  {
-    title: "No mobile-specific components",
-    description:
-      "The B2B products are web-first, desktop-first. Responsive behavior is handled at the layout level, but I didn't create mobile-native variants.",
-  },
-  {
-    title: "No illustration or iconography system",
-    description:
-      "Icons were handled by an existing third-party library. Custom illustrations were too brand-specific to generalize across products.",
-  },
-  {
-    title: "Limited dark mode support",
-    description:
-      "None of the three B2B products had dark mode on their roadmap. The token architecture supports it, but I didn't invest in validating every component in dark mode.",
-  },
-  {
-    title: "No automated visual regression testing",
-    description:
-      "The team didn't have the infrastructure for tools like Chromatic. Visual QA was manual via the theme stress test page. A clear gap for the future.",
-  },
+  "Edge cases, such as long labels and empty data, were part of the standard QA checklist"
 ];
 
 const outcomeDelivered = [
-  "A complete token system (primitives, semantics, component tokens) with three product themes",
-  "A Figma component library covering all priority categories, each component with variants, states, and documentation",
-  "A coded component library aligned 1:1 with the Figma source of truth",
-  "Documentation covering usage, accessibility, and contribution guidelines",
-  "A governance process for requests, reviews, and versioning",
+  "A complete token system — primitives, semantic tokens, and component tokens — with three product themes",
+  "A Figma component library covering all priority categories, each component with  different versions, states, and documentation",
+  "A coded component library that matches the Figma source exactly",
+  "Documentation covering usage, accessibility and guidelines",
+  "A process for requests, reviews and versioning",
 ];
 
 const outcomeImpact = [
-  "Developers and QA reported up to 30% less time chasing mismatched styles and specs \u2014 inconsistencies that previously surfaced only during review or QA were now caught at the design stage",
-  "Product managers gained the ability to prototype concepts that closely matched the real product ecosystem, reducing the gap between ideation and implementation",
-  "As the designer, I cut time-to-design for new features by up to 90% \u2014 assembling from components instead of designing from scratch \u2014 and handoffs stopped being a bottleneck",
-  "Faster onboarding for new team members, with the system serving as a living reference for \u2018how we build things here\u2019",
+  "Developers and QA reported spending up to 30% less time addressing mismatched styles and specifications. Inconsistencies that had only surfaced during review or QA were now identified at the design stage.",
+  "Product managers could prototype with real components, so concepts looked like the actual product from day one",
+  "As a designer, I reduced the time it took to design new features by up to 90% by assembling them from components instead of designing them from scratch",
+  "The system became the reference for \"how we build things here.\" New team members can read it instead of reverse-engineering decisions from code.",
 ];
 
 const proudOf = [
-  "Built a system that scales. A token architecture that handles three distinct product identities from a single shared library is not a trivial outcome. Every product team could apply their brand without touching component code.",
-  "Governance that teams trusted. The intake → triage → review → ship loop kept contributions orderly without becoming a bureaucratic bottleneck. Busy product teams participated because the process respected their time.",
-  "Documentation as a design artifact. Making 'the why' part of every component's documentation changed how teams related to the system — it wasn't just specs, it was reasoning they could reference and build on.",
+  "Built a system that scales. Getting three products with distinct visual identities onto one shared library, without forking anything, was the hardest part — and it held up. Each product team could apply its brand without touching component code.",
+  "Teams trusted the governance. Busy product teams participated because the process was easy and produced results after one quarter.",
+  "We treated documentation as a design artifact. Including the \"why\" in every component's documentation increased trust from the product team.",
 ];
 
 const doDifferently = [
-  "Invest in automated visual regression testing from the start. Manual QA doesn't scale and lets regressions slip through.",
-  "Build a metrics dashboard for adoption early: tracking component usage, override frequency, and contribution activity would have made the system's value visible to leadership.",
-  "Involve developers more in the initial architecture phase. Some token naming decisions that felt logical in Figma created friction in code.",
+  "Apply AI-powered tools from the start. Manual batch operations don't scale and allow errors to slip through.",
+  "Use metrics for adoption early on. Tracking component usage, override frequency, and contribution activity would have made the system's value visible to leadership.",
+  "Involve developers earlier. Some naming decisions that seemed logical in Figma caused problems in the code.  The codebase already uses established naming conventions inspired by popular frameworks.",
 ];
 
 const nextSteps = [
-  "Extend the system to support future B2B products without per-product customization overhead",
-  "Introduce animation/motion tokens once product needs are clearer",
-  "Set up automated visual regression testing infrastructure",
-  "Build an internal adoption dashboard to track system health and coverage",
+  "Extend the system to support future B2B products without requiring customization for each product",
+  "Set up a visual catalog with production components (e.g., Storybook)",
+  "Run regular retros with product teams to surface friction points and keep the system from going stale.",
 ];
 
 /* ── Reusable sub-components ──────────────────────────── */
@@ -293,7 +272,7 @@ function ImagePlaceholder({ label }: { label: string }) {
 
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-3">
+    <div className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-3 my-2 border-l-[3px] border-foreground/20">
       {children}
     </div>
   );
@@ -408,7 +387,7 @@ export function DesignSystemPage() {
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I created Yesim's B2B design system to bring consistency, speed, and sub-brand flexibility across a growing ecosystem of products.")}
+            {nbsp("I built Yesim's B2B design system from scratch — a shared foundation for three products with different visual identities but the same codebase.")}
           </p>
         </div>
       </SectionAnimate>
@@ -416,7 +395,12 @@ export function DesignSystemPage() {
       {/* Hero image */}
       <SectionAnimate delay={0.08}>
         <div className="-mx-4 sm:mx-0">
-          <ImagePlaceholder label="[image: design system overview — components, tokens, and theme variations side by side]" />
+          <ImageWithFallback
+            src={heroImage}
+            alt="Design system overview — components, tokens, and theme variations side by side"
+            className="w-full rounded-none sm:rounded-xl"
+            loading="eager"
+          />
         </div>
       </SectionAnimate>
 
@@ -445,8 +429,9 @@ export function DesignSystemPage() {
           <p
             className="text-muted-foreground"
             style={{
-              fontSize: "0.875rem",
-              lineHeight: 1.6,
+              fontSize: fluidSmall,
+              fontWeight: 500,
+              lineHeight: 1.65,
               fontStyle: "italic",
             }}
           >
@@ -488,19 +473,19 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Yesim is a worldwide eSIM platform serving over 3 million customers. Beyond its consumer-facing app, Yesim operates a group of B2B products \u2014 internal tools, partner dashboards, and operational platforms \u2014 that serve different audiences but share a common tech stack and design DNA.")}
+              {nbsp("Yesim is a global eSIM platform used by over 3 million customers. Alongside its consumer app, Yesim runs several B2B products: web apps, an API integration, and white-label solutions. All of them share the same tech stack and component patterns.")}
             </p>
             <p
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("When I joined, these B2B products were growing independently. Each had its own UI patterns, color schemes, and component implementations. The inconsistency was manageable at two products; at three and growing, it became a bottleneck \u2014 slowing development, fragmenting the user experience, and making design reviews a negotiation rather than a reference check.")}
+              {nbsp("When I joined the Partners product team, these products were growing independently. Each had its own UI patterns, colour schemes and legacy implementations. It was fine with two products, but with three it became a real problem. Even small changes can slow things down and turn design reviews into a negotiation instead of a quick reference check.")}
             </p>
             <p
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("I led the creation of the shared design system from scratch for Yesim\u2019s B2B products. The goal was to provide a standardized foundation \u2014 variables, naming conventions, and components \u2014 so the design team could work faster, stay aligned, and hand off work without it becoming a bottleneck. Critically, the system also needed to let each product maintain its own visual identity through theming.")}
+              {nbsp("I led the design of Yesim's B2B products from the start, including the shared design system. The goal was a basic structure — variables, naming rules, core components — so the team could go from brief to shipped in days rather than weeks. The system also needed to support theming: letting each product apply its own visual identity through variable modes without touching component code.")}
             </p>
           </div>
         </div>
@@ -509,7 +494,11 @@ export function DesignSystemPage() {
       {/* Context image */}
       <SectionAnimate delay={0.145}>
         <div className="-mx-4 sm:mx-0">
-          <ImagePlaceholder label="[image: before/after UI audit — three products with inconsistent components vs. unified system output]" />
+          <ImageWithFallback
+            src={beforeAfterImage}
+            alt="Before/after UI audit — three products with inconsistent components vs. unified system output"
+            className="w-full rounded-none sm:rounded-xl"
+          />
         </div>
       </SectionAnimate>
 
@@ -521,44 +510,45 @@ export function DesignSystemPage() {
             className="text-foreground/80"
             style={{ fontSize: fluidBase, lineHeight: 1.75 }}
           >
-            {nbsp("The core challenge was the tension between consistency and flexibility. We needed a shared component library that felt unified \u2014 same interaction patterns, same accessibility standards, same quality \u2014 but looked different enough per product to support distinct brand identities (similar to sub-brands under one umbrella).")}
+            {nbsp("The main challenge was finding the right balance between consistency and flexibility. We needed a shared component library that felt unified — the same interaction patterns, the same accessibility standards, the same quality — but looked different enough per product to support distinct brand identities (similar to sub-brands under one umbrella).")}
           </p>
           <CalloutBox>
-            <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-              <strong>Problem statement:</strong>
-            </p>
-            <p style={{ fontSize: "0.875rem", lineHeight: 1.6 }}>
-              {nbsp("How might we create a single design system that works across 3+ B2B products with different visual identities, without forcing teams to fork components or fight the system?")}
+            <p style={{ fontSize: fluidBase, fontWeight: 500, lineHeight: 1.65, fontStyle: "italic" }}>
+              {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities — without needing a dedicated person to keep it running?")}
             </p>
           </CalloutBox>
-          <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            <strong>Success metrics:</strong>
-          </p>
-          <ul className="flex flex-col gap-2 pl-5 list-disc">
-            {successMetrics.map((m, i) => (
-              <li
-                key={i}
-                className="text-foreground/80"
-                style={{ fontSize: fluidBase, lineHeight: 1.6 }}
-              >
-                {nbsp(m)}
-              </li>
-            ))}
-          </ul>
-          <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            <strong>Constraints:</strong>
-          </p>
-          <ul className="flex flex-col gap-2 pl-5 list-disc">
-            {constraints.map((c, i) => (
-              <li
-                key={i}
-                className="text-foreground/80"
-                style={{ fontSize: fluidBase, lineHeight: 1.6 }}
-              >
-                {nbsp(c)}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-2">
+            <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+              <strong>Success metrics:</strong>
+            </p>
+            <ul className="flex flex-col gap-2 pl-5 list-disc">
+              {successMetrics.map((m, i) => (
+                <li
+                  key={i}
+                  className="text-foreground/80"
+                  style={{ fontSize: fluidBase, lineHeight: 1.6 }}
+                >
+                  {nbsp(m)}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+              <strong>Constraints:</strong>
+            </p>
+            <ul className="flex flex-col gap-2 pl-5 list-disc">
+              {constraints.map((c, i) => (
+                <li
+                  key={i}
+                  className="text-foreground/80"
+                  style={{ fontSize: fluidBase, lineHeight: 1.6 }}
+                >
+                  {nbsp(c)}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </SectionAnimate>
 
@@ -570,7 +560,7 @@ export function DesignSystemPage() {
             className="text-foreground/80"
             style={{ fontSize: fluidBase, lineHeight: 1.75 }}
           >
-            {nbsp("Before building anything, I defined a set of principles to guide decisions. These served as the system's constitution \u2014 a reference point for every \"should we include this?\" debate.")}
+            {nbsp("Before I started building, I wrote down a set of principles to guide decisions.")}
           </p>
           <div className="flex flex-col gap-3">
             {principles.map((p) => (
@@ -596,7 +586,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("The token architecture uses three layers: primitives, semantics, and component tokens. This layered approach is what makes theming possible \u2014 swapping a product's theme means overriding semantic tokens only, while primitives and component structure remain untouched.")}
+              {nbsp("The token architecture has three layers: raw values, primitives and semantic tokens. This layered approach is what makes theming possible: if you swap a product's theme, you only override the semantic tokens, while the primitives and the component structure stay the same.")}
             </p>
             <DataTable
               headers={["Layer", "Purpose", "Example", "Themeable?"]}
@@ -612,7 +602,11 @@ export function DesignSystemPage() {
 
           {/* Token image */}
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: tokens and theming model — three-layer diagram showing primitives → semantics → component tokens]" />
+            <ImageWithFallback
+              src={semanticsImage}
+              alt="Token and theming model — three-layer diagram showing primitives → semantics → component tokens"
+              className="w-full rounded-none sm:rounded-xl"
+            />
           </div>
 
           {/* Theming for sub-brands */}
@@ -624,7 +618,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Each B2B product gets a theme file that overrides semantic tokens. The component library itself is product-agnostic \u2014 it references semantic tokens only. Switching from \"Product A\" to \"Product B\" means swapping a single theme configuration, not rebuilding components.")}
+              {nbsp("Each B2B product has a theme file that overrides semantic tokens. The component library itself doesn't care about the product — it only uses semantic tokens. If you switch from \"Product A\" to \"Product B\", you only need to change one theme configuration, not rebuild components.")}
             </p>
             <DataTable
               headers={["Token", "Product A", "Product B", "Product C"]}
@@ -636,21 +630,16 @@ export function DesignSystemPage() {
               ])}
               mono={[0]}
             />
-            <p
-              className="text-muted-foreground"
-              style={{
-                fontSize: "0.75rem",
-                lineHeight: 1.3,
-                fontStyle: "italic",
-              }}
-            >
-              Product names and exact token values are illustrative.
-            </p>
+
           </div>
 
           {/* Sub-brand themes image */}
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: sub-brand themes comparison — same component rendered in three product themes side by side]" />
+            <ImageWithFallback
+              src={subBrandsImage}
+              alt="Sub-brand themes comparison — same component rendered in three product themes side by side"
+              className="w-full rounded-none sm:rounded-xl"
+            />
           </div>
 
           {/* Naming conventions */}
@@ -662,17 +651,12 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("I established a function-first naming convention. Tokens are named by what they do, not what they look like.")}{" "}
+              {nbsp("I created a function-first naming convention. Tokens are named by what they do, not what they look like.")}{" "}
               <code className="px-1.5 py-0.5 rounded bg-secondary text-foreground/80" style={{ fontSize: "0.75rem" }}>
                 color-fg-secondary
               </code>{" "}
-              {nbsp("tells you it's a foreground color with secondary hierarchy \u2014 without needing to look up the hex value. This makes the system scannable for both designers in Figma and developers in code.")}
+              {nbsp("tells you it's a secondary foreground color — no need to look up the hex. It means the same thing to a designer in Figma and a developer in code.")}
             </p>
-          </div>
-
-          {/* Component anatomy image */}
-          <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: component anatomy — button dissected with token labels mapped to visual properties]" />
           </div>
         </div>
       </SectionAnimate>
@@ -685,7 +669,7 @@ export function DesignSystemPage() {
             className="text-foreground/80"
             style={{ fontSize: fluidBase, lineHeight: 1.75 }}
           >
-            {nbsp("The component library was prioritized around B2B usage patterns. Consumer apps need carousels and hero sections; B2B products need dense data tables, complex forms, and permission-aware states. I built for the latter.")}
+            {nbsp("The component library was designed with B2B usage patterns in mind. While consumer apps focus on carousels and hero sections, B2B products rely on dense data tables, complex forms, and permission-aware states. For that reason, extending the consumer library wasn't a viable option.")}
           </p>
           <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
             <strong>Priority components (Phase 1)</strong>
@@ -711,13 +695,6 @@ export function DesignSystemPage() {
         </div>
       </SectionAnimate>
 
-      {/* Component library image */}
-      <SectionAnimate delay={0.225}>
-        <div className="-mx-4 sm:mx-0">
-          <ImagePlaceholder label="[image: Figma component library overview — table component spec with variants and states]" />
-        </div>
-      </SectionAnimate>
-
       {/* Handling density */}
       <SectionAnimate delay={0.23}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
@@ -728,7 +705,7 @@ export function DesignSystemPage() {
             className="text-foreground/80"
             style={{ fontSize: fluidBase, lineHeight: 1.75 }}
           >
-            {nbsp("B2B users often work with dense information. I built density as a system-level token \u2014 components respond to a density setting (default, compact, spacious) without requiring separate variants. A table in \"compact\" mode tightens padding and reduces row height; the component API stays the same.")}
+            {nbsp("B2B users work with dense information layouts. I built density as a system-level token — components respond to a density setting (default, compact, spacious) without requiring separate variants. In \"compact\" mode, a table will tighten the padding and reduce the height of each row. The component API will stay the same.")}
           </p>
         </div>
       </SectionAnimate>
@@ -742,19 +719,19 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("I started with an audit. Before designing a single component, I cataloged every unique UI element across all three products \u2014 buttons in five different styles, three different table implementations, form fields that looked similar but behaved differently. The audit made the problem visible to stakeholders and built alignment around why a shared system was worth investing in.")}
+              {nbsp("I started with an audit. Before designing a single component, I listed every unique UI element across all three products. This included buttons in five different styles, three different table implementations, and form fields that looked similar but behaved differently. The audit made the problem clear to stakeholders and showed why a shared system was worth investing in.")}
             </p>
             <p
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("From the audit, I derived the token architecture (described above) and a prioritized component roadmap. The principle was: ship the components that eliminate the most inconsistency first. Tables and forms topped the list because they appeared on every product's most-visited pages.")}
+              {nbsp("From the audit, I created the token architecture and a prioritized component roadmap. The idea was to ship the components that eliminated the most inconsistency first. Tables and forms were the most important because they appeared on every product's most-visited pages.")}
             </p>
             <p
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Each component went through a cycle: audit existing implementations \u2192 define the API (props, variants, states) \u2192 design in Figma with tokens \u2192 review with product teams \u2192 build and validate in code \u2192 document. The Figma library and the code library were kept in sync \u2014 a component wasn't \"done\" until it existed in both and had documentation.")}
+              {nbsp("Here's how we did it: first, we checked existing implementations; then, we defined the API (props, variants, states); next, we designed in Figma with tokens; then, we reviewed with the product teams; finally, we built and validated in code and documented everything. The Figma library and the code library were kept the same. A component wasn't \"done\" until it existed in both and had documentation.")}
             </p>
           </div>
         </div>
@@ -772,14 +749,20 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Every component has a documentation page that includes: a live preview, prop/variant table, usage guidelines (when to use, when not to), accessibility notes, and a changelog. Documentation is part of the definition of done \u2014 not an afterthought.")}
+              {nbsp("Each component has a documentation page that includes a live preview, a prop/variant table, usage guidelines (including when to use and when not to use), accessibility notes and a changelog.")}
             </p>
           </div>
 
           {/* Documentation image */}
-          <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: documentation page example — component with usage guidelines, accessibility notes, and prop table]" />
-          </div>
+          <SectionAnimate delay={0.225}>
+            <div className="-mx-4 sm:mx-0">
+              <ImageWithFallback
+                src={specsImage}
+                alt="Component anatomy — button dissected with token labels mapped to visual properties"
+                className="w-full rounded-none sm:rounded-xl"
+              />
+            </div>
+          </SectionAnimate>
 
           {/* Contribution and governance model */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
@@ -807,7 +790,11 @@ export function DesignSystemPage() {
 
           {/* Governance image */}
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: governance workflow diagram — request → triage → design & review → build & ship → versioning]" />
+            <ImageWithFallback
+              src={governanceImage}
+              alt="Governance workflow diagram — one team submits requests, the design system team processes and ships components, and two product teams consume them"
+              className="w-full rounded-none sm:rounded-xl"
+            />
           </div>
         </div>
       </SectionAnimate>
@@ -821,7 +808,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("A design system that nobody uses is just a Figma file. Adoption was a deliberate effort, not a side effect.")}
+              {nbsp("If nobody uses a design system, it's just a Figma file. Adoption requires deliberate effort, not just a side effect.")}
             </p>
           </div>
 
@@ -833,7 +820,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Instead of mandating a full migration, I worked with each product team to identify high-impact, low-risk surfaces to migrate first \u2014 typically settings pages and list views. This proved the system's value without disrupting active feature work. As teams saw the time savings, adoption accelerated organically.")}
+              {nbsp("Instead of mandating a full migration, I worked with each product team to identify high-impact, low-risk surfaces to migrate first \u2014 typically settings pages and list views. This approach proved the system's value without disrupting active feature work. As teams saw the time savings, adoption accelerated organically.")}
             </p>
           </div>
 
@@ -856,29 +843,11 @@ export function DesignSystemPage() {
 
           {/* Before/after image */}
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="[image: before/after UI consistency — same screen pre- and post-migration to the design system]" />
-          </div>
-        </div>
-      </SectionAnimate>
-
-      {/* Tradeoffs & Risks */}
-      <SectionAnimate delay={0.3}>
-        <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading>Tradeoffs &amp; Risks</SectionHeading>
-          <p
-            className="text-foreground/80"
-            style={{ fontSize: fluidBase, lineHeight: 1.75 }}
-          >
-            {nbsp("Every system makes deliberate choices about what not to solve. Here's what I consciously scoped out and why:")}
-          </p>
-          <div className="flex flex-col gap-3">
-            {tradeoffs.map((t) => (
-              <PrincipleCard
-                key={t.title}
-                title={t.title}
-                description={t.description}
-              />
-            ))}
+            <ImageWithFallback
+              src={prototypeImage}
+              alt="Figma library connected to an AI-powered prototype tool — design system enabling rapid prototyping"
+              className="w-full rounded-none sm:rounded-xl"
+            />
           </div>
         </div>
       </SectionAnimate>
@@ -887,34 +856,38 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.32}>
         <div className="flex flex-col" style={{ gap: innerGap }}>
           <SectionHeading>Outcome &amp; Impact</SectionHeading>
-          <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            <strong>What was delivered:</strong>
-          </p>
-          <ul className="flex flex-col gap-2 pl-5 list-disc">
-            {outcomeDelivered.map((item, i) => (
-              <li
-                key={i}
-                className="text-foreground/80"
-                style={{ fontSize: fluidBase, lineHeight: 1.6 }}
-              >
-                {nbsp(item)}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            <strong>Impact on the organization:</strong>
-          </p>
-          <ul className="flex flex-col gap-2 pl-5 list-disc">
-            {outcomeImpact.map((item, i) => (
-              <li
-                key={i}
-                className="text-foreground/80"
-                style={{ fontSize: fluidBase, lineHeight: 1.7 }}
-              >
-                {nbsp(item)}
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-2">
+            <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+              <strong>What was delivered:</strong>
+            </p>
+            <ul className="flex flex-col gap-2 pl-5 list-disc">
+              {outcomeDelivered.map((item, i) => (
+                <li
+                  key={i}
+                  className="text-foreground/80"
+                  style={{ fontSize: fluidBase, lineHeight: 1.6 }}
+                >
+                  {nbsp(item)}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-2">
+            <p style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
+              <strong>Impact on the organization:</strong>
+            </p>
+            <ul className="flex flex-col gap-2 pl-5 list-disc">
+              {outcomeImpact.map((item, i) => (
+                <li
+                  key={i}
+                  className="text-foreground/80"
+                  style={{ fontSize: fluidBase, lineHeight: 1.7 }}
+                >
+                  {nbsp(item)}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </SectionAnimate>
 

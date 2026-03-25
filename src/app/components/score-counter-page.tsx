@@ -70,13 +70,13 @@ const impactStats = [
 
 const proudOf = [
   "Sustained quality over nine years. This isn't a\u00a0portfolio piece I\u00a0shipped and\u00a0forgot. It's a\u00a0living product with\u00a0108 commits in\u00a02025 alone, real users, and\u00a0a\u00a04.9 rating that has been maintained, not inflated by\u00a0launch spikes.",
-  "Growth without marketing. 600K installs driven entirely by\u00a0product quality, word-of-mouth, and\u00a0organic discovery. That's evidence that design decisions (simplicity, no ads, respect for\u00a0the\u00a0user) compound over time.",
-  "Community impact. A\u00a0contributor was inspired enough to\u00a0build a\u00a0web version. Others volunteer translations. The\u00a0app has become something people care about beyond just using it, and\u00a0that's the\u00a0most meaningful signal I\u00a0can point to.",
+  "Growth without marketing. 600K installs through word-of-mouth alone. That's what you get when the product is the only thing doing the work.",
+  "Community impact. A\u00a0contributor built a\u00a0web version. Others volunteer translations. The\u00a0app has become something people care about beyond just using it \u2014 which matters more to me than any metric.",
 ];
 
 const doDifferently = [
   "Document the\u00a0design process earlier. For\u00a0years I\u00a0iterated without saving artifacts. If\u00a0I'd kept a\u00a0design journal from the\u00a0start, this case study would be\u00a0richer with\u00a0before/after evidence.",
-  "Explore lightweight analytics sooner. Understanding which features are actually used (vs. requested) would have sharpened prioritization.",
+  "Explore lightweight analytics sooner. Understanding which features people actually use \u2014 not just request \u2014 would have made it easier to say no.",
   "Consider cross-platform earlier. The\u00a0fan-made web version proved there's demand beyond Android. I\u00a0should have explored that signal sooner.",
 ];
 
@@ -123,7 +123,7 @@ function ImagePlaceholder({ label }: { label: string }) {
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-2"
+      className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-2 my-2"
     >
       {children}
     </div>
@@ -240,7 +240,7 @@ export function ScoreCounterPage() {
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I designed and built an Android utility app that grew entirely through product quality, reaching 87.2K monthly active users across 205K average active devices and a 4.9 Google Play rating \u2014 all without spending a dollar on marketing.")}
+            {nbsp("I built Score Counter as a side project in 2016. It now has 600K installs, 87.2K monthly active users, and a 4.9 rating on Google Play. No ads, no marketing spend \u2014 just the app.")}
           </p>
         </div>
       </SectionAnimate>
@@ -398,7 +398,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Outcome &amp; Impact</SectionHeading>
           <ImpactStatsGrid />
           <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            {nbsp("The app maintains 87.2K monthly active users across 205K average active devices, growing entirely through organic discovery with zero marketing spend. It has inspired community contributions \u2014 translations from volunteers, a fan-made web version \u2014 and remains a top-rated utility in its category.")}
+            {nbsp("The app has 87.2K monthly active users across 205K average active devices, all through organic discovery. Volunteers have contributed translations, a developer built a fan web version, and it still holds a 4.9 rating after nine years.")}
           </p>
         </div>
       </SectionAnimate>

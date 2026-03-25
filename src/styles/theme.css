@@ -53,6 +53,12 @@
 
   --text-2: clamp(1rem, 0.94rem + 0.3vw, 1.25rem);
   --text-serif: clamp(1rem, 0.94rem + 0.3vw, 1.25rem);
+
+  /* Fluid heading scale */
+  --text-lg:  clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-xl:  clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1rem + 3.5vw, 3.25rem);
 }
 
 .dark {
@@ -148,8 +154,13 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  .dark body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
@@ -157,30 +168,33 @@
   }
 
   h1 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-3xl);
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
   h2 {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
   h3 {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     font-weight: var(--font-weight-normal);
-    line-height: 1.5;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
   h4 {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     font-weight: var(--font-weight-medium);
-    line-height: 1.5;
+    line-height: 1.4;
     text-wrap: balance;
   }
 

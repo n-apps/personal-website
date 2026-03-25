@@ -89,7 +89,7 @@ const personalProjects = [
     title: "Score Counter",
     subtitle: "Android App",
     description:
-      "Started as\u00a0a\u00a0side project, now a\u00a0go-to counter app with\u00a0180,000+ active users and\u00a0a\u00a04.9 rating. Reached 600K+ installs with\u00a0zero marketing budget.",
+      "A scorekeeper app I've built and maintained since\u00a02016. 600K+\u00a0installs, 87.2K monthly active users, 4.9\u00a0rating\u00a0— all organic, no\u00a0marketing spend.",
     caseStudy: "/work/score-counter",
     cover: scoreCounterCover,
   },
@@ -97,7 +97,7 @@ const personalProjects = [
     title: "B2B Design System",
     subtitle: "Yesim",
     description:
-      "Built a\u00a0scalable design system from scratch for\u00a0Yesim's B2B product ecosystem \u2014 enabling consistency, sub-brand theming, and\u00a0faster feature delivery across three products.",
+      "A shared component library and token system for\u00a0three B2B products with different visual identities. Built from scratch, including Figma, code, documentation, and\u00a0a governance process.",
     caseStudy: "/work/design-system",
     cover: designSystemCover,
   },
@@ -140,7 +140,7 @@ export function HomePage() {
               Roma Shuliatiev
             </h2>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {nbsp("Product designer with 5 years of experience turning complex problems into simple, useful solutions for both B2B and consumer markets (SaaS, marketplaces, e-commerce). I love blending logic, UX, and design systems to build experiences that feel effortless and meaningful.")}
+              {nbsp("Product designer with 5 years across B2B SaaS and consumer products. I have a development background, which means I tend to think about design decisions in terms of how they'll actually get built — and I've led work across research, systems, and shipping.")}
             </p>
           </div>
           <div className="flex flex-col" style={{ gap: "clamp(0.375rem, 0.35rem + 0.1vw, 0.5rem)" }}>
@@ -151,7 +151,7 @@ export function HomePage() {
               Now
             </h3>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {nbsp("Currently, I'm looking for my next adventure 🔭 In my spare time, I work on a side project: the most popular points-counting app, which helps over 180,000 people every month.")}
+              {nbsp("I'm open to new roles. Outside of work, I maintain Score Counter — a scorekeeper app I built in 2016 that now has 600K installs and 87.2K monthly active users.")}
             </p>
           </div>
         </section>
@@ -276,7 +276,7 @@ export function HomePage() {
             Skills & tools
           </h2>
           <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-            {nbsp("I work across the full design process, from research and wireframes to usability testing and analytics. My dev background helps me speak fluently with engineering.")}
+            {nbsp("I've worked across research, systems design, and shipping — usually as the only designer on a team. Having started as an Android developer, I'm comfortable reading code and working directly in engineering reviews.")}
           </p>
         </section>
       </SectionAnimate>
