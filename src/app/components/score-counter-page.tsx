@@ -5,20 +5,14 @@ import { useInView, useSpring, useTransform, motion } from "motion/react";
 import { SectionAnimate } from "./section-animate";
 import { ImageWithFallback } from "./image-with-fallback";
 import { nbsp } from "./utils/nbsp";
+import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
+import { SectionHeading, BoldLead, ImagePlaceholder } from "./case-study-components";
 const problemImage = "/images/score-counter-problem.png";
 const heroImage = "/images/score-counter-hero.png";
 const testimonialsImage = "/images/score-counter-testimonials.png";
 const flowImage = "/images/score-counter-flow.png";
 const unexpectedUseCasesImage = "/images/score-counter-unexpected-uses.png";
 const evolutionImage = "/images/score-counter-evolution.png";
-
-const fluidBase = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
-const fluidH1 = "clamp(1.5rem, 1.3rem + 1vw, 2.25rem)";
-const fluidH2 = "clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem)";
-const fluidH3 = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const sectionGap = "clamp(2.5rem, 2rem + 2.5vw, 4rem)";
-const innerGap = "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)";
 
 /* ── Data ─────────────────────────────────────────────── */
 
@@ -81,44 +75,7 @@ const doDifferently = [
 ];
 
 
-/* ── Reusable sub-components ──────────────────────────── */
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      className="text-muted-foreground tracking-widest uppercase"
-      style={{ fontSize: fluidH2, lineHeight: 1.3, letterSpacing: "0.15em" }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function BoldLead({ text }: { text: string }) {
-  const i = text.indexOf(". ");
-  if (i === -1) return <>{nbsp(text)}</>;
-  return (
-    <>
-      <strong>{nbsp(text.slice(0, i + 1))}</strong>{" "}
-      {nbsp(text.slice(i + 2))}
-    </>
-  );
-}
-
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div className="w-full rounded-xl bg-secondary flex items-center justify-center overflow-hidden"
-      style={{ aspectRatio: "772 / 320" }}
-    >
-      <span
-        className="text-muted-foreground text-center px-4"
-        style={{ fontSize: "0.875rem", lineHeight: 1.4 }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
+/* ── Local sub-components ──────────────────────────────── */
 
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (

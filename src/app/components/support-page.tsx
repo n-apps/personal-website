@@ -1,15 +1,9 @@
 import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
-import * as Separator from "@radix-ui/react-separator";
 import { Heart, Star, MessageCircle, ExternalLink } from "lucide-react";
+import { DashedDivider } from "./dashed-divider";
+import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
 const heroImage = "/images/support-hero.png";
-
-const fluidBase = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
-const fluidH1 = "clamp(1.5rem, 1.3rem + 1vw, 2.25rem)";
-const fluidH3 = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const sectionGap = "clamp(2.5rem, 2rem + 2.5vw, 4rem)";
-const innerGap = "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)";
 
 const supportOptions = [
   {
@@ -31,15 +25,6 @@ const supportOptions = [
     description: "A review helps more than you think",
   },
 ];
-
-function DashedDivider() {
-  return (
-    <Separator.Root
-      className="w-full h-0 border-t border-dashed border-muted-foreground/30"
-      decorative
-    />
-  );
-}
 
 export function SupportPage() {
   return (

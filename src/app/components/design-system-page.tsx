@@ -3,6 +3,8 @@ import { ArrowLeft } from "lucide-react";
 import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
 import { ImageWithFallback } from "./image-with-fallback";
+import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
+import { SectionHeading, BoldLead, ImagePlaceholder } from "./case-study-components";
 
 const heroImage = "/images/design-system-hero.png";
 const beforeAfterImage = "/images/design-system-before-after.png";
@@ -11,14 +13,6 @@ const subBrandsImage = "/images/design-system-sub-brands.png";
 const specsImage = "/images/design-system-specs.png";
 const governanceImage = "/images/design-system-governance.png";
 const prototypeImage = "/images/design-system-prototype.png";
-
-const fluidBase = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
-const fluidH1 = "clamp(1.5rem, 1.3rem + 1vw, 2.25rem)";
-const fluidH2 = "clamp(0.6875rem, 0.66rem + 0.12vw, 0.75rem)";
-const fluidH3 = "clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)";
-const sectionGap = "clamp(2.5rem, 2rem + 2.5vw, 4rem)";
-const innerGap = "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)";
 
 /* ── Data ─────────────────────────────────────────────── */
 
@@ -230,45 +224,7 @@ const nextSteps = [
   "Run regular retros with product teams to surface friction points and keep the system from going stale.",
 ];
 
-/* ── Reusable sub-components ──────────────────────────── */
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      className="text-muted-foreground tracking-widest uppercase"
-      style={{ fontSize: fluidH2, lineHeight: 1.3, letterSpacing: "0.15em" }}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function BoldLead({ text }: { text: string }) {
-  const i = text.indexOf(". ");
-  if (i === -1) return <>{nbsp(text)}</>;
-  return (
-    <>
-      <strong>{nbsp(text.slice(0, i + 1))}</strong>{" "}
-      {nbsp(text.slice(i + 2))}
-    </>
-  );
-}
-
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div
-      className="w-full rounded-xl bg-secondary flex items-center justify-center overflow-hidden"
-      style={{ aspectRatio: "772 / 320" }}
-    >
-      <span
-        className="text-muted-foreground text-center px-4"
-        style={{ fontSize: "0.875rem", lineHeight: 1.4 }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
+/* ── Local sub-components ──────────────────────────────── */
 
 function CalloutBox({ children }: { children: React.ReactNode }) {
   return (

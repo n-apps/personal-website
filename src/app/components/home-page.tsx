@@ -3,8 +3,8 @@ const designSystemCover = "/images/design-system-cover.png";
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { SectionAnimate } from "./section-animate";
-import * as Separator from "@radix-ui/react-separator";
 import { nbsp } from "./utils/nbsp";
+import { DashedDivider } from "./dashed-divider";
 
 const fluidBase = "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)";
 const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
@@ -45,15 +45,6 @@ function ArrowLink({
       {children}
       <ArrowRight size={14} />
     </Link>
-  );
-}
-
-function DashedDivider() {
-  return (
-    <Separator.Root
-      className="w-full h-0 border-t border-dashed border-muted-foreground/30"
-      decorative
-    />
   );
 }
 

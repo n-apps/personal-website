@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router";
 import { Navigation } from "./navigation";
 import { Footer } from "./footer";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
 export function Layout() {
   const { pathname } = useLocation();
@@ -17,7 +17,9 @@ export function Layout() {
           <Navigation />
         </div>
         <main className="w-full" style={{ gridArea: "main" }}>
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </main>
         <div style={{ gridArea: "footer" }}>
           <Footer />

@@ -2,10 +2,6 @@ import { Link, useLocation } from "react-router";
 import { ThemeToggle } from "./theme-toggle";
 import { motion } from "motion/react";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-];
-
 export function Navigation() {
   const location = useLocation();
 
@@ -29,24 +25,6 @@ export function Navigation() {
         </Link>
       )}
       <div className="flex items-center gap-4">
-        {navLinks.map(({ href, label }) => {
-          if (label === "Home") return null;
-          const isActive = location.pathname === href;
-          return (
-            <Link
-              key={href}
-              to={href}
-              data-goatcounter-click={`nav-${label.toLowerCase()}`}
-              className={`inline-block transition-colors ${isActive
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-                }`}
-              style={{ fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)", lineHeight: 1 }}
-            >
-              {label}
-            </Link>
-          );
-        })}
         <ThemeToggle />
       </div>
     </motion.nav>
