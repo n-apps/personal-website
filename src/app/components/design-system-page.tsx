@@ -266,9 +266,9 @@ function DataTable({
   mono?: number[];
 }) {
   return (
-    <div className="overflow-x-auto -mx-4 sm:mx-0">
+    <div className="overflow-x-hidden sm:overflow-x-auto -mx-4 sm:mx-0">
       <table
-        className="w-full min-w-[500px]"
+        className="w-full min-w-0 table-fixed"
         style={{ fontSize: "0.875rem", lineHeight: 1.4 }}
       >
         <thead>
@@ -276,7 +276,7 @@ function DataTable({
             {headers.map((h) => (
               <th
                 key={h}
-                className="text-left text-muted-foreground tracking-wide uppercase py-3 pr-4"
+                className="text-left text-muted-foreground tracking-wide uppercase py-3 pr-4 break-words whitespace-normal"
                 style={{ fontSize: "0.75rem" }}
               >
                 {h}
@@ -290,7 +290,7 @@ function DataTable({
               {row.map((cell, j) => (
                 <td
                   key={j}
-                  className={`py-3 pr-4 ${j === 0 ? "text-foreground" : "text-foreground/80"}`}
+                  className={`py-3 pr-4 ${j === 0 ? "text-foreground" : "text-foreground/80"} break-words whitespace-normal`}
                   style={
                     mono?.includes(j)
                       ? { fontFamily: "monospace", fontSize: "0.75rem" }
