@@ -23,11 +23,18 @@ export function NotFoundPage() {
         </h1>
       </SectionAnimate>
       <SectionAnimate delay={0.1}>
+        <img
+          src="/images/lost.gif"
+          alt="Lost"
+          style={{ width: "clamp(10rem, 8rem + 10vw, 18rem)", borderRadius: "0.5rem" }}
+        />
+      </SectionAnimate>
+      <SectionAnimate delay={0.15}>
         <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
           {nbsp("Sorry, the page you're looking for doesn't exist or has been moved.")}
         </p>
       </SectionAnimate>
-      <SectionAnimate delay={0.15}>
+      <SectionAnimate delay={0.2}>
         <Link
           to="/"
           data-goatcounter-click="back-to-home-404"

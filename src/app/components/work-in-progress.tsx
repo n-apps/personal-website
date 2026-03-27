@@ -5,18 +5,6 @@ import { SectionAnimate } from "./section-animate";
 export function WorkInProgress() {
   return (
     <div className="flex flex-col items-center" style={{ gap: "clamp(2rem, 1.5rem + 2vw, 3rem)" }}>
-      <SectionAnimate delay={0}>
-        <Link
-          to="/"
-          data-goatcounter-click="back-to-home-top"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors self-start w-full"
-          style={{ fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)", lineHeight: 1 }}
-        >
-          <ArrowLeft size={16} />
-          Back to Home Page
-        </Link>
-      </SectionAnimate>
-
       <SectionAnimate delay={0.05}>
         <div className="flex flex-col items-center text-center" style={{ gap: "clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem)" }}>
           <img
@@ -47,6 +35,18 @@ export function WorkInProgress() {
             </p>
           </div>
         </div>
+      </SectionAnimate>
+
+      <SectionAnimate delay={0}>
+        <Link
+          to="/"
+          data-goatcounter-click="back-to-home-top"
+          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors self-start w-full"
+          style={{ fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)", lineHeight: 1 }}
+        >
+          <ArrowLeft size={16} />
+          Back to Home Page
+        </Link>
       </SectionAnimate>
     </div>
   );

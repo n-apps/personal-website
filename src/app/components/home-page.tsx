@@ -1,52 +1,13 @@
 const scoreCounterCover = "/images/score-counter-cover.png";
 const designSystemCover = "/images/design-system-cover.png";
+const comingSoonCover = "/images/coming-soon-cover.png";
 import { Link } from "react-router";
-import { ArrowRight } from "lucide-react";
 import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
 import { DashedDivider } from "./dashed-divider";
 
 const fluidBase = "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)";
 const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
-
-function ArrowLink({
-  href,
-  children,
-  external,
-}: {
-  href: string;
-  children: React.ReactNode;
-  external?: boolean;
-}) {
-  const cls =
-    "inline-flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors";
-  if (external) {
-    return (
-      <a
-        href={href}
-        data-goatcounter-click={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cls}
-        style={{ fontSize: fluidSmall, lineHeight: 1 }}
-      >
-        {children}
-        <ArrowRight size={14} />
-      </a>
-    );
-  }
-  return (
-    <Link
-      to={href}
-      data-goatcounter-click={href}
-      className={cls}
-      style={{ fontSize: fluidSmall, lineHeight: 1 }}
-    >
-      {children}
-      <ArrowRight size={14} />
-    </Link>
-  );
-}
 
 const workExperience = [
   {
@@ -90,6 +51,13 @@ const personalProjects = [
     description: "A token-based component library spanning three B2B products with different visual identities — built from scratch, including Figma, code, documentation, and a governance process. Result: 4x faster feature design, 30% fewer style-related QA issues.",
     caseStudy: "/work/design-system",
     cover: designSystemCover,
+  },
+  {
+    title: "White-label eSIM distribution interface",
+    subtitle: "Yesim",
+    description: "I designed a white-label web interface inside the Partners Platform that handles eSIM detail management and shareable delivery in one flow.",
+    caseStudy: "/work/coming-soon",
+    cover: comingSoonCover,
   },
 ];
 
