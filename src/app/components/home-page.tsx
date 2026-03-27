@@ -52,22 +52,22 @@ const workExperience = [
   {
     title: "Product designer at Yesim",
     period: "Apr 2021 - Mar 2026",
-    context: "Web and\u00a0mobile platforms - B2B and\u00a0B2C contexts",
-    description: "Led product design for B2B products. Created multi-brand design system.",
+    context: " Web and mobile · B2B and B2C. eSIM platform with 3M+ customers",
+    description: "Led product design for B2B products. Created multi-brand design system",
     link: { href: "https://yesim.app/", label: "Try Yesim" },
   },
   {
     title: "Product designer at\u00a0SMBF",
     period: "Aug 2020 - Apr 2021",
-    context: "WEB",
-    description: "Designed the MVP web platform.",
+    context: "Online reputation SaaS platform · B2B",
+    description: "Designed user flows, wireframes, and prototypes for a B2B SaaS product",
   },
   {
     title: "From Android dev to\u00a0product designer at\u00a0Eventssion",
     period: "Jan 2016 - Apr 2020",
-    context: "WEB, iOS, Android - B2B and\u00a0B2C contexts",
+    context: "Web and mobile · B2B and B2C. Event management and ticketing platform",
     description:
-      "Led the design team. Event management and\u00a0ticketing platform, from scratch to\u00a050K\u00a0users.",
+      "Transitioned from Android development into product design. Led the design team and shaped UX as the product grew from zero to 50,000 users.",
     link: {
       href: "https://betalist.com/startups/eventssion",
       label: "View project",
@@ -80,15 +80,14 @@ const personalProjects = [
     title: "Score Counter",
     subtitle: "Android App",
     description:
-      "A scorekeeper app I've built and maintained since\u00a02016. 600K+\u00a0installs, 87.2K monthly active users, 4.9\u00a0rating\u00a0— all organic, no\u00a0marketing spend.",
+      "A score and tally tracker I built and have maintained since 2016. 600K+ installs, 87K monthly active users, 4.9 rating — all organic, zero marketing spend.",
     caseStudy: "/work/score-counter",
     cover: scoreCounterCover,
   },
   {
     title: "B2B Design System",
     subtitle: "Yesim",
-    description:
-      "A shared component library and token system for\u00a0three B2B products with different visual identities. Built from scratch, including Figma, code, documentation, and\u00a0a governance process.",
+    description: "A token-based component library spanning three B2B products with different visual identities — built from scratch, including Figma, code, documentation, and a governance process. Result: 4x faster feature design, 30% fewer style-related QA issues.",
     caseStudy: "/work/design-system",
     cover: designSystemCover,
   },
@@ -131,7 +130,7 @@ export function HomePage() {
               Roma Shuliatiev
             </h2>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {nbsp("Product designer, 5 years in B2B SaaS and consumer. Dev background — I think about design in terms of how it actually ships.")}
+              {nbsp("Product designer with a dev background. I close the gap between design and what engineers actually build.")}
             </p>
           </div>
           <div className="flex flex-col" style={{ gap: "clamp(0.375rem, 0.35rem + 0.1vw, 0.5rem)" }}>
@@ -142,7 +141,7 @@ export function HomePage() {
               Now
             </h3>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {"Open to new roles — product design, full-time."}
+              {"Open to product designer roles, full-time."}
             </p>
           </div>
         </section>
