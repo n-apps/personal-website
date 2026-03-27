@@ -53,21 +53,21 @@ const workExperience = [
     title: "Product designer at Yesim",
     period: "Apr 2021 - Mar 2026",
     context: "Web and\u00a0mobile platforms - B2B and\u00a0B2C contexts",
-    description: "Worldwide eSIM store serving 3M+ customers",
+    description: "Led product design for B2B products. Created multi-brand design system.",
     link: { href: "https://yesim.app/", label: "Try Yesim" },
   },
   {
     title: "Product designer at\u00a0SMBF",
     period: "Aug 2020 - Apr 2021",
     context: "WEB",
-    description: "Online reputation SaaS platform",
+    description: "Designed the MVP web platform.",
   },
   {
     title: "From Android dev to\u00a0product designer at\u00a0Eventssion",
     period: "Jan 2016 - Apr 2020",
     context: "WEB, iOS, Android - B2B and\u00a0B2C contexts",
     description:
-      "Event management and\u00a0online ticketing platform. From scratch to\u00a050K users.",
+      "Led the design team. Event management and\u00a0ticketing platform, from scratch to\u00a050K\u00a0users.",
     link: {
       href: "https://betalist.com/startups/eventssion",
       label: "View project",
@@ -131,7 +131,7 @@ export function HomePage() {
               Roma Shuliatiev
             </h2>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {nbsp("Product designer with 5 years across B2B SaaS and consumer products. I have a development background, which means I tend to think about design decisions in terms of how they'll actually get built — and I've led work across research, systems, and shipping.")}
+              {nbsp("Product designer, 5 years in B2B SaaS and consumer. Dev background — I think about design in terms of how it actually ships.")}
             </p>
           </div>
           <div className="flex flex-col" style={{ gap: "clamp(0.375rem, 0.35rem + 0.1vw, 0.5rem)" }}>
@@ -142,7 +142,7 @@ export function HomePage() {
               Now
             </h3>
             <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-              {nbsp("I'm open to new roles. Outside of work, I maintain Score Counter — a scorekeeper app I built in 2016 that now has 600K installs and 87.2K monthly active users.")}
+              {"Open to new roles — product design, full-time."}
             </p>
           </div>
         </section>
@@ -267,7 +267,10 @@ export function HomePage() {
             Skills & tools
           </h2>
           <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-            {nbsp("I've worked across research, systems design, and shipping — usually as the only designer on a team. Having started as an Android developer, I'm comfortable reading code and working directly in engineering reviews.")}
+            {nbsp("I've led work across user research, systems design, and end-to-end shipping — from building products solo to leading a design team.")}
+          </p>
+          <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
+            {nbsp("Strong proficiency with Figma. Familiarity with AI, analytics and A/B testing tools.")}
           </p>
         </section>
       </SectionAnimate>

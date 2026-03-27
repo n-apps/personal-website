@@ -3,6 +3,7 @@ import { nbsp } from "./utils/nbsp";
 import { Heart, Star, MessageCircle, ExternalLink } from "lucide-react";
 import { DashedDivider } from "./dashed-divider";
 import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
+import { SectionHeading } from "./case-study-components";
 const heroImage = "/images/support-hero.png";
 
 const supportOptions = [
@@ -77,7 +78,7 @@ export function SupportPage() {
       {/* About */}
       <SectionAnimate delay={0.1}>
         <section className="flex flex-col" style={{ gap: innerGap }}>
-          <h2 style={{ fontSize: fluidH3, lineHeight: 1 }}>The story</h2>
+        <SectionHeading>The story</SectionHeading>
           <div
             className="flex flex-col"
             style={{ gap: "clamp(0.5rem, 0.45rem + 0.25vw, 0.75rem)" }}
@@ -99,9 +100,7 @@ export function SupportPage() {
       {/* Why players love it */}
       <SectionAnimate delay={0.15}>
         <section className="flex flex-col" style={{ gap: innerGap }}>
-          <h2 style={{ fontSize: fluidH3, lineHeight: 1 }}>
-            Why players love it
-          </h2>
+        <SectionHeading>Why players love it</SectionHeading>
           <div
             className="flex flex-col"
             style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}
@@ -177,9 +176,7 @@ export function SupportPage() {
           style={{ gap: "clamp(1rem, 0.9rem + 0.5vw, 1.5rem)" }}
         >
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h2 style={{ fontSize: fluidH3, lineHeight: 1 }}>
-              How to support
-            </h2>
+          <SectionHeading> How to support</SectionHeading>
             <p
               className="text-muted-foreground"
               style={{ fontSize: fluidBase, lineHeight: 1.6 }}

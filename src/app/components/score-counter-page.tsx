@@ -12,7 +12,7 @@ const heroImage = "/images/score-counter-hero.png";
 const evolutionImage = "/images/score-counter-evolution.png";
 const flowImage = "/images/score-counter-flow.png";
 const testimonialsImage = "/images/score-counter-testimonials.png";
-const unexpectedUseCasesImage = "/images/score-counter-unexpected-uses.png";
+const unexpectedUseCasesImage = "/images/score-counter-bonus.png";
 
 /* ── Data ─────────────────────────────────────────────── */
 
