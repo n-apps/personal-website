@@ -293,14 +293,18 @@ export function ScoreCounterPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.24}>
-        <div className="-mx-4 sm:mx-0">
+        <Link
+          to="/work/score-counter/reviews"
+          data-goatcounter-click="testimonials-see-all-reviews"
+          className="-mx-4 sm:mx-0 block group"
+        >
           <ImageWithFallback
             src={testimonialsImage}
             alt="Collection of user testimonials: Bounchanh says 'Best score tracker on the planet hands down', Brandon Wong says 'I love the UX. Does what it needs to do', Lou P says 'Where's the 6 star button? That's all you need to know.'"
-            className="w-full rounded-none sm:rounded-xl"
+            className="w-full rounded-none sm:rounded-xl transition-opacity group-hover:opacity-90"
             loading="lazy"
           />
-        </div>
+        </Link>
       </SectionAnimate>
 
       <SectionAnimate delay={0.26}>

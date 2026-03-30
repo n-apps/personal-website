@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { lazy } from "react";
 import { Layout } from "./components/layout";
+import { ReviewsLayout } from "./components/reviews-layout";
 import { HomePage } from "./components/home-page";
 import { NotFoundPage } from "./components/not-found-page";
 
@@ -17,6 +18,9 @@ const SupportPage = lazy(() =>
 const WorkInProgress = lazy(() =>
   import("./components/work-in-progress").then((m) => ({ default: m.WorkInProgress }))
 );
+const ReviewsPage = lazy(() =>
+  import("./components/reviews-page").then((m) => ({ default: m.ReviewsPage }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -30,5 +34,10 @@ export const router = createBrowserRouter([
       { path: "support", Component: SupportPage },
       { path: "*", Component: NotFoundPage },
     ],
+  },
+  {
+    path: "/work/score-counter/reviews",
+    Component: ReviewsLayout,
+    children: [{ index: true, Component: ReviewsPage }],
   },
 ]);
