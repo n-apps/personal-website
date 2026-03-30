@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
 import { ImageWithFallback } from "./image-with-fallback";
@@ -514,15 +514,26 @@ export function DesignSystemPage() {
 
       {/* Bottom back link */}
       <SectionAnimate delay={0.32}>
-        <Link
-          to="/"
-          data-goatcounter-click="back-to-home-bottom"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-          style={{ fontSize: fluidSmall, lineHeight: 1 }}
-        >
-          <ArrowLeft size={16} />
-          Back to Home Page
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link
+            to="/"
+            data-goatcounter-click="back-to-home-bottom"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            style={{ fontSize: fluidSmall, lineHeight: 1 }}
+          >
+            <ArrowLeft size={16} />
+            Back to Home Page
+          </Link>
+          <Link
+            to="/work/score-counter"
+            data-goatcounter-click="next-case-study"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            style={{ fontSize: fluidSmall, lineHeight: 1 }}
+          >
+            Next Case Study
+            <ArrowRight size={16} />
+          </Link>
+        </div>
       </SectionAnimate>
     </div>
   );
