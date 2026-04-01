@@ -65,7 +65,12 @@ const connectLinks = [
   {
     label: "LinkedIn",
     href: "https://linkedin.com/in/romashuliatiev",
-    display: "romashuliatiev",
+    display: "in/romashuliatiev",
+  },
+  {
+    label: "Email",
+    href: "mailto:hi@romamakes.com",
+    display: "hi@romamakes.com",
   },
   {
     label: "Telegram",
@@ -73,9 +78,10 @@ const connectLinks = [
     display: "@artificially_busy",
   },
   {
-    label: "Email",
-    href: "mailto:hi@romamakes.com",
-    display: "hi@romamakes.com",
+    label: "CV",
+    href: "/CV_Roma_Shuliatiev_Product_Designer.pdf",
+    display: "download PDF",
+    download: true,
   },
 ];
 
@@ -248,7 +254,7 @@ export function HomePage() {
           <h2 style={{ fontSize: fluidBase, lineHeight: 1 }}>Get in touch</h2>
           <div className="flex flex-col" style={{ gap: "clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem)" }}>
             <ul className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}>
-              {connectLinks.map(({ label, href, display }) => (
+              {connectLinks.map(({ label, href, display, download }) => (
                 <li
                   key={label}
                   className="grid items-center"
@@ -268,8 +274,9 @@ export function HomePage() {
                   <a
                     href={href}
                     data-goatcounter-click={label}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(download
+                      ? { download: true }
+                      : { target: "_blank", rel: "noopener noreferrer" })}
                     className="text-muted-foreground no-underline hover:underline underline-offset-2 hover:opacity-80 transition-opacity mt-1 inline-flex items-center gap-1"
                     style={{
                       fontSize: fluidSmall,
