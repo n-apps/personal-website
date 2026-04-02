@@ -69,8 +69,8 @@ const connectLinks = [
   },
   {
     label: "Email",
-    href: "mailto:hi@romamakes.com",
-    display: "hi@romamakes.com",
+    href: [109,97,105,108,116,111,58,104,105,64,114,111,109,97,109,97,107,101,115,46,99,111,109].map(c => String.fromCharCode(c)).join(''),
+    display: [104,105,64,114,111,109,97,109,97,107,101,115,46,99,111,109].map(c => String.fromCharCode(c)).join(''),
   },
   {
     label: "Telegram",

@@ -2,7 +2,7 @@ import { SectionAnimate } from "./section-animate";
 import { nbsp } from "./utils/nbsp";
 import { Heart, Star, MessageCircle, ExternalLink } from "lucide-react";
 import { DashedDivider } from "./dashed-divider";
-import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
+import { fluidBase, fluidSmall, fluidH1, sectionGap, innerGap } from "./utils/typography";
 import { SectionHeading } from "./case-study-components";
 const heroImage = "/images/support-hero.png";
 
@@ -78,7 +78,7 @@ export function SupportPage() {
       {/* About */}
       <SectionAnimate delay={0.1}>
         <section className="flex flex-col" style={{ gap: innerGap }}>
-        <SectionHeading>The story</SectionHeading>
+          <SectionHeading>The story</SectionHeading>
           <div
             className="flex flex-col"
             style={{ gap: "clamp(0.5rem, 0.45rem + 0.25vw, 0.75rem)" }}
@@ -100,7 +100,7 @@ export function SupportPage() {
       {/* Why players love it */}
       <SectionAnimate delay={0.15}>
         <section className="flex flex-col" style={{ gap: innerGap }}>
-        <SectionHeading>Why players love it</SectionHeading>
+          <SectionHeading>Why players love it</SectionHeading>
           <div
             className="flex flex-col"
             style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}
@@ -176,7 +176,7 @@ export function SupportPage() {
           style={{ gap: "clamp(1rem, 0.9rem + 0.5vw, 1.5rem)" }}
         >
           <div className="flex flex-col" style={{ gap: innerGap }}>
-          <SectionHeading> How to support</SectionHeading>
+            <SectionHeading> How to support</SectionHeading>
             <p
               className="text-muted-foreground"
               style={{ fontSize: fluidBase, lineHeight: 1.6 }}
@@ -242,12 +242,12 @@ export function SupportPage() {
             {nbsp("Want to help translate Score Counter into your language?")}
           </p>
           <a
-            href="mailto:scorekeeper.feedback@gmail.com"
+            href={[109,97,105,108,116,111,58,115,99,111,114,101,107,101,101,112,101,114,46,102,101,101,100,98,97,99,107,64,103,109,97,105,108,46,99,111,109].map(c => String.fromCharCode(c)).join('')}
             data-goatcounter-click="support-email"
             className="text-accent no-underline hover:underline underline-offset-2 transition-opacity hover:opacity-80"
             style={{ fontSize: fluidBase, lineHeight: 1.6 }}
           >
-            scorekeeper.feedback@gmail.com
+            {[115,99,111,114,101,107,101,101,112,101,114,46,102,101,101,100,98,97,99,107,64,103,109,97,105,108,46,99,111,109].map(c => String.fromCharCode(c)).join('')}
           </a>
         </section>
       </SectionAnimate>
