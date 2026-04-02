@@ -8,7 +8,9 @@
       "Bash(pnpm outdated:*)",
       "Bash(pnpm audit:*)",
       "Bash(npx depcheck:*)",
-      "Bash(pnpm list:*)"
+      "Bash(pnpm list:*)",
+      "Bash(git pull:*)",
+      "Bash(pnpm dev:*)"
     ]
   }
 }

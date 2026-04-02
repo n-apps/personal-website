@@ -23,6 +23,12 @@ const metadata = [
   { label: "Team", value: "Developer, PM, UX/UI Designer (myself)" },
 ];
 
+const impactStats = [
+  { value: "48", label: "Components" },
+  { value: "140+", label: "Design tokens" },
+  { value: "3", label: "Brand themes" },
+];
+
 const tokenLayers = [
   {
     layer: "Raw values",
@@ -100,7 +106,7 @@ const priorityComponents = [
 ];
 
 const whatWorked = [
-  "Built a system that scales. Getting three products with distinct visual identities onto one shared library, without forking anything, was the hardest part \u2014 and it held up.",
+  "Built a system that scales. Getting three products with distinct visual identities onto one shared library, without forking anything, was the hardest part. It held up.",
   "Teams trusted the governance. Busy product teams participated because the process was easy and produced results after one quarter.",
   "We treated documentation as a design artifact. Including the \u201cwhy\u201d in every component\u2019s documentation increased trust from the product team.",
 ];
@@ -208,7 +214,7 @@ export function DesignSystemPage() {
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I designed a shared design system for 3 B2B products \u2014 reducing feature design time by up to 90% and cutting style-related QA issues by 30%.")}
+            {nbsp("I designed a shared design system for 3 B2B products, reducing feature design time by up to 90% and cutting style-related QA issues by 30%.")}
           </p>
         </div>
       </SectionAnimate>
@@ -250,11 +256,11 @@ export function DesignSystemPage() {
             className="text-foreground/80"
             style={{ fontSize: fluidBase, lineHeight: 1.75 }}
           >
-            {nbsp("Yesim is a global eSIM platform with over 3\u00a0million customers and several B2B web products sharing the same tech stack. When I joined, three products were growing independently \u2014 each with its own UI patterns, colour schemes, and legacy implementations. Even small changes slowed things down, and design reviews became negotiations instead of quick reference checks.")}
+            {nbsp("Yesim is a global eSIM platform with over 3\u00a0million customers and several B2B web products sharing the same tech stack. When I joined, three products were growing independently, each with its own UI patterns, colour schemes, and legacy implementations. Even small changes slowed things down, and design reviews became negotiations instead of quick reference checks.")}
           </p>
           <CalloutBox>
             <p style={{ fontSize: fluidBase, fontWeight: 500, lineHeight: 1.65, fontStyle: "italic" }}>
-              {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities \u2014 without needing a dedicated person to keep it running?")}
+              {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities, without needing a dedicated person to keep it running?")}
             </p>
           </CalloutBox>
         </div>
@@ -283,7 +289,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("I chose a three-layer token architecture (raw values \u2192 primitives \u2192 semantic tokens) so products could re-skin without forking components. Swap a product\u2019s theme and you only override the semantic tokens \u2014 primitives and component structure stay the same.")}
+              {nbsp("I chose a three-layer token architecture (raw values \u2192 primitives \u2192 semantic tokens) so products could re-skin without forking components. Swap a product\u2019s theme and you only override the semantic tokens. Primitives and component structure stay the same.")}
             </p>
             <DataTable
               headers={["Layer", "Purpose", "Example", "Themeable?"]}
@@ -314,7 +320,7 @@ export function DesignSystemPage() {
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.75 }}
             >
-              {nbsp("Each product gets a theme file that overrides semantic tokens. The component library doesn\u2019t care about the product \u2014 switch themes by changing one configuration, not rebuilding components.")}
+              {nbsp("Each product gets a theme file that overrides semantic tokens. The component library doesn\u2019t care about the product. Switch themes by changing one configuration, not rebuilding components.")}
             </p>
             <DataTable
               headers={["Token", "Product A", "Product B", "Product C"]}
@@ -414,27 +420,52 @@ export function DesignSystemPage() {
         <div className="flex flex-col" style={{ gap: sectionGap }}>
           <div className="flex flex-col" style={{ gap: innerGap }}>
             <SectionHeading>Adoption &amp; Impact</SectionHeading>
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+              {impactStats.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl bg-card card-shadow p-4 sm:p-5 flex flex-col gap-1 items-center text-center"
+                >
+                  <span
+                    className="text-foreground"
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {s.value}
+                  </span>
+                  <span
+                    className="text-muted-foreground"
+                    style={{ fontSize: "0.75rem", lineHeight: 1.3 }}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
             <ul className="flex flex-col gap-3 pl-5 list-disc">
             <li
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.7 }}
             >
-              <strong>Up to 90% faster feature design</strong>{" \u2014 "}
+              <strong>Up to 90% faster feature design:</strong>{" "}
               {nbsp("assembling from components instead of designing from scratch")}
             </li>
             <li
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.7 }}
             >
-              <strong>~30% less time on style-related QA</strong>{" \u2014 "}
+              <strong>~30% less time on style-related QA:</strong>{" "}
               {nbsp("inconsistencies caught at the design stage, not in review")}
             </li>
             <li
               className="text-foreground/80"
               style={{ fontSize: fluidBase, lineHeight: 1.7 }}
             >
-              <strong>Single source of truth</strong>{" \u2014 "}
-              {nbsp("the system became the reference for \u201chow we build things here\u201d; new team members read it instead of reverse-engineering decisions from code")}
+              <strong>Single source of truth:</strong>{" "}
+              {nbsp("the system became the reference for \u201chow we build things here.\u201d New team members read it instead of reverse-engineering decisions from code.")}
             </li>
             </ul>
           </div>
