@@ -24,9 +24,9 @@ const metadata = [
 ];
 
 const impactStats = [
-  { value: "600K+", label: "Installs" },
+  { value: "870K+", label: "Installs" },
   { value: "87.2K", label: "Monthly active users" },
-  { value: "205K", label: "Avg. active devices" },
+  { value: "225K", label: "Avg. active devices" },
   { value: "4.9", label: "Google Play rating" },
 ];
 
@@ -61,7 +61,7 @@ function PullQuote({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Parse a display value like "600K+", "4.9" into parts for animation */
+/** Parse a display value like "870K+", "4.9" into parts for animation */
 function parseStatValue(display: string): {
   prefix: string;
   numericValue: number;
@@ -165,13 +165,13 @@ export function ScoreCounterPage() {
               letterSpacing: "-0.025em",
             }}
           >
-            {nbsp("Score Counter: From side project to 600K installs with zero marketing")}
+            {nbsp("Score Counter: From side project to 870K installs with zero marketing")}
           </h1>
           <p
             className="text-muted-foreground"
             style={{ fontSize: fluidBase, lineHeight: 1.5 }}
           >
-            {nbsp("I built Score Counter as a side project in 2016. It now has 600K installs, 87.2K monthly active users, and a 4.9 rating on Google Play \u2014 designing for simplicity across nine years of growth.")}
+            {nbsp("I built Score Counter as a side project in 2016. It now has 870K installs, 87.2K monthly active users, and a 4.9 rating on Google Play \u2014 designing for simplicity across nine years of growth.")}
           </p>
         </div>
       </SectionAnimate>
@@ -287,7 +287,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Outcome &amp; Impact</SectionHeading>
           <ImpactStatsGrid />
           <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
-            {nbsp("600K installs through word-of-mouth alone \u2014 no ads, no marketing spend. Volunteers have contributed translations, a developer built a fan web version, and the app still holds a 4.9 rating after nine years. The system that makes this possible is simple: build something people trust enough to recommend.")}
+            {nbsp("870K installs through word-of-mouth alone \u2014 no ads, no marketing spend. Volunteers have contributed translations, a developer built a fan web version, and the app still holds a 4.9 rating after nine years. The system that makes this possible is simple: build something people trust enough to recommend.")}
           </p>
         </div>
       </SectionAnimate>
