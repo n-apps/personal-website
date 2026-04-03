@@ -41,7 +41,7 @@ const personalProjects = [
     title: "Score Counter",
     subtitle: "Android App",
     description:
-      "A score and tally tracker I built and have maintained since 2016. 600K+ installs, 87K monthly active users, 4.9 rating — all organic, zero marketing spend.",
+      "A score tracker I built and have maintained since 2016. 870K installs, 87.2K monthly active users, 4.9 rating, $0 marketing spend.",
     caseStudy: "/work/score-counter",
     cover: scoreCounterCover,
   },
@@ -69,8 +69,8 @@ const connectLinks = [
   },
   {
     label: "Email",
-    href: [109,97,105,108,116,111,58,104,105,64,114,111,109,97,109,97,107,101,115,46,99,111,109].map(c => String.fromCharCode(c)).join(''),
-    display: [104,105,64,114,111,109,97,109,97,107,101,115,46,99,111,109].map(c => String.fromCharCode(c)).join(''),
+    href: [109, 97, 105, 108, 116, 111, 58, 104, 105, 64, 114, 111, 109, 97, 109, 97, 107, 101, 115, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join(''),
+    display: [104, 105, 64, 114, 111, 109, 97, 109, 97, 107, 101, 115, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join(''),
   },
   {
     label: "Telegram",
