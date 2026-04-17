@@ -1,28 +1,12 @@
 /* Scoped styles for the white-label eSIM demo.
- * Imported only by demo-layout.tsx. Re-declares Tailwind 3 tokens the demo
- * relies on as a Tailwind 4 @theme block. Names are unique and do not
- * collide with portfolio tokens.
+ * Imported only by demo-layout.tsx.
+ *
+ * Note: The demo's @theme tokens live in src/styles/demo-theme.css so Tailwind's
+ * Vite plugin picks them up as part of the main CSS chain. This file only holds
+ * browser-level CSS that doesn't need Tailwind processing.
  */
 
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
-
-@theme {
-  --color-ink-900: #101828;
-  --color-ink-800: #1e2939;
-  --color-ink-600: #4a5565;
-  --color-ink-500: #6a7282;
-
-  --color-surface-page: #ffffff;
-  --color-surface-muted: #f9f9f9;
-  --color-surface-field: #f3f4f6;
-
-  --color-line: #e5e7eb;
-
-  --font-display: "Google Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
-
-  --shadow-phone: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04);
-}
 
 /* Hide native color input chrome but keep it interactive.
  * Ported verbatim from the prototype's globals.css. */
