@@ -30,6 +30,9 @@ const WhiteLabelDemoLayout = lazy(() =>
 const CompanySettingsDemoPage = lazy(() =>
   import("./components/white-label-esim-demo/company-settings-demo-page").then((m) => ({ default: m.CompanySettingsDemoPage }))
 );
+const CustomizeEsimDemoPage = lazy(() =>
+  import("./components/white-label-esim-demo/customize-esim-demo-page").then((m) => ({ default: m.CustomizeEsimDemoPage }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +58,7 @@ export const router = createBrowserRouter([
     Component: WhiteLabelDemoLayout,
     children: [
       { index: true, Component: CompanySettingsDemoPage },
-      // customize child route added in a later task
+      { path: "customize", Component: CustomizeEsimDemoPage },
     ],
   },
 ]);
