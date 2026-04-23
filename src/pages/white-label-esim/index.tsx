@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { nbsp } from "@/lib/nbsp";
 import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
@@ -154,7 +154,7 @@ export function WhiteLabelEsimPage() {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1 }}
         >
-          <ArrowLeft size={16} />
+          <RiArrowLeftLine size={16} />
           Back to Home Page
         </Link>
       </SectionAnimate>
@@ -397,7 +397,7 @@ export function WhiteLabelEsimPage() {
               Open the working demo in a new view and edit the form to see the preview update.
             </span>
           </div>
-          <ArrowRight
+          <RiArrowRightLine
             size={20}
             className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
           />
@@ -440,7 +440,7 @@ export function WhiteLabelEsimPage() {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             style={{ fontSize: fluidSmall, lineHeight: 1 }}
           >
-            <ArrowLeft size={16} />
+            <RiArrowLeftLine size={16} />
             Back to Home Page
           </Link>
           <Link
@@ -450,7 +450,7 @@ export function WhiteLabelEsimPage() {
             style={{ fontSize: fluidSmall, lineHeight: 1 }}
           >
             Next Case Study
-            <ArrowRight size={16} />
+            <RiArrowRightLine size={16} />
           </Link>
         </div>
       </SectionAnimate>

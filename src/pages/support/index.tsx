@@ -1,6 +1,11 @@
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { nbsp } from "@/lib/nbsp";
-import { Heart, Star, MessageCircle, ExternalLink } from "lucide-react";
+import {
+  RiExternalLinkLine,
+  RiHeartLine,
+  RiEmotionHappyLine,
+  RiStarLine,
+} from "@remixicon/react";
 import { DashedDivider } from "@/components/ui/dashed-divider";
 import { fluidLead, fluidBase, fluidSmall, fluidH1, sectionGap, innerGap } from "@/lib/typography";
 import { SectionHeading } from "@/components/case-study/case-study-components";
@@ -8,7 +13,7 @@ const heroImage = "/images/support-hero.png";
 
 const supportOptions = [
   {
-    emoji: "💛",
+    emoji: "💙",
     label: "Donate with PayPal",
     href: "https://www.paypal.com/donate/?hosted_button_id=QCHWF4FJLKQ34",
     description: "One-time donation via PayPal",
@@ -107,7 +112,7 @@ export function SupportPage() {
             style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}
           >
             <div className="flex gap-3 items-start">
-              <Star
+              <RiStarLine
                 size={18}
                 className="text-accent mt-0.5 shrink-0"
               />
@@ -126,7 +131,7 @@ export function SupportPage() {
               </div>
             </div>
             <div className="flex gap-3 items-start">
-              <Heart
+              <RiHeartLine
                 size={18}
                 className="text-accent mt-0.5 shrink-0"
               />
@@ -145,7 +150,7 @@ export function SupportPage() {
               </div>
             </div>
             <div className="flex gap-3 items-start">
-              <MessageCircle
+              <RiEmotionHappyLine
                 size={18}
                 className="text-accent mt-0.5 shrink-0"
               />
@@ -215,7 +220,7 @@ export function SupportPage() {
                     {option.description}
                   </p>
                 </div>
-                <ExternalLink
+                <RiExternalLinkLine
                   size={14}
                   className="text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                 />
@@ -243,12 +248,12 @@ export function SupportPage() {
             {nbsp("Want to help translate Score Counter into your language?")}
           </p>
           <a
-            href={[109,97,105,108,116,111,58,115,99,111,114,101,107,101,101,112,101,114,46,102,101,101,100,98,97,99,107,64,103,109,97,105,108,46,99,111,109].map(c => String.fromCharCode(c)).join('')}
+            href={[109, 97, 105, 108, 116, 111, 58, 115, 99, 111, 114, 101, 107, 101, 101, 112, 101, 114, 46, 102, 101, 101, 100, 98, 97, 99, 107, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join('')}
             data-goatcounter-click="support-email"
             className="text-accent no-underline hover:underline underline-offset-2 transition-opacity hover:opacity-80"
             style={{ fontSize: fluidBase, lineHeight: 1.6 }}
           >
-            {[115,99,111,114,101,107,101,101,112,101,114,46,102,101,101,100,98,97,99,107,64,103,109,97,105,108,46,99,111,109].map(c => String.fromCharCode(c)).join('')}
+            {[115, 99, 111, 114, 101, 107, 101, 101, 112, 101, 114, 46, 102, 101, 101, 100, 98, 97, 99, 107, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109].map(c => String.fromCharCode(c)).join('')}
           </a>
         </section>
       </SectionAnimate>

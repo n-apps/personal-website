@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { RiArrowLeftLine } from "@remixicon/react";
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { fluidSmall, sectionGap } from "@/lib/typography";
 import { MasonryGrid } from "@/components/ui/masonry-grid";
@@ -24,7 +24,7 @@ export function ReviewsPage() {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1 }}
         >
-          <ArrowLeft size={16} />
+          <RiArrowLeftLine size={16} />
           Back to Score Counter
         </Link>
       </SectionAnimate>

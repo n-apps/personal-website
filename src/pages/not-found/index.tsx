@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { RiArrowLeftLine } from "@remixicon/react";
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { nbsp } from "@/lib/nbsp";
 import { fluidLead, fluidSmall } from "@/lib/typography";
@@ -39,7 +39,7 @@ export function NotFoundPage() {
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1.2 }}
         >
-          <ArrowLeft size={14} />
+          <RiArrowLeftLine size={14} />
           Back to Home
         </Link>
       </SectionAnimate>

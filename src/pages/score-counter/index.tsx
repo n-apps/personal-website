@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { RiArrowLeftLine, RiArrowRightLine } from "@remixicon/react";
 import { useInView, useSpring, useTransform, motion } from "motion/react";
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
@@ -149,7 +149,7 @@ export function ScoreCounterPage() {
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1 }}
         >
-          <ArrowLeft size={16} />
+          <RiArrowLeftLine size={16} />
           Back to Home Page
         </Link>
       </SectionAnimate>
@@ -371,7 +371,7 @@ export function ScoreCounterPage() {
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             style={{ fontSize: fluidSmall, lineHeight: 1 }}
           >
-            <ArrowLeft size={16} />
+            <RiArrowLeftLine size={16} />
             Back to Home Page
           </Link>
           <Link
@@ -381,7 +381,7 @@ export function ScoreCounterPage() {
             style={{ fontSize: fluidSmall, lineHeight: 1 }}
           >
             Next Case Study
-            <ArrowRight size={16} />
+            <RiArrowRightLine size={16} />
           </Link>
         </div>
       </SectionAnimate>
