@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useInView, useSpring, useTransform, motion } from "motion/react";
-import { SectionAnimate } from "./section-animate";
-import { ImageWithFallback } from "./image-with-fallback";
-import { nbsp } from "./utils/nbsp";
-import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
-import { SectionHeading, BoldLead } from "./case-study-components";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { ImageWithFallback } from "@/components/ui/image-with-fallback";
+import { nbsp } from "@/lib/nbsp";
+import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
+import { SectionHeading, BoldLead } from "@/components/case-study/case-study-components";
 
 const heroImage = "/images/score-counter-hero.png";
 const evolutionImage = "/images/score-counter-evolution.png";
@@ -169,7 +169,7 @@ export function ScoreCounterPage() {
           </h1>
           <p
             className="text-muted-foreground"
-            style={{ fontSize: fluidBase, lineHeight: 1.5 }}
+            style={{ fontSize: fluidLead, lineHeight: 1.5 }}
           >
             {nbsp("I built Score Counter as a side project in 2016. It now has 870K installs, 87.2K monthly active users, and a 4.9 rating on Google Play \u2014 designing for simplicity across nine years of growth.")}
           </p>
@@ -232,16 +232,16 @@ export function ScoreCounterPage() {
           <SectionHeading>Design in Action</SectionHeading>
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-1">
-              <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-                <strong>Protecting the three-step flow</strong>
+              <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+                Protecting the three-step flow
               </h3>
               <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
                 {nbsp("The primary flow is sacred: open the app, add counters, start counting. Every feature request gets measured against that loop. If it adds a step or a decision to the core path, it doesn\u2019t ship. This single constraint is what kept Score Counter focused while competitors kept adding complexity \u2014 and it\u2019s the reason users describe the experience as \u2018does what it needs to do.\u2019")}
               </p>
             </div>
             <div className="flex flex-col gap-1">
-              <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-                <strong>Saying no to game sessions</strong>
+              <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+                Saying no to game sessions
               </h3>
               <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
                 {nbsp("One of the most requested features was the ability to save an active game session and load it later. I said no. Shipping it would have fixed Score Counter conceptually as a board game companion \u2014 a narrower product than what it actually is. People use it to count anything, not just board game scores. Adding save/load would also mean extra steps before starting a quick session, breaking the three-step flow for a feature that serves only a subset of users.")}
@@ -269,8 +269,8 @@ export function ScoreCounterPage() {
           <div className="flex flex-col gap-4">
             {constraints.map((c) => (
               <div key={c.title} className="flex flex-col gap-1">
-                <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-                  <strong>{c.title}</strong>
+                <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+                  {c.title}
                 </h3>
                 <p className="text-foreground/80" style={{ fontSize: fluidBase, lineHeight: 1.75 }}>
                   {c.text}

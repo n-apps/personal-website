@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router";
-import { Navigation } from "./navigation";
-import { Footer } from "./footer";
+import { Navigation } from "@/components/layout/navigation";
+import { Footer } from "@/components/layout/footer";
 import { useEffect, Suspense } from "react";
 
 export function ReviewsLayout() {

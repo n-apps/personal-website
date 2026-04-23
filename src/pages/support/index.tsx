@@ -1,9 +1,9 @@
-import { SectionAnimate } from "./section-animate";
-import { nbsp } from "./utils/nbsp";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { nbsp } from "@/lib/nbsp";
 import { Heart, Star, MessageCircle, ExternalLink } from "lucide-react";
-import { DashedDivider } from "./dashed-divider";
-import { fluidBase, fluidSmall, fluidH1, sectionGap, innerGap } from "./utils/typography";
-import { SectionHeading } from "./case-study-components";
+import { DashedDivider } from "@/components/ui/dashed-divider";
+import { fluidLead, fluidBase, fluidSmall, fluidH1, sectionGap, innerGap } from "@/lib/typography";
+import { SectionHeading } from "@/components/case-study/case-study-components";
 const heroImage = "/images/support-hero.png";
 
 const supportOptions = [
@@ -49,13 +49,14 @@ export function SupportPage() {
               fontFamily: "var(--font-serif)",
               fontSize: fluidH1,
               lineHeight: 1.2,
+              letterSpacing: "-0.025em",
             }}
           >
             {nbsp("Support your favorite scorekeeper")}
           </h1>
           <p
             className="text-muted-foreground"
-            style={{ fontSize: fluidBase, lineHeight: 1.6 }}
+            style={{ fontSize: fluidLead, lineHeight: 1.5 }}
           >
             {nbsp(
               "If Score Counter makes your game nights better, here's how you can help keep it alive and growing."
@@ -111,7 +112,7 @@ export function SupportPage() {
                 className="text-accent mt-0.5 shrink-0"
               />
               <div>
-                <span style={{ fontSize: fluidBase, lineHeight: 1.6 }}>
+                <span style={{ fontSize: fluidBase, lineHeight: 1.4 }}>
                   Ad-free experience
                 </span>
                 <p
@@ -130,7 +131,7 @@ export function SupportPage() {
                 className="text-accent mt-0.5 shrink-0"
               />
               <div>
-                <span style={{ fontSize: fluidBase, lineHeight: 1.6 }}>
+                <span style={{ fontSize: fluidBase, lineHeight: 1.4 }}>
                   Built with heart
                 </span>
                 <p
@@ -149,7 +150,7 @@ export function SupportPage() {
                 className="text-accent mt-0.5 shrink-0"
               />
               <div>
-                <span style={{ fontSize: fluidBase, lineHeight: 1.6 }}>
+                <span style={{ fontSize: fluidBase, lineHeight: 1.4 }}>
                   Community-driven
                 </span>
                 <p

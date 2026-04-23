@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router";
-import { BrandDetailsCard, BrandStylingCard } from "./brand-settings-form";
-import { PhonePreview } from "./phone-preview";
-import { SegmentedControl } from "./ui/segmented-control";
-import { DemoNavbar } from "./demo-navbar";
+import { BrandDetailsCard, BrandStylingCard } from "../components/brand-settings-form";
+import { PhonePreview } from "../components/phone-preview";
+import { SegmentedControl } from "../ui/segmented-control";
+import { DemoNavbar } from "../components/demo-navbar";
 
 export type BrandSettings = {
   // Brand details

@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
-import { SectionAnimate } from "./section-animate";
-import { fluidSmall, sectionGap } from "./utils/typography";
-import { MasonryGrid } from "./masonry-grid";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { fluidSmall, sectionGap } from "@/lib/typography";
+import { MasonryGrid } from "@/components/ui/masonry-grid";
 import reviewsData from "@/data/reviews.json";
 
 const reviews = [...reviewsData].sort(() => Math.random() - 0.5);

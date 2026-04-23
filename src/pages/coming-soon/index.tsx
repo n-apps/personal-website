@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
-import { SectionAnimate } from "./section-animate";
+import { SectionAnimate } from "@/components/ui/section-animate";
 
 export function WorkInProgress() {
   return (

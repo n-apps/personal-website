@@ -2,33 +2,27 @@ const scoreCounterCover = "/images/score-counter-cover.png";
 const designSystemCover = "/images/design-system-cover.png";
 const comingSoonCover = "/images/coming-soon-cover.png";
 import { Link } from "react-router";
-import { SectionAnimate } from "./section-animate";
-import { nbsp } from "./utils/nbsp";
-import { DashedDivider } from "./dashed-divider";
-
-const fluidBase = "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)";
-const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { nbsp } from "@/lib/nbsp";
+import { DashedDivider } from "@/components/ui/dashed-divider";
+import { fluidLead, fluidBase, fluidSmall } from "@/lib/typography";
 
 const workExperience = [
   {
     title: "Product designer at Yesim",
     period: "Apr 2021 - Mar 2026",
     context: " Web and mobile · B2B and B2C. eSIM platform with 3M+ customers",
-    description: "Led product design for B2B products. Created multi-brand design system",
     link: { href: "https://yesim.app/", label: "Try Yesim" },
   },
   {
     title: "Product designer at\u00a0SMBF",
     period: "Aug 2020 - Apr 2021",
     context: "Online reputation SaaS platform · B2B",
-    description: "Designed user flows, wireframes, and prototypes for a B2B SaaS product",
   },
   {
     title: "From Android dev to\u00a0product designer at\u00a0Eventssion",
     period: "Jan 2016 - Apr 2020",
     context: "Web and mobile · B2B and B2C. Event management and ticketing platform",
-    description:
-      "Transitioned from Android development into product design. Led the design team and shaped UX as the product grew from zero to 50,000 users.",
     link: {
       href: "https://betalist.com/startups/eventssion",
       label: "View project",
@@ -56,7 +50,7 @@ const personalProjects = [
     title: "White-label eSIM distribution interface",
     subtitle: "Yesim",
     description: "I designed a white-label web interface inside the Partners Platform that handles eSIM detail management and shareable delivery in one flow.",
-    caseStudy: "/work/coming-soon",
+    caseStudy: "/work/white-label-esim",
     cover: comingSoonCover,
   },
 ];
@@ -96,25 +90,26 @@ export function HomePage() {
               style={{
                 fontFamily: "var(--font-serif)",
                 fontStyle: "italic",
-                fontSize: fluidBase,
-                lineHeight: 1.5,
+                fontSize: "clamp(1.5rem, 1.3rem + 1vw, 2rem)",
+                lineHeight: 1.2,
+                letterSpacing: "-0.02em",
               }}
               aria-label="Who is Roma Shuliatiev"
             >
               Roma Shuliatiev
             </h2>
-            <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
+            <p style={{ fontSize: fluidLead, lineHeight: 1.5 }}>
               {nbsp("Product designer with a dev background. I close the gap between design and what engineers actually build.")}
             </p>
           </div>
           <div className="flex flex-col" style={{ gap: "clamp(0.375rem, 0.35rem + 0.1vw, 0.5rem)" }}>
             <h3
               className="text-muted-foreground"
-              style={{ fontSize: fluidSmall, lineHeight: 1 }}
+              style={{ fontSize: fluidSmall, lineHeight: 1.2 }}
             >
               Now
             </h3>
-            <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
+            <p style={{ fontSize: fluidLead, lineHeight: 1.5 }}>
               {"Open to product designer roles, full-time."}
             </p>
           </div>
@@ -125,7 +120,14 @@ export function HomePage() {
       <SectionAnimate delay={0.1}>
         <section className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)" }}>
           <div className="flex justify-between items-center">
-            <h2 style={{ fontSize: fluidBase, lineHeight: 1 }}>
+            <h2
+              style={{
+                fontSize: fluidBase,
+                fontWeight: 500,
+                lineHeight: 1.2,
+                letterSpacing: "-0.01em",
+              }}
+            >
               Work experience
             </h2>
           </div>
@@ -133,7 +135,7 @@ export function HomePage() {
             {workExperience.map((job, i) => (
               <div key={i}>
                 <div className="flex flex-col" style={{ gap: "clamp(0.125rem, 0.1rem + 0.1vw, 0.25rem)" }}>
-                  <span style={{ fontSize: fluidSmall, lineHeight: 1.4 }}>
+                  <span style={{ fontSize: fluidBase, lineHeight: 1.4 }}>
                     {job.title}
                   </span>
                   <span
@@ -142,17 +144,6 @@ export function HomePage() {
                   >
                     {job.period} · {job.context}
                   </span>
-                  <p
-                    className="text-muted-foreground mt-1"
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontStyle: "italic",
-                      fontSize: fluidSmall,
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {job.description}
-                  </p>
                   {job.link && (
                     <a
                       href={job.link.href}
@@ -160,7 +151,7 @@ export function HomePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent no-underline hover:underline underline-offset-2 hover:opacity-80 transition-opacity mt-1 inline-flex items-center gap-1"
-                      style={{ fontSize: fluidSmall, lineHeight: 1 }}
+                      style={{ fontSize: fluidSmall, lineHeight: 1.2 }}
                     >
                       {job.link.label}{" "}
                       <span aria-hidden className="text-xs">
@@ -183,7 +174,14 @@ export function HomePage() {
       {/* Selected Work */}
       <SectionAnimate delay={0.15}>
         <section className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)" }}>
-          <h2 style={{ fontSize: fluidBase, lineHeight: 1 }}>
+          <h2
+            style={{
+              fontSize: fluidBase,
+              fontWeight: 500,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
             Selected work
           </h2>
           <div className="flex flex-col" style={{ gap: "clamp(1.25rem, 1rem + 1vw, 2rem)" }}>
@@ -192,7 +190,7 @@ export function HomePage() {
                 key={project.title}
                 to={project.caseStudy}
                 data-goatcounter-click={`case-study-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group block rounded-xl overflow-hidden card-shadow bg-card hover:-translate-y-0.5 transition-all duration-300"
+                className="work-card group block rounded-xl overflow-hidden bg-card hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="overflow-hidden">
                   <img
@@ -205,7 +203,7 @@ export function HomePage() {
                   <div className="flex items-baseline gap-2">
                     <span
                       className="group-hover:text-accent transition-colors"
-                      style={{ fontSize: fluidSmall, lineHeight: 1.4 }}
+                      style={{ fontSize: fluidBase, lineHeight: 1.3 }}
                     >
                       {project.title}
                     </span>
@@ -222,7 +220,7 @@ export function HomePage() {
                   </div>
                   <p
                     className="text-muted-foreground"
-                    style={{ fontSize: fluidSmall, lineHeight: 1.5 }}
+                    style={{ fontSize: fluidBase, lineHeight: 1.5 }}
                   >
                     {project.description}
                   </p>
@@ -236,7 +234,14 @@ export function HomePage() {
       {/* Skills */}
       <SectionAnimate delay={0.2}>
         <section className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)" }}>
-          <h2 style={{ fontSize: fluidBase, lineHeight: 1 }}>
+          <h2
+            style={{
+              fontSize: fluidBase,
+              fontWeight: 500,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
             Skills & tools
           </h2>
           <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
@@ -251,7 +256,16 @@ export function HomePage() {
       {/* Connect */}
       <SectionAnimate delay={0.25}>
         <section className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)" }}>
-          <h2 style={{ fontSize: fluidBase, lineHeight: 1 }}>Get in touch</h2>
+          <h2
+            style={{
+              fontSize: fluidBase,
+              fontWeight: 500,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Get in touch
+          </h2>
           <div className="flex flex-col" style={{ gap: "clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem)" }}>
             <ul className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}>
               {connectLinks.map(({ label, href, display, download }) => (

@@ -1,5 +1,5 @@
-import { nbsp } from "./utils/nbsp";
-import { fluidH2 } from "./utils/typography";
+import { nbsp } from "@/lib/nbsp";
+import { fluidH2 } from "@/lib/typography";
 
 /** Section label used as a category heading above content blocks */
 export function SectionHeading({ children }: { children: React.ReactNode }) {

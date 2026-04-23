@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import { DemoNavbar } from "./demo-navbar";
-import { EmptyBrandsIllustration } from "./empty-brands-illustration";
+import { DemoNavbar } from "../components/demo-navbar";
+import { EmptyBrandsIllustration } from "../components/empty-brands-illustration";
 
 export function CompanySettingsDemoPage() {
   return (

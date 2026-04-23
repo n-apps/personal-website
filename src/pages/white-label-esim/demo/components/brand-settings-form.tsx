@@ -1,8 +1,8 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
-import type { BrandSettings } from "./customize-esim-demo-page";
-import { Checkbox } from "./ui/checkbox";
-import { ToggleSwitch } from "./ui/toggle-switch";
+import type { BrandSettings } from "../customize";
+import { Checkbox } from "../ui/checkbox";
+import { ToggleSwitch } from "../ui/toggle-switch";
 
 type SectionProps = {
   settings: BrandSettings;

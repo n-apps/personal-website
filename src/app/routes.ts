@@ -1,37 +1,37 @@
 import { createBrowserRouter } from "react-router";
 import { lazy } from "react";
-import { Layout } from "./components/layout";
-import { ReviewsLayout } from "./components/reviews-layout";
-import { HomePage } from "./components/home-page";
-import { NotFoundPage } from "./components/not-found-page";
+import { Layout } from "@/components/layout/layout";
+import { ReviewsLayout } from "@/pages/score-counter/reviews/layout";
+import { HomePage } from "@/pages/home";
+import { NotFoundPage } from "@/pages/not-found";
 
 // These pages are only loaded when the user navigates to them
 const ScoreCounterPage = lazy(() =>
-  import("./components/score-counter-page").then((m) => ({ default: m.ScoreCounterPage }))
+  import("@/pages/score-counter").then((m) => ({ default: m.ScoreCounterPage }))
 );
 const DesignSystemPage = lazy(() =>
-  import("./components/design-system-page").then((m) => ({ default: m.DesignSystemPage }))
+  import("@/pages/design-system").then((m) => ({ default: m.DesignSystemPage }))
 );
 const WhiteLabelEsimPage = lazy(() =>
-  import("./components/white-label-esim-page").then((m) => ({ default: m.WhiteLabelEsimPage }))
+  import("@/pages/white-label-esim").then((m) => ({ default: m.WhiteLabelEsimPage }))
 );
 const SupportPage = lazy(() =>
-  import("./components/support-page").then((m) => ({ default: m.SupportPage }))
+  import("@/pages/support").then((m) => ({ default: m.SupportPage }))
 );
 const WorkInProgress = lazy(() =>
-  import("./components/work-in-progress").then((m) => ({ default: m.WorkInProgress }))
+  import("@/pages/coming-soon").then((m) => ({ default: m.WorkInProgress }))
 );
 const ReviewsPage = lazy(() =>
-  import("./components/reviews-page").then((m) => ({ default: m.ReviewsPage }))
+  import("@/pages/score-counter/reviews").then((m) => ({ default: m.ReviewsPage }))
 );
 const WhiteLabelDemoLayout = lazy(() =>
-  import("./components/white-label-esim-demo/demo-layout").then((m) => ({ default: m.WhiteLabelDemoLayout }))
+  import("@/pages/white-label-esim/demo/layout").then((m) => ({ default: m.WhiteLabelDemoLayout }))
 );
 const CompanySettingsDemoPage = lazy(() =>
-  import("./components/white-label-esim-demo/company-settings-demo-page").then((m) => ({ default: m.CompanySettingsDemoPage }))
+  import("@/pages/white-label-esim/demo/company-settings").then((m) => ({ default: m.CompanySettingsDemoPage }))
 );
 const CustomizeEsimDemoPage = lazy(() =>
-  import("./components/white-label-esim-demo/customize-esim-demo-page").then((m) => ({ default: m.CustomizeEsimDemoPage }))
+  import("@/pages/white-label-esim/demo/customize").then((m) => ({ default: m.CustomizeEsimDemoPage }))
 );
 
 export const router = createBrowserRouter([

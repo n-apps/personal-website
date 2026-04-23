@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { SectionAnimate } from "./section-animate";
-import { nbsp } from "./utils/nbsp";
-import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
-import { SectionHeading, ImagePlaceholder } from "./case-study-components";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { nbsp } from "@/lib/nbsp";
+import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
+import { SectionHeading, ImagePlaceholder } from "@/components/case-study/case-study-components";
 
 /* ── Data ─────────────────────────────────────────────── */
 
@@ -11,7 +11,7 @@ const metadata = [
   { label: "Role", value: "Product Designer" },
   { label: "Timeframe", value: "2025\u20132026" },
   { label: "Platform", value: "Web (B2B)" },
-  { label: "Team", value: "Developer, PM, UX/UI Designer (myself)" },
+  { label: "Team", value: "PM, UX/UI Designer (myself)" },
 ];
 
 const statusQuoItems = [
@@ -133,7 +133,7 @@ function LabeledList({
           style={{ fontSize: fluidBase, lineHeight: 1.7 }}
         >
           <strong>{nbsp(item.label)}</strong>
-          {" \u2014 "}
+          {" — "}
           {nbsp(item.body)}
         </li>
       ))}
@@ -174,7 +174,7 @@ export function WhiteLabelEsimPage() {
           </h1>
           <p
             className="text-muted-foreground"
-            style={{ fontSize: fluidBase, lineHeight: 1.5 }}
+            style={{ fontSize: fluidLead, lineHeight: 1.5 }}
           >
             {nbsp("I built a working prototype instead of a Figma file, and it surfaced constraints static design tools hide. It shipped closer to production than any mockup handoff could.")}
           </p>
@@ -183,7 +183,7 @@ export function WhiteLabelEsimPage() {
 
       <SectionAnimate delay={0.08}>
         <div className="-mx-4 sm:mx-0">
-          <ImagePlaceholder label="Hero \u2014 interactive prototype overview (form + live preview)" />
+          <ImagePlaceholder label="Hero — interactive prototype overview (form + live preview)" />
         </div>
       </SectionAnimate>
 
@@ -228,7 +228,7 @@ export function WhiteLabelEsimPage() {
             {nbsp("I had hit this wall before. On earlier projects, I would hand off polished static screens and then watch developers re-discover problems during implementation: contrast failures on dark brand colors, empty states nobody thought to design, layout shifts when optional content appeared or disappeared. The mockup looked right. The built product didn\u2019t behave right.")}
           </p>
           <CalloutBox>
-            <p style={{ fontSize: fluidBase, fontWeight: 500, lineHeight: 1.65, fontStyle: "italic" }}>
+            <p style={{ fontSize: fluidLead, fontWeight: 500, lineHeight: 1.5, fontStyle: "italic" }}>
               {nbsp("How do we design a B2B customization experience so the design artifact captures the constraints that matter, not only the pixels?")}
             </p>
           </CalloutBox>
@@ -257,7 +257,7 @@ export function WhiteLabelEsimPage() {
 
       <SectionAnimate delay={0.16}>
         <div className="-mx-4 sm:mx-0">
-          <ImagePlaceholder label="Before \u2014 static mockup vs. real input (contrast failure, broken layout)" />
+          <ImagePlaceholder label="Before — static mockup vs. real input (contrast failure, broken layout)" />
         </div>
       </SectionAnimate>
 
@@ -267,8 +267,8 @@ export function WhiteLabelEsimPage() {
           {/* Decision 1: Code, not Figma */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
             <SectionHeading>Key Decisions</SectionHeading>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Building the prototype in code, not Figma</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Building the prototype in code, not Figma
             </h3>
             <p
               className="text-foreground/80"
@@ -292,8 +292,8 @@ export function WhiteLabelEsimPage() {
 
           {/* Decision 2: Contrast at the system level */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Solving contrast at the system level</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Solving contrast at the system level
             </h3>
             <p
               className="text-foreground/80"
@@ -310,13 +310,13 @@ export function WhiteLabelEsimPage() {
           </div>
 
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="Automatic contrast \u2014 light and dark brand colors resolving to accessible text" />
+            <ImagePlaceholder label="Automatic contrast — light and dark brand colors resolving to accessible text" />
           </div>
 
           {/* Decision 3: Conditional rendering */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Conditional rendering as a design decision</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Conditional rendering as a design decision
             </h3>
             <p
               className="text-foreground/80"
@@ -333,13 +333,13 @@ export function WhiteLabelEsimPage() {
           </div>
 
           <div className="-mx-4 sm:mx-0">
-            <ImagePlaceholder label="Conditional sections \u2014 contact card, promo badge, and footer appearing based on input" />
+            <ImagePlaceholder label="Conditional sections — contact card, promo badge, and footer appearing based on input" />
           </div>
 
           {/* Decision 4: Real-time preview */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Real-time preview as the primary feedback loop</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Real-time preview as the primary feedback loop
             </h3>
             <p
               className="text-foreground/80"

@@ -1,10 +1,8 @@
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
-import { SectionAnimate } from "./section-animate";
-import { nbsp } from "./utils/nbsp";
-
-const fluidBase = "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)";
-const fluidSmall = "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { nbsp } from "@/lib/nbsp";
+import { fluidLead, fluidSmall } from "@/lib/typography";
 
 export function NotFoundPage() {
   return (
@@ -30,7 +28,7 @@ export function NotFoundPage() {
         />
       </SectionAnimate>
       <SectionAnimate delay={0.15}>
-        <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
+        <p style={{ fontSize: fluidLead, lineHeight: 1.5 }}>
           {nbsp("Sorry, the page you're looking for doesn't exist or has been moved.")}
         </p>
       </SectionAnimate>
@@ -39,7 +37,7 @@ export function NotFoundPage() {
           to="/"
           data-goatcounter-click="back-to-home-404"
           className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
-          style={{ fontSize: fluidSmall, lineHeight: 1 }}
+          style={{ fontSize: fluidSmall, lineHeight: 1.2 }}
         >
           <ArrowLeft size={14} />
           Back to Home

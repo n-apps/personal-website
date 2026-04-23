@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { SectionAnimate } from "./section-animate";
-import { nbsp } from "./utils/nbsp";
-import { ImageWithFallback } from "./image-with-fallback";
-import { fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "./utils/typography";
-import { SectionHeading, BoldLead } from "./case-study-components";
+import { SectionAnimate } from "@/components/ui/section-animate";
+import { nbsp } from "@/lib/nbsp";
+import { ImageWithFallback } from "@/components/ui/image-with-fallback";
+import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
+import { SectionHeading, BoldLead } from "@/components/case-study/case-study-components";
 
 const heroImage = "/images/design-system-hero.png";
 const beforeAfterImage = "/images/design-system-before-after.png";
@@ -212,7 +212,7 @@ export function DesignSystemPage() {
           </h1>
           <p
             className="text-muted-foreground"
-            style={{ fontSize: fluidBase, lineHeight: 1.5 }}
+            style={{ fontSize: fluidLead, lineHeight: 1.5 }}
           >
             {nbsp("I designed a shared design system for 3 B2B products, reducing feature design time by up to 90% and cutting style-related QA issues by 30%.")}
           </p>
@@ -259,7 +259,7 @@ export function DesignSystemPage() {
             {nbsp("Yesim is a global eSIM platform with over 3\u00a0million customers and several B2B web products sharing the same tech stack. When I joined, three products were growing independently, each with its own UI patterns, colour schemes, and legacy implementations. Even small changes slowed things down, and design reviews became negotiations instead of quick reference checks.")}
           </p>
           <CalloutBox>
-            <p style={{ fontSize: fluidBase, fontWeight: 500, lineHeight: 1.65, fontStyle: "italic" }}>
+            <p style={{ fontSize: fluidLead, fontWeight: 500, lineHeight: 1.5, fontStyle: "italic" }}>
               {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities, without needing a dedicated person to keep it running?")}
             </p>
           </CalloutBox>
@@ -282,8 +282,8 @@ export function DesignSystemPage() {
           {/* Decision 1: Token architecture */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
             <SectionHeading>Key Decisions</SectionHeading>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Three-layer token architecture</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Three-layer token architecture
             </h3>
             <p
               className="text-foreground/80"
@@ -313,8 +313,8 @@ export function DesignSystemPage() {
 
           {/* Decision 2: One library, three themes */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>One library, three themes</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              One library, three themes
             </h3>
             <p
               className="text-foreground/80"
@@ -344,8 +344,8 @@ export function DesignSystemPage() {
 
           {/* Decision 3: B2B-first component priorities */}
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>B2B-first component priorities</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              B2B-first component priorities
             </h3>
             <p
               className="text-foreground/80"
@@ -471,8 +471,8 @@ export function DesignSystemPage() {
           </div>
 
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Migration strategy</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Migration strategy
             </h3>
             <p
               className="text-foreground/80"
@@ -483,8 +483,8 @@ export function DesignSystemPage() {
           </div>
 
           <div className="flex flex-col" style={{ gap: innerGap }}>
-            <h3 style={{ fontSize: fluidH3, lineHeight: 1.5 }}>
-              <strong>Governance</strong>
+            <h3 style={{ fontSize: fluidH3, fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.005em" }}>
+              Governance
             </h3>
             <p
               className="text-foreground/80"
@@ -556,7 +556,7 @@ export function DesignSystemPage() {
             Back to Home Page
           </Link>
           <Link
-            to="/work/score-counter"
+            to="/work/white-label-esim"
             data-goatcounter-click="next-case-study"
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             style={{ fontSize: fluidSmall, lineHeight: 1 }}

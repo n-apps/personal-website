@@ -20,9 +20,15 @@ No lint or test scripts are configured.
 
 **Routing:** Centralized in `src/app/routes.ts`. All routes share a single `Layout` wrapper (nav + footer + outlet). Case studies live under `/work/`. Layout auto-scrolls to top on route change.
 
-**Pages/Components:** All page components live flat in `src/app/components/`. No subdirectory per page — case study pages (`score-counter-page.tsx`, `design-system-page.tsx`) are large single-file components.
+**Layout:**
+- `src/app/` — app shell (`App.tsx`, `routes.ts`)
+- `src/pages/<name>/index.tsx` — route entries. Case studies live under `/work/` and map to their own page folders. Sub-routes get their own subfolder (e.g. `pages/score-counter/reviews/`, `pages/white-label-esim/demo/`).
+- `src/components/layout/` — app-wide shell (nav, footer, theme toggle)
+- `src/components/ui/` — reusable primitives (dividers, animators, image fallback, masonry)
+- `src/components/case-study/` — components shared across case-study pages
+- `src/lib/` — generic helpers (`nbsp.ts`, `typography.ts`)
 
-**UI primitives:** `src/app/components/ui/` contains ~50 Radix UI-based headless component wrappers. Use `cn()` from `src/app/components/ui/utils.ts` (clsx + tailwind-merge) for composing class names.
+Pages should compose sections/features; generic UI goes in `components/ui/`. Local helpers stay colocated with their page (see `pages/white-label-esim/demo/components/` and `pages/white-label-esim/demo/ui/`).
 
 ## Styling
 

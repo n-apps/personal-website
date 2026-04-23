@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import type { BrandSettings } from "./customize-esim-demo-page";
+import type { BrandSettings } from "../customize";
+import promoBanner from "../public/promo-banner.png";
 
 type Props = {
   settings: BrandSettings;
@@ -118,7 +119,7 @@ export function PhonePreview({ settings, onRegisterScroll }: Props) {
   }, [onRegisterScroll]);
 
   return (
-    <aside className="flex w-[704px] flex-col items-center justify-center gap-4 rounded-2xl bg-surface-muted p-8">
+    <aside className="phone-preview flex w-[704px] flex-col items-center justify-center gap-4 rounded-2xl bg-surface-muted p-8">
       <span className="text-[12px] uppercase tracking-[0.08em] text-ink-500">
         Live preview {branded ? (settings.brandName ? `· ${settings.brandName}` : "· branded") : "· unbranded"}
       </span>
@@ -134,16 +135,14 @@ export function PhonePreview({ settings, onRegisterScroll }: Props) {
           {/* Screen */}
           <div className="relative h-full w-full overflow-hidden rounded-[32px] bg-white">
             <div
-              className={`pointer-events-none absolute inset-0 z-20 transition-opacity duration-500 ease-out ${
-                isLoading ? "opacity-100" : "opacity-0"
-              }`}
+              className={`pointer-events-none absolute inset-0 z-20 transition-opacity duration-500 ease-out ${isLoading ? "opacity-100" : "opacity-0"
+                }`}
             >
               <PhoneScreenSkeleton />
             </div>
             <div
-              className={`h-full transition-opacity duration-700 ease-out ${
-                isLoading ? "opacity-0" : "opacity-100"
-              }`}
+              className={`h-full transition-opacity duration-700 ease-out ${isLoading ? "opacity-0" : "opacity-100"
+                }`}
             >
               <PhoneScreen settings={settings} scrollAreaRef={mobileScrollRef} />
             </div>
@@ -209,7 +208,7 @@ function DesktopShell({
           <span className="h-[10px] w-[10px] rounded-full bg-[#28c840]" />
         </div>
         <div className="mx-auto flex h-[20px] w-[260px] items-center justify-center rounded-[4px] bg-white/70 text-[9px] text-ink-500">
-          esimpass.cloud
+          {settings.brandName ? settings.brandName + ".cloud-esim.me" : "cloud-esim.me"}
         </div>
       </div>
       {/* Page content */}
@@ -218,18 +217,16 @@ function DesktopShell({
         className="relative flex max-h-[580px] justify-center overflow-y-auto bg-[#c8c8c8] p-6"
       >
         <div
-          className={`pointer-events-none absolute inset-0 z-10 flex justify-center p-6 transition-opacity duration-500 ease-out ${
-            isLoading ? "opacity-100" : "opacity-0"
-          }`}
+          className={`pointer-events-none absolute inset-0 z-10 flex justify-center p-6 transition-opacity duration-500 ease-out ${isLoading ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div className="w-[380px]">
             <DesktopSkeleton />
           </div>
         </div>
         <div
-          className={`w-[380px] transition-opacity duration-700 ease-out ${
-            isLoading ? "opacity-0" : "opacity-100"
-          }`}
+          className={`w-[380px] transition-opacity duration-700 ease-out ${isLoading ? "opacity-0" : "opacity-100"
+            }`}
         >
           <PhoneScreen settings={settings} constrainHeight={false} />
         </div>
@@ -549,7 +546,7 @@ function YesimPromoCard() {
     <section className="overflow-hidden rounded-[11px]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/pencil-assets/qk9iz.png"
+        src={promoBanner}
         alt="Yesim promotion"
         className="block h-auto w-full"
       />
