@@ -1,8 +1,13 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
-import { HexColorPicker } from "react-colorful";
+import { ChangeEvent, lazy, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import type { BrandSettings } from "../customize";
 import { Checkbox } from "../ui/checkbox";
 import { ToggleSwitch } from "../ui/toggle-switch";
+
+const HexColorPicker = lazy(() =>
+  import("react-colorful").then((m) => ({ default: m.HexColorPicker }))
+);
+
+const ALIAS_INVALID_RE = /[^a-z0-9-]/g;
 
 type SectionProps = {
   settings: BrandSettings;
@@ -362,35 +367,44 @@ export function BrandStylingCard({
 
         <div className="my-7 h-px bg-line" />
 
-        <div className="space-y-5">
-          <TextField
-            label="Contact email"
-            type="email"
-            placeholder="example@company.org"
-            value={settings.contactEmail}
-            onChange={(v) => update("contactEmail", v)}
-            onFocus={onScrollPreviewToBottom}
-            error={errors.contactEmail}
-          />
-          <TextField
-            label="Privacy policy link"
-            type="url"
-            placeholder="https://"
-            value={settings.privacyPolicyUrl}
-            onChange={(v) => update("privacyPolicyUrl", v)}
-            onFocus={onScrollPreviewToBottom}
-            error={errors.privacyPolicyUrl}
-          />
-          <TextField
-            label="Terms of usage link"
-            type="url"
-            placeholder="https://"
-            value={settings.termsOfUsageUrl}
-            onChange={(v) => update("termsOfUsageUrl", v)}
-            onFocus={onScrollPreviewToBottom}
-            error={errors.termsOfUsageUrl}
-          />
-        </div>
+        <Checkbox
+          id="show-contacts"
+          label="Show contacts"
+          checked={settings.showContacts}
+          onChange={(v) => update("showContacts", v)}
+        />
+
+        {settings.showContacts && (
+          <div className="mt-5 space-y-5">
+            <TextField
+              label="Contact email"
+              type="email"
+              placeholder="example@company.org"
+              value={settings.contactEmail}
+              onChange={(v) => update("contactEmail", v)}
+              onFocus={onScrollPreviewToBottom}
+              error={errors.contactEmail}
+            />
+            <TextField
+              label="Privacy policy link"
+              type="url"
+              placeholder="https://"
+              value={settings.privacyPolicyUrl}
+              onChange={(v) => update("privacyPolicyUrl", v)}
+              onFocus={onScrollPreviewToBottom}
+              error={errors.privacyPolicyUrl}
+            />
+            <TextField
+              label="Terms of usage link"
+              type="url"
+              placeholder="https://"
+              value={settings.termsOfUsageUrl}
+              onChange={(v) => update("termsOfUsageUrl", v)}
+              onFocus={onScrollPreviewToBottom}
+              error={errors.termsOfUsageUrl}
+            />
+          </div>
+        )}
       </div>
 
       <SectionActions
@@ -506,7 +520,7 @@ function AliasField({
             onChange(
               e.target.value
                 .toLowerCase()
-                .replace(/[^a-z0-9-]/g, "")
+                .replace(ALIAS_INVALID_RE, "")
                 .slice(0, 32)
             )
           }
@@ -669,13 +683,15 @@ function ColorField({
         </div>
         {open && (
           <div className="absolute left-0 top-full z-50 mt-2 rounded-xl border border-line bg-white p-3 shadow-card">
-            <HexColorPicker
-              color={value}
-              onChange={(c) => {
-                onChange(c.toUpperCase());
-                onScrollToTop?.();
-              }}
-            />
+            <Suspense fallback={<div className="h-[200px] w-[200px]" aria-hidden />}>
+              <HexColorPicker
+                color={value}
+                onChange={(c) => {
+                  onChange(c.toUpperCase());
+                  onScrollToTop?.();
+                }}
+              />
+            </Suspense>
           </div>
         )}
       </div>

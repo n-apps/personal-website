@@ -22,6 +22,7 @@ export type BrandSettings = {
   bannerDataUrl: string | null;
   bannerFileName: string;
   includeYesimPromotion: boolean;
+  showContacts: boolean;
   contactEmail: string;
   privacyPolicyUrl: string;
   termsOfUsageUrl: string;
@@ -41,6 +42,7 @@ export const defaultBrandSettings: BrandSettings = {
   bannerDataUrl: null,
   bannerFileName: "",
   includeYesimPromotion: true,
+  showContacts: false,
   contactEmail: "",
   privacyPolicyUrl: "",
   termsOfUsageUrl: "",
@@ -63,6 +65,7 @@ const STYLING_KEYS: (keyof BrandSettings)[] = [
   "bannerDataUrl",
   "bannerFileName",
   "includeYesimPromotion",
+  "showContacts",
   "contactEmail",
   "privacyPolicyUrl",
   "termsOfUsageUrl",

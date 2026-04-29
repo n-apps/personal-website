@@ -1,5 +1,6 @@
+import { RiDoubleQuotesL } from "@remixicon/react";
 import { nbsp } from "@/lib/nbsp";
-import { fluidH2 } from "@/lib/typography";
+import { fluidBase, fluidH2 } from "@/lib/typography";
 
 /** Section label used as a category heading above content blocks */
 export function SectionHeading({ children }: { children: React.ReactNode }) {
@@ -22,6 +23,25 @@ export function BoldLead({ text }: { text: string }) {
       <strong>{nbsp(text.slice(0, i + 1))}</strong>{" "}
       {nbsp(text.slice(i + 2))}
     </>
+  );
+}
+
+/** Standardized pull quote / callout: accent border + serif body text */
+export function PullQuote({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="border-l-[3px] border-accent pl-5 sm:pl-6 py-1 flex flex-col gap-2">
+      <RiDoubleQuotesL className="text-accent shrink-0" size={28} aria-hidden />
+      <div
+        className="text-foreground/90"
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: fluidBase,
+          lineHeight: 1.5,
+        }}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 

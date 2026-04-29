@@ -1,6 +1,7 @@
 const scoreCounterCover = "/images/score-counter-cover.png";
 const designSystemCover = "/images/design-system-cover.png";
-const comingSoonCover = "/images/coming-soon-cover.png";
+const whiteLabelEsimCover = "/images/white-label-esim-cover.png";
+
 import { Link } from "react-router";
 import { SectionAnimate } from "@/components/ui/section-animate";
 import { nbsp } from "@/lib/nbsp";
@@ -42,16 +43,16 @@ const personalProjects = [
   {
     title: "B2B Design System",
     subtitle: "Yesim",
-    description: "A token-based component library spanning three B2B products with different visual identities — built from scratch, including Figma, code, documentation, and a governance process. Result: 4x faster feature design, 30% fewer style-related QA issues.",
+    description: "A token-based component library spanning three B2B products with different visual identities — built from scratch, including Figma, code, documentation, and a governance process.",
     caseStudy: "/work/design-system",
     cover: designSystemCover,
   },
   {
-    title: "White-label eSIM distribution interface",
+    title: "Designing in code: white-label eSIM customization",
     subtitle: "Yesim",
-    description: "I designed a white-label web interface inside the Partners Platform that handles eSIM detail management and shareable delivery in one flow.",
+    description: "An interactive prototype, built in Next.js and Tailwind instead of Figma, that lets telecom operators brand their eSIM experience — with live preview, automatic contrast handling, and conditional rendering baked into the artifact rather than annotated on top of static screens.",
     caseStudy: "/work/white-label-esim",
-    cover: comingSoonCover,
+    cover: whiteLabelEsimCover,
   },
 ];
 

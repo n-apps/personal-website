@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { BrandSettings } from "../customize";
 import promoBanner from "../public/promo-banner.png";
 
@@ -62,8 +62,10 @@ export const PHONE_PREVIEW_PENCIL_COMPONENTS = [
 
 /* ──────────────  helpers  ────────────── */
 
+const HEX6_RE = /^([0-9a-f]{6})$/i;
+
 function hexToRgb(hex: string): [number, number, number] {
-  const m = hex.replace("#", "").match(/^([0-9a-f]{6})$/i);
+  const m = hex.replace("#", "").match(HEX6_RE);
   if (!m) return [11, 188, 214];
   const v = parseInt(m[1], 16);
   return [(v >> 16) & 0xff, (v >> 8) & 0xff, v & 0xff];
@@ -197,7 +199,7 @@ function DesktopShell({
   settings,
   scrollAreaRef,
   isLoading,
-}: Props & { scrollAreaRef?: React.RefObject<HTMLDivElement | null>; isLoading?: boolean }) {
+}: Props & { scrollAreaRef?: React.RefObject<HTMLDivElement>; isLoading?: boolean }) {
   return (
     <div className="w-[640px] overflow-hidden rounded-[12px] bg-[#c8c8c8] shadow-phone">
       {/* Browser chrome */}
@@ -242,24 +244,32 @@ function PhoneScreen({
   scrollAreaRef,
   constrainHeight = true,
 }: Props & {
-  scrollAreaRef?: React.RefObject<HTMLDivElement | null>;
+  scrollAreaRef?: React.RefObject<HTMLDivElement>;
   constrainHeight?: boolean;
 }) {
   const branded = settings.brandedEsimEnabled;
   // When the brand toggle is off, fall back to the Yesim default look so
   // operators can preview exactly what unbranded customers will see.
-  const accent = branded
-    ? settings.brandColor || "#0BBCD6"
-    : YESIM_DEFAULT_ACCENT;
+  const accent = useMemo(
+    () =>
+      branded
+        ? settings.brandColor || "#0BBCD6"
+        : YESIM_DEFAULT_ACCENT,
+    [branded, settings.brandColor]
+  );
+  const textOnAccent = useMemo(() => readableTextColor(accent), [accent]);
+
   const logoDataUrl = branded ? settings.logoDataUrl : null;
   const bannerDataUrl = branded ? settings.bannerDataUrl : null;
   const includePromotion = branded ? settings.includeYesimPromotion : true;
-  const contactEmail = branded ? settings.contactEmail : "";
-  const privacyPolicyUrl = branded ? settings.privacyPolicyUrl : "";
-  const termsOfUsageUrl = branded ? settings.termsOfUsageUrl : "";
+  const showContacts = branded && settings.showContacts;
+  const contactEmail = showContacts ? settings.contactEmail : "";
+  const privacyPolicyUrl = showContacts ? settings.privacyPolicyUrl : "";
+  const termsOfUsageUrl = showContacts ? settings.termsOfUsageUrl : "";
 
-  const textOnAccent = readableTextColor(accent);
-  const hasContact = !!contactEmail || !!privacyPolicyUrl || !!termsOfUsageUrl;
+  const hasContact =
+    showContacts &&
+    (!!contactEmail || !!privacyPolicyUrl || !!termsOfUsageUrl);
 
   return (
     <div

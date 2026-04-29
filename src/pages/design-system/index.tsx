@@ -4,7 +4,7 @@ import { SectionAnimate } from "@/components/ui/section-animate";
 import { nbsp } from "@/lib/nbsp";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
-import { SectionHeading, BoldLead } from "@/components/case-study/case-study-components";
+import { SectionHeading, BoldLead, PullQuote } from "@/components/case-study/case-study-components";
 
 const heroImage = "/images/design-system-hero.png";
 const beforeAfterImage = "/images/design-system-before-after.png";
@@ -118,14 +118,6 @@ const whatIdChange = [
 ];
 
 /* ── Local sub-components ──────────────────────────────── */
-
-function CalloutBox({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl bg-card card-shadow p-5 sm:p-6 flex flex-col gap-3 my-2 border-l-[3px] border-foreground/20">
-      {children}
-    </div>
-  );
-}
 
 function DataTable({
   headers,
@@ -258,11 +250,9 @@ export function DesignSystemPage() {
           >
             {nbsp("Yesim is a global eSIM platform with over 3\u00a0million customers and several B2B web products sharing the same tech stack. When I joined, three products were growing independently, each with its own UI patterns, colour schemes, and legacy implementations. Even small changes slowed things down, and design reviews became negotiations instead of quick reference checks.")}
           </p>
-          <CalloutBox>
-            <p style={{ fontSize: fluidLead, fontWeight: 500, lineHeight: 1.5, fontStyle: "italic" }}>
-              {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities, without needing a dedicated person to keep it running?")}
-            </p>
-          </CalloutBox>
+          <PullQuote>
+            {nbsp("How do we build one design system that underpins three (and eventually more) products with different visual identities, without needing a dedicated person to keep it running?")}
+          </PullQuote>
         </div>
       </SectionAnimate>
 

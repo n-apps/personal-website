@@ -16,11 +16,21 @@ export function Navigation() {
         <Link
           to="/"
           data-goatcounter-click="nav-home-logo"
-          className="inline-block select-none text-foreground hover:opacity-70 transition-opacity"
-          aria-label="Home"
+          className="group inline-block select-none text-foreground"
+          aria-label="R—S"
         >
-          <span className="tracking-wide" style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)", lineHeight: 1 }}>
-            R&mdash;S
+          <span
+            className="inline-block tracking-normal transition-[letter-spacing] duration-[420ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:tracking-[0.12em] group-focus-visible:tracking-[0.12em] motion-reduce:transition-none"
+            style={{ fontFamily: "var(--font-sans)", fontSize: "clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)", lineHeight: 1 }}
+          >
+            R
+            <span
+              aria-hidden="true"
+              className="inline-block w-[1em] text-center transition-[width] duration-[420ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:w-[1.8em] group-focus-visible:w-[1.8em] motion-reduce:transition-none"
+            >
+              —
+            </span>
+            S
           </span>
         </Link>
       )}

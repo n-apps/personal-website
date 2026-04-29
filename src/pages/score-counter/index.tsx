@@ -6,7 +6,7 @@ import { SectionAnimate } from "@/components/ui/section-animate";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { nbsp } from "@/lib/nbsp";
 import { fluidLead, fluidBase, fluidSmall, fluidH1, fluidH3, sectionGap, innerGap } from "@/lib/typography";
-import { SectionHeading, BoldLead } from "@/components/case-study/case-study-components";
+import { SectionHeading, BoldLead, PullQuote } from "@/components/case-study/case-study-components";
 
 const heroImage = "/images/score-counter-hero.png";
 const evolutionImage = "/images/score-counter-evolution.png";
@@ -52,14 +52,6 @@ const reflections = [
 ];
 
 /* ── Local sub-components ──────────────────────────────── */
-
-function PullQuote({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl bg-card card-shadow p-5 sm:p-6 border-l-[3px] border-foreground/20">
-      {children}
-    </div>
-  );
-}
 
 /** Parse a display value like "870K+", "4.9" into parts for animation */
 function parseStatValue(display: string): {
@@ -309,12 +301,7 @@ export function ScoreCounterPage() {
 
       <SectionAnimate delay={0.26}>
         <PullQuote>
-          <p
-            className="text-foreground/80 italic"
-            style={{ fontSize: fluidBase, lineHeight: 1.75 }}
-          >
-            {nbsp("One user created a tally called \"little spoiled brats\" to count every time a child annoyed them \u2014 227 reasons and counting. When you build a tool that does one thing well and stays out of the way, people find uses you never imagined.")}
-          </p>
+          {nbsp("One user created a tally called \"little spoiled brats\" to count every time a child annoyed them \u2014 227 reasons and counting. When you build a tool that does one thing well and stays out of the way, people find uses you never imagined.")}
         </PullQuote>
       </SectionAnimate>
 

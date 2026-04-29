@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage },
       { path: "work/score-counter", Component: ScoreCounterPage },
       { path: "work/design-system", Component: DesignSystemPage },
-      { path: "work/white-label-esim", Component: WorkInProgress },
+      { path: "work/white-label-esim", Component: WhiteLabelEsimPage },
       { path: "work/coming-soon", Component: WorkInProgress },
       { path: "support", Component: SupportPage },
       { path: "*", Component: NotFoundPage },
