@@ -268,14 +268,20 @@ export function HomePage() {
             Get in touch
           </h2>
           <div className="flex flex-col" style={{ gap: "clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem)" }}>
-            <ul className="flex flex-col" style={{ gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)" }}>
+            <ul
+              className="grid grid-cols-1 sm:grid-cols-4"
+              style={{
+                rowGap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)",
+                columnGap: "clamp(1rem, 0.75rem + 0.5vw, 1.5rem)",
+              }}
+            >
               {connectLinks.map(({ label, href, display, download }) => (
                 <li
                   key={label}
-                  className="grid items-center"
+                  className="grid items-center sm:flex sm:flex-col sm:items-start"
                   style={{
                     gridTemplateColumns: "1fr 2fr",
-                    gap: "clamp(0.75rem, 0.7rem + 0.25vw, 1rem)",
+                    gap: "clamp(0.375rem, 0.3rem + 0.25vw, 0.5rem)",
                   }}
                 >
                   <span
@@ -292,7 +298,7 @@ export function HomePage() {
                     {...(download
                       ? { download: true }
                       : { target: "_blank", rel: "noopener noreferrer" })}
-                    className="text-muted-foreground no-underline hover:underline underline-offset-2 hover:opacity-80 transition-opacity mt-1 inline-flex items-center gap-1"
+                    className="text-muted-foreground no-underline hover:underline underline-offset-2 hover:opacity-80 transition-opacity inline-flex items-center gap-1"
                     style={{
                       fontSize: fluidSmall,
                       lineHeight: 1,
