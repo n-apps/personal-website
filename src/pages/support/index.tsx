@@ -12,7 +12,7 @@ import {
   innerGap,
 } from '@/lib/typography';
 import { SectionHeading } from '@/components/case-study/case-study-components';
-const heroImage = '/images/support-hero.png';
+const heroImage = '/images/support-hero.jpg';
 
 const supportOptions = [
   {

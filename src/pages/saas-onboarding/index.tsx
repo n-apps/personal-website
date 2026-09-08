@@ -44,7 +44,7 @@ export function SaasOnboardingPage() {
 
       <SectionAnimate delay={0.1}>
         <CaseFigure
-          src='/images/saas-onboarding-cover.png'
+          src='/images/saas-onboarding-hero.jpg'
           alt='Yesim business dashboard with onboarding guidance and account status'
           caption='The intended destination: a dashboard that explains account status and gives a new admin a concrete next action.'
           eager
