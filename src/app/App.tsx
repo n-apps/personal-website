@@ -1,22 +1,11 @@
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { PageTransitionOverlay } from "@/components/ui/page-transition-overlay";
 import { RouteLoading } from "@/components/ui/route-status";
 
 // Case study routes: /work/score-counter, /work/design-system
 export default function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.dataset.goatcounter = "https://romamakes.goatcounter.com/count";
-    script.async = true;
-    script.src = "//gc.zgo.at/count.js";
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <>
       <Suspense fallback={<RouteLoading fullPage />}>

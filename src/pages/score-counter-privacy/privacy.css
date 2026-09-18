@@ -1,0 +1,70 @@
+.policy-copy {
+  color: color-mix(in oklch, var(--foreground) 80%, transparent);
+  font-size: clamp(0.98rem, 0.93rem + 0.12vw, 1.05rem);
+  line-height: 1.7;
+}
+
+.policy-copy h1 {
+  color: var(--foreground);
+  margin: 0;
+  max-width: 18ch;
+}
+
+.policy-copy > p,
+.policy-copy > section {
+  margin-top: 1.5rem;
+}
+
+.policy-copy .policy-scope {
+  border-left: 2px solid var(--accent);
+  color: var(--foreground);
+  font-size: 1.08em;
+  padding-left: 1rem;
+}
+
+.policy-copy section {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.policy-copy h2 {
+  color: var(--foreground);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+  margin: 0 0 0.75rem;
+}
+
+.policy-copy p {
+  margin: 0.85rem 0 0;
+}
+
+.policy-copy p:first-of-type {
+  margin-top: 0;
+}
+
+.policy-copy ul {
+  margin: 0.85rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.policy-copy li {
+  margin-top: 0.35rem;
+  padding-left: 0.25rem;
+}
+
+.policy-copy a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 160ms ease;
+}
+
+.policy-copy a:hover,
+.policy-copy a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.policy-copy address {
+  font-style: normal;
+  margin-top: 0.85rem;
+}

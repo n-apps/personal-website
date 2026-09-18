@@ -6,6 +6,7 @@ export function Footer() {
           Built by{' '}
           <a
             href="https://romamakes.com/"
+            data-goatcounter-click="missing-tracks-footer-portfolio"
             className="text-mt-text transition-colors duration-150 hover:text-mt-green"
             target="_blank"
             rel="noreferrer"

@@ -11,6 +11,12 @@ import { RouteLoadError } from "@/components/ui/route-status";
 const ScoreCounterPage = lazy(() =>
   import("@/pages/score-counter").then((m) => ({ default: m.ScoreCounterPage }))
 );
+const ScoreCounterDownloadPage = lazy(() =>
+  import("@/pages/score-counter-download").then((m) => ({ default: m.ScoreCounterDownloadPage }))
+);
+const ScoreCounterPrivacyPage = lazy(() =>
+  import("@/pages/score-counter-privacy").then((m) => ({ default: m.ScoreCounterPrivacyPage }))
+);
 const DesignSystemPage = lazy(() =>
   import("@/pages/design-system").then((m) => ({ default: m.DesignSystemPage }))
 );
@@ -51,6 +57,16 @@ export const router = createBrowserRouter([
   {
     Component: AnalyticsTracker,
     children: [
+      {
+        path: "/score-counter",
+        Component: ScoreCounterDownloadPage,
+        ErrorBoundary: RouteLoadError,
+      },
+      {
+        path: "/score-counter/privacy",
+        Component: ScoreCounterPrivacyPage,
+        ErrorBoundary: RouteLoadError,
+      },
       {
         path: "/",
         Component: Layout,

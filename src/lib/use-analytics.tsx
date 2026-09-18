@@ -1,49 +1,67 @@
 import { useEffect, useRef } from "react";
-import { useLocation, Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
-/**
- * Custom hook to track page views and re-bind interactive click tracking
- * using GoatCounter analytics in a React Single Page Application (SPA).
- */
-export function useAnalytics() {
-  const location = useLocation();
-  const isFirstRun = useRef(true);
+type GoatCounter = {
+  no_onload: boolean;
+  no_events: boolean;
+  count?: (options: { path: string; event?: boolean }) => void;
+};
 
-  useEffect(() => {
-    const goatcounter = (window as any).goatcounter;
-
-    // The initial page load is already automatically counted by the GoatCounter script
-    // when it first executes on script load. We skip the first trigger of this hook to
-    // avoid duplicate pageviews on landing.
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
-
-    if (goatcounter && typeof goatcounter.count === "function") {
-      // 1. Track the new client-side route view
-      goatcounter.count({
-        path: location.pathname + location.search,
-      });
-
-      // 2. Re-bind click tracking (data-goatcounter-click) to newly rendered elements.
-      // Because GoatCounter binds click handlers directly instead of using event delegation,
-      // React's DOM destruction/re-creation on route changes clears these listeners.
-      // We wrap it in a setTimeout to guarantee React has finished updating the DOM.
-      if (typeof goatcounter.bind_events === "function") {
-        setTimeout(() => {
-          goatcounter.bind_events();
-        }, 0);
-      }
-    }
-  }, [location.pathname, location.search]);
+declare global {
+  interface Window {
+    goatcounter?: GoatCounter;
+  }
 }
 
-/**
- * Root component that serves as a pathless layout route,
- * ensuring all sub-routes are covered by the analytics tracker.
- */
 export function AnalyticsTracker() {
-  useAnalytics();
+  const { pathname, search } = useLocation();
+  const path = pathname + search;
+  const currentPath = useRef(path);
+  const countedPath = useRef<string | null>(null);
+  const ready = useRef(false);
+  currentPath.current = path;
+
+  useEffect(() => {
+    // Count pageviews ourselves so initial loading and SPA navigation share one path.
+    window.goatcounter = { no_onload: true, no_events: true };
+
+    const countPage = () => {
+      if (!ready.current || countedPath.current === currentPath.current) return;
+      window.goatcounter?.count?.({ path: currentPath.current });
+      countedPath.current = currentPath.current;
+    };
+
+    const trackClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const element = target.closest<HTMLElement>("[data-goatcounter-click]");
+      const name = element?.dataset.goatcounterClick;
+      if (name) window.goatcounter?.count?.({ path: name, event: true });
+    };
+
+    const script = document.createElement("script");
+    script.dataset.goatcounter = "https://romamakes.goatcounter.com/count";
+    script.async = true;
+    script.src = "https://gc.zgo.at/count.js";
+    script.onload = () => {
+      ready.current = true;
+      countPage();
+    };
+    document.addEventListener("click", trackClick, true);
+    document.body.appendChild(script);
+
+    return () => {
+      ready.current = false;
+      document.removeEventListener("click", trackClick, true);
+      script.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ready.current || countedPath.current === path) return;
+    window.goatcounter?.count?.({ path });
+    countedPath.current = path;
+  }, [path]);
+
   return <Outlet />;
 }

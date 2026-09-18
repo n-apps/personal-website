@@ -2,3 +2,6 @@
 # package.json. Keep picomatch on a known-good floor across the transitive tree.
 overrides:
   picomatch: '>=4.0.5'
+  fflate@0.6.10: 0.6.11
+  nanoid@3.3.12: 3.3.18
+  postcss@8.5.19: 8.5.23

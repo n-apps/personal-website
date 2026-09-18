@@ -13,6 +13,7 @@ export function DemoNavbar() {
           <Link
             key={item}
             to="#"
+            data-goatcounter-click={`white-label-demo-nav-${item.toLowerCase()}`}
             className="select-none rounded-lg px-4 py-2 text-sm font-medium text-white/70 transition hover:text-white"
           >
             {item}
@@ -22,6 +23,7 @@ export function DemoNavbar() {
 
       <Link
         to="#"
+        data-goatcounter-click="white-label-demo-dashboard"
         className="inline-flex select-none items-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-2 text-sm font-medium text-ink-900 transition hover:bg-white/90"
       >
         Go to dashboard

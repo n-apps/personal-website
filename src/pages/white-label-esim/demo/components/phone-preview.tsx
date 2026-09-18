@@ -619,6 +619,7 @@ function ContactCard({
         {email && (
           <a
             href={`mailto:${email}`}
+            data-goatcounter-click="white-label-demo-preview-email"
             className="block truncate text-demo-link decoration-from-font underline-offset-2 hover:underline [text-decoration-skip-ink:auto] [text-underline-position:from-font]"
             title={email}
           >
@@ -628,6 +629,7 @@ function ContactCard({
         {privacy && (
           <a
             href={privacy}
+            data-goatcounter-click="white-label-demo-preview-privacy"
             target="_blank"
             rel="noreferrer"
             className="block text-demo-link decoration-from-font underline-offset-2 hover:underline [text-decoration-skip-ink:auto] [text-underline-position:from-font]"
@@ -638,6 +640,7 @@ function ContactCard({
         {terms && (
           <a
             href={terms}
+            data-goatcounter-click="white-label-demo-preview-terms"
             target="_blank"
             rel="noreferrer"
             className="block text-demo-link decoration-from-font underline-offset-2 hover:underline [text-decoration-skip-ink:auto] [text-underline-position:from-font]"

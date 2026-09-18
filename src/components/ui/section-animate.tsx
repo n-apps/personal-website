@@ -5,20 +5,25 @@ interface SectionAnimateProps {
   children: ReactNode;
   delay?: number;
   className?: string;
+  inView?: boolean;
 }
 
 export function SectionAnimate({
   children,
   delay = 0,
   className = "",
+  inView = false,
 }: SectionAnimateProps) {
   const reduceMotion = useReducedMotion() === true;
+  const reveal = { opacity: 1, y: 0 };
 
   return (
     <motion.div
       className={className}
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={inView && !reduceMotion ? undefined : reveal}
+      whileInView={inView && !reduceMotion ? reveal : undefined}
+      viewport={inView && !reduceMotion ? { once: true, amount: 0.1 } : undefined}
       transition={
         reduceMotion
           ? { duration: 0 }
