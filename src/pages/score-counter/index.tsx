@@ -22,7 +22,7 @@ import {
 const facts = [
   { label: 'Role', value: 'Solo product owner' },
   { label: 'Since', value: '2016' },
-  { label: 'Platform', value: 'Android' },
+  { label: 'Platforms', value: 'Android · iOS' },
   { label: 'Scope', value: 'Design · code · releases · support' },
 ];
 
@@ -30,7 +30,7 @@ const outcomes = [
   { value: '1M+', label: 'installs' },
   { value: '100K+', label: 'MAU' },
   { value: '43%', label: 'store conversion' },
-  { value: '4.7★', label: 'rating' },
+  { value: '4.9★', label: 'rating' },
 ];
 
 function Body({ children }: { children: React.ReactNode }) {
@@ -49,7 +49,7 @@ export function ScoreCounterPage() {
       <SectionAnimate delay={0.05}>
         <CaseHero
           title='Score Counter, built and run solo since 2016'
-          lede='I taught myself Android to replace pen and paper during game nights. The app grew to 1M+ installs and 100K monthly active users without paid marketing.'
+          lede='I taught myself Android to replace pen and paper during game nights. The app grew to 1M+ installs and 100K monthly active users without paid marketing, and I brought it to iOS in September 2026.'
         />
       </SectionAnimate>
 
@@ -93,16 +93,16 @@ export function ScoreCounterPage() {
 
       <SectionAnimate delay={0.15}>
         <div className='flex flex-col' style={{ gap: innerGap }}>
-          <SectionHeading>The design problem was feature pressure</SectionHeading>
+          <SectionHeading>The hard part was deciding what not to add</SectionHeading>
           <Body>
             {nbsp(
-              'Requests for saved sessions, deeper customisation, timers, graphs, and game-specific rules were often reasonable on their own. Together, they could have buried the action that made the app useful: open it, add counters, start counting.',
+              'Every request made sense on its own. The risk was letting all of them crowd the screen until a simple score change felt like work.',
             )}
           </Body>
-          <SubHeading>Protect the start path, move depth around it</SubHeading>
+          <SubHeading>Keep counting simple</SubHeading>
           <Body>
             {nbsp(
-              'I kept the active counter immediate and treated everything else as optional depth. Session history, graphs, and extra controls could evolve without becoming gates before the first score change.',
+              'I kept the counter itself fast. History, graphs, and extra controls stayed out of the way until someone needed them.',
             )}
           </Body>
         </div>
@@ -126,7 +126,7 @@ export function ScoreCounterPage() {
           </Body>
           <Body>
             {nbsp(
-              'The timer, graph history visualisation, and custom colour picker are three shipped examples.',
+              'I shipped a timer, graph history visualisation, and custom colour picker in 2026. They answered repeated requests, but I did not set up feature-level analytics, so I cannot claim that they changed retention or usage.',
             )}
           </Body>
           <SubHeading>2026: add a timer without slowing the score flow</SubHeading>
@@ -137,19 +137,25 @@ export function ScoreCounterPage() {
           </Body>
           <Body>
             {nbsp(
-              'I checked popular game-assistant tools and found that timers were common. I shipped the timer on a separate screen so it would not interrupt the main counting flow. I did not measure a post-release result, so the evidence ends at shipment.',
+              'I checked popular game-assistant tools and found that timers were common. I shipped the timer on a separate screen so it would not interrupt the main counting flow.',
             )}
           </Body>
           <SubHeading>January 2026: add custom colours after user requests</SubHeading>
           <Body>
             {nbsp(
-              'Users asked to choose their own counter colours, and I shipped a custom colour picker in January 2026. I did not measure a post-release result.',
+              'Users asked to choose their own counter colours, and I shipped a custom colour picker in January 2026.',
             )}
           </Body>
           <SubHeading>August 2026: add graph history after user requests</SubHeading>
           <Body>
             {nbsp(
-              'Users asked for graph history, and I shipped the feature in August 2026. I did not measure what changed after release.',
+              'Users asked for graph history, and I shipped the feature in August 2026.',
+            )}
+          </Body>
+          <SubHeading>September 2026: bring Score Counter to iOS</SubHeading>
+          <Body>
+            {nbsp(
+              'After ten years of building Score Counter for Android, I released an iOS version in September 2026. Android is still the main product and the source of the results here, but I now design, build, and ship the app on both platforms.',
             )}
           </Body>
         </div>
@@ -223,12 +229,7 @@ export function ScoreCounterPage() {
           <SectionHeading>Reflection</SectionHeading>
           <Body>
             {nbsp(
-              'Long-term ownership changed how I judge feature requests. A small tool can grow more capable without making its first action harder. The constraint has to hold release after release.',
-            )}
-          </Body>
-          <Body>
-            {nbsp(
-              'As LLMs take on more of the implementation work, I think it is inevitable that more companies will experiment with native apps. Lower development costs make native performance and a more cohesive customer experience easier to justify.',
+              'Ten years of maintaining one small app taught me that restraint is ongoing work. Every useful feature creates another decision about what belongs on the main screen and what should stay out of the way. I am proud that Score Counter can do much more than it did in 2016 without making the first tap harder.',
             )}
           </Body>
         </div>
