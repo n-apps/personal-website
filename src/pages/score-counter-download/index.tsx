@@ -7,12 +7,13 @@ import {
   RiPlayMiniFill,
   RiRestartFill,
 } from '@remixicon/react';
-import { useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { ColorPanels } from '@paper-design/shaders-react';
 import { ProductShowcase } from './product-showcase';
 import './score-counter.css';
 import { DashedDivider } from '@/components/ui/dashed-divider';
 import { SectionAnimate } from '@/components/ui/section-animate';
+import { ThemeToggle } from '@/components/layout/theme-toggle';
 import { applyScoreCounterMetadata, scoreCounterMetadata } from '@/lib/score-counter-metadata';
 
 const stores = [
@@ -140,7 +141,7 @@ export function ScoreCounterDownloadPage() {
       <main className='mx-auto flex max-w-[1260px] flex-col items-center pb-8 text-center'>
         <section aria-labelledby='download-heading' className='sc-hero'>
           <SectionAnimate delay={0.05}>
-            <p className='mb-6 text-base font-bold lg:hidden'>Score Counter</p>
+            <p className='mb-6 text-base font-medium lg:hidden'>Score Counter</p>
             <h1 id='download-heading'>
               Keep score.
               <br />
@@ -272,53 +273,76 @@ export function ScoreCounterDownloadPage() {
         <SectionAnimate inView className='w-full'>
           <section
             aria-labelledby='reviews-heading'
-            className='w-full pb-12 pt-14 sm:pb-16 sm:pt-16'>
-            <h2 id='reviews-heading' className='sc-reviews-title'>
-              Good company for <span className='italic'>{useCase}.</span>
-            </h2>
+            className='sc-reviews-section w-full pb-12 pt-14 sm:pb-16 sm:pt-16'>
+            <div className='sc-reviews-intro text-left'>
+              <h2
+                id='reviews-heading'
+                className={`sc-reviews-title ${useCase.length > 24 ? 'sc-reviews-title-long' : ''}`}>
+                Good company
+                <br />
+                for{' '}
+                <span className='italic'>
+                  {useCase.replace(/(\S+)\s+(\S+)$/, '$1\u00a0$2')}.
+                </span>
+              </h2>
+              <button
+                type='button'
+                onClick={showMoreReviews}
+                disabled={reviewsLoading}
+                data-goatcounter-click='score-counter-more-reviews'
+                aria-controls='score-counter-reviews'
+                className='sc-reviews-more group mt-5 inline-flex min-h-11 cursor-pointer items-center gap-3 text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground disabled:cursor-wait disabled:opacity-60 sm:mt-7 sm:text-xl'>
+                <span>{reviewsLoading ? 'Loading reviews…' : 'More from users'}</span>
+                <span className='flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#ffb196] text-[#17171d] transition-transform group-hover:rotate-[-12deg] group-active:scale-[0.96] motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-active:scale-100'>
+                  <RiRestartFill
+                    key={restartCount}
+                    size={22}
+                    aria-hidden='true'
+                    className={restartCount > 0 ? 'sc-reviews-restart' : undefined}
+                  />
+                </span>
+              </button>
+              {reviewsError && (
+                <p role='status' className='mt-3 text-sm text-[var(--sc-muted)]'>
+                  Couldn’t load more reviews. Try again.
+                </p>
+              )}
+            </div>
+            <img
+              src='/images/score-counter/score-reviews-hero.png'
+              alt='Friends gathered around a table for game night'
+              width={600}
+              height={600}
+              loading='lazy'
+              className='sc-reviews-cover'
+            />
             <div
               id='score-counter-reviews'
               aria-live='polite'
-              className='mt-10 grid gap-4 text-left md:grid-cols-3 md:gap-6 sm:mt-12'>
-              {visibleTestimonials.map((quote) => (
-                <figure
+              className='sc-reviews-grid text-left'>
+              {visibleTestimonials.map((quote, index) => (
+                <motion.figure
                   key={quote}
-                  className='sc-review flex min-h-[216px] flex-col rounded-3xl p-6 sm:min-h-[282px] sm:rounded-[28px] sm:p-8'>
-                  <span
-                    aria-hidden='true'
-                    className='sc-review-mark mb-5 flex size-10 items-center justify-center rounded-2xl pt-3 text-4xl font-bold leading-none'
-                    style={{ fontFamily: 'var(--font-serif)' }}>
-                    “
-                  </span>
-                  <blockquote className='flex-1 text-lg font-medium leading-[1.5] tracking-[-0.015em] lg:text-xl'>
+                  initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={
+                    reduceMotion ? { duration: 0 }
+                    : {
+                        duration: 0.35,
+                        delay: index * 0.06,
+                        ease: [0.22, 1, 0.36, 1],
+                      }
+                  }
+                  className='sc-review flex min-h-[216px] flex-col rounded-[30px] p-6 sm:p-8'>
+                  <blockquote className='flex-1 text-lg leading-[1.35] tracking-[-0.02em] lg:text-xl'>
                     <p>{quote}</p>
                   </blockquote>
-                  <figcaption className='mt-8 text-sm text-[var(--sc-muted)]'>
+                  <figcaption className='mt-8 text-sm'>
                     Google Play review
                   </figcaption>
-                </figure>
+                </motion.figure>
               ))}
             </div>
-            <button
-              type='button'
-              onClick={showMoreReviews}
-              disabled={reviewsLoading}
-              data-goatcounter-click='score-counter-more-reviews'
-              aria-controls='score-counter-reviews'
-              className='mt-7 inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm underline underline-offset-4 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground disabled:cursor-wait disabled:opacity-60'>
-              {reviewsLoading ? 'Loading reviews…' : 'More from users'}
-              <RiRestartFill
-                key={restartCount}
-                size={16}
-                aria-hidden='true'
-                className={restartCount > 0 ? 'sc-reviews-restart' : undefined}
-              />
-            </button>
-            {reviewsError && (
-              <p role='status' className='text-sm text-[var(--sc-muted)]'>
-                Couldn’t load more reviews. Try again.
-              </p>
-            )}
           </section>
         </SectionAnimate>
 
@@ -1009,6 +1033,7 @@ export function ScoreCounterDownloadPage() {
           className='inline-flex min-h-11 items-center underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground'>
           Privacy Policy
         </Link>
+        <ThemeToggle />
       </footer>
     </div>
   );

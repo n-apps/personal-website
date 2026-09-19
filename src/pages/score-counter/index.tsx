@@ -226,20 +226,25 @@ export function ScoreCounterPage() {
               'Long-term ownership changed how I judge feature requests. A small tool can grow more capable without making its first action harder. The constraint has to hold release after release.',
             )}
           </Body>
+          <Body>
+            {nbsp(
+              'As LLMs take on more of the implementation work, I think it is inevitable that more companies will experiment with native apps. Lower development costs make native performance and a more cohesive customer experience easier to justify.',
+            )}
+          </Body>
         </div>
       </SectionAnimate>
 
       <SectionAnimate delay={0.31}>
-        <a
-          href='https://play.google.com/store/apps/details?id=ua.napps.scorekeeper'
-          data-goatcounter-click='outbound-play-store'
+        <Link
+          to='/score-counter'
+          data-goatcounter-click='score-counter-get-app'
           target='_blank'
           rel='noopener noreferrer'
           className='inline-flex min-h-11 items-center gap-2 self-start rounded-lg bg-foreground px-4 py-2.5 text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
           style={{ fontSize: fluidSmall, lineHeight: 1 }}>
-          View on Google Play
+          Get Score Counter app
           <RiArrowRightUpLine size={16} aria-hidden />
-        </a>
+        </Link>
       </SectionAnimate>
 
       <SectionAnimate delay={0.33}>

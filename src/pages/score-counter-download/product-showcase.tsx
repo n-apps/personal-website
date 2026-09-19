@@ -15,7 +15,7 @@ export function ProductShowcase() {
       <div className='mt-10 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-2 md:gap-6'>
         <article className='sc-score-panel card-shadow relative w-full min-w-0 min-h-[320px] aspect-square overflow-hidden rounded-3xl bg-[#17171D] text-white md:row-span-2 md:aspect-auto md:rounded-[32px]'>
           <div className='absolute inset-x-[6%] top-[6%]'>
-            <h3 className='text-[clamp(27px,3vw,39px)] font-bold leading-[1.2] tracking-[-0.035em]'>
+            <h3 className='text-[clamp(27px,3vw,39px)] font-medium leading-[1.2] tracking-[-0.035em]'>
               Score your{' '}
               <em className='sc-highlight sc-highlight-yellow'>way</em>
             </h3>
@@ -53,7 +53,7 @@ export function ProductShowcase() {
         </article>
         <article className='card-shadow relative w-full min-w-0 min-h-[180px] aspect-[350/202] rounded-3xl bg-[#D7FAEA] text-[#17171D] md:aspect-[616/294] md:rounded-[32px]'>
           <div className='absolute left-[5.4%] top-[9%]'>
-            <h3 className='text-[clamp(21px,2.3vw,32px)] font-bold leading-[1.18] tracking-[-0.03em]'>
+            <h3 className='text-[clamp(21px,2.3vw,32px)] font-medium leading-[1.18] tracking-[-0.03em]'>
               See score
               <br />
               progress
@@ -84,7 +84,7 @@ export function ProductShowcase() {
         </article>
         <article className='sc-tools-panel card-shadow relative w-full min-w-0 min-h-[190px] aspect-[350/202] overflow-hidden rounded-3xl bg-[#FFE6DB] text-[#17171D] md:aspect-[616/294] md:rounded-[32px]'>
           <div className='absolute left-[5.4%] top-[9%]'>
-            <h3 className='text-[clamp(20px,2.2vw,31px)] font-bold leading-[1.2] tracking-[-0.03em]'>
+            <h3 className='text-[clamp(20px,2.2vw,31px)] font-medium leading-[1.2] tracking-[-0.03em]'>
               Dice built in.
               <br />
               Timer built in.

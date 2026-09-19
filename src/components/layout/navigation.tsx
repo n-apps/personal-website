@@ -41,7 +41,7 @@ export function Navigation() {
         </Link>
       )}
       <div className="flex items-center gap-4">
-        <ThemeToggle />
+        <ThemeToggle className="-my-1.5 -mr-1.5" />
       </div>
     </motion.nav>
   );

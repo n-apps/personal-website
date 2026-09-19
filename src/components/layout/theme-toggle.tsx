@@ -11,7 +11,11 @@ function getInitialTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
-export function ThemeToggle() {
+type ThemeToggleProps = {
+  className?: string;
+};
+
+export function ThemeToggle({ className = "" }: ThemeToggleProps) {
   const [isDark, setIsDark] = useState(getInitialTheme);
   const reduceMotion = useReducedMotion() === true;
 
@@ -40,7 +44,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={handleToggle}
-      className="relative -my-1.5 -mr-1.5 flex size-11 cursor-pointer items-center justify-center rounded-full"
+      className={`relative flex size-11 cursor-pointer items-center justify-center rounded-full ${className}`}
       style={{ color: "var(--foreground)" }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       whileTap={reduceMotion ? undefined : { scale: 0.96 }}
