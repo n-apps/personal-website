@@ -17,7 +17,18 @@
 .sc-hero-description { max-width: 680px; margin-top: 28px; color: var(--sc-muted); font-size: 16px; line-height: 1.45; }
 .sc-hero-visual { position: relative; width: 280px; height: 340px; margin-inline: auto; }
 .sc-hero-shader { position: absolute; top: 12%; left: 50%; z-index: 0; width: 235%; height: 80%; transform: translateX(-50%); pointer-events: none; }
-.sc-hero-video { position: relative; z-index: 1; height: 100%; width: 100%; object-fit: contain; }
+.sc-hero-video {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  /* Follow the asset's rounded alpha edges, not its transparent letterboxing.
+     The centered shadow separates every edge; the ambient layer grounds it. */
+  filter: drop-shadow(0 0 2px oklch(0.35 0.025 65 / 0.12))
+    drop-shadow(0 6px 12px oklch(0.35 0.025 65 / 0.08));
+}
+.dark .sc-hero-video { filter: drop-shadow(0 4px 10px oklch(0 0 0 / 0.16)); }
 .sc-hero-visual > button { z-index: 2; }
 .sc-social-proof { padding-block: 68px 112px; }
 .sc-social-proof h2 { font-family: var(--font-serif); font-size: clamp(38px, 5.5vw, 72px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
