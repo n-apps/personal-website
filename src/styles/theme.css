@@ -226,7 +226,7 @@
     line-height: 1.5;
   }
 
-  img {
+  img:not(.sc-logo) {
     outline: 1px solid var(--image-outline);
     outline-offset: -1px;
   }

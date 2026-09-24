@@ -1,19 +1,69 @@
+@font-face {
+  font-family: 'General Sans Score Counter';
+  src: url('/fonts/score-counter/GeneralSans-Variable.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'General Sans Score Counter';
+  src: url('/fonts/score-counter/GeneralSans-VariableItalic.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* Canvas styling stays local; portfolio tokens still provide dark mode. */
 .sc-download {
+  position: relative;
+  isolation: isolate;
   --sc-ink: var(--foreground);
   --sc-body: var(--foreground);
   --sc-muted: var(--muted-foreground);
   --sc-ground: var(--background);
-  font-family: var(--font-sans);
+  font-family: 'General Sans Score Counter', sans-serif;
+  font-synthesis: none;
+  letter-spacing: -.01em;
   color: var(--sc-ink);
   background: var(--sc-ground);
 }
-.sc-download h1, .sc-download h2, .sc-download h3 { font-weight: var(--font-weight-medium); }
+.sc-download::before,
+.sc-download::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: min(100%, clamp(640px, 72vw, 1050px));
+  z-index: -1;
+  pointer-events: none;
+}
+.sc-download::before {
+  background: linear-gradient(to bottom, transparent, #fffdf9 45%, #f5eee2);
+}
+.sc-download::after {
+  background: url('/images/score-counter/noise.webp') repeat;
+  background-size: 200px 200px;
+  opacity: .16;
+  mask-image: linear-gradient(to bottom, transparent, #000 45%);
+}
+.dark .sc-download::before {
+  background: linear-gradient(to bottom, transparent, #24211d 45%, #2b251e);
+}
+.dark .sc-download::after { opacity: .09; }
+.sc-footer-illustration {
+  /* Feather the perimeter while keeping the central phone and linework crisp. */
+  mask-image:
+    linear-gradient(to right, transparent, #000 12%, #000 86%, transparent),
+    linear-gradient(to bottom, transparent, #000 10%, #000 72%, transparent 99%);
+  mask-composite: intersect;
+}
+.sc-download * { letter-spacing: -.01em; }
+.sc-download h1, .sc-download h2, .sc-download h3 { font-weight: 800; }
 .sc-highlight { position: relative; isolation: isolate; white-space: nowrap; color: #17171d; padding-inline: .12em; }
 .sc-highlight::before { content: ''; position: absolute; z-index: -1; inset: -.01em -.04em -.05em; border-radius: .17em; background: #ffb196; transform: rotate(-2deg); }
 .sc-highlight-yellow::before { background: #ffd667; }
-.sc-hero { display: grid; width: 100%; align-items: center; gap: 40px; padding-block: 116px 80px; overflow: clip; }
-.sc-hero h1 { font-size: clamp(38px, 12.55vw, 60px); line-height: 1.04; letter-spacing: -.048em; }
+.sc-hero { display: grid; width: 100%; align-items: center; gap: 40px; padding-block: 68px 80px; overflow: clip; }
+.sc-hero h1 { font-size: clamp(38px, 12.55vw, 60px); line-height: 1.04; }
 .sc-hero-description { max-width: 680px; margin-top: 28px; color: var(--sc-muted); font-size: 16px; line-height: 1.45; }
 .sc-hero-visual { position: relative; width: 280px; height: 340px; margin-inline: auto; }
 .sc-hero-shader { position: absolute; top: 12%; left: 50%; z-index: 0; width: 235%; height: 80%; transform: translateX(-50%); pointer-events: none; }
@@ -31,14 +81,13 @@
 .dark .sc-hero-video { filter: drop-shadow(0 4px 10px oklch(0 0 0 / 0.16)); }
 .sc-hero-visual > button { z-index: 2; }
 .sc-social-proof { padding-block: 68px 112px; }
-.sc-social-proof h2 { font-family: var(--font-serif); font-size: clamp(38px, 5.5vw, 72px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
-.sc-social-proof p { margin-top: 28px; font-size: clamp(19px, 2.8vw, 34px); line-height: 1.3; text-wrap: balance; }
-.sc-section-title { font-size: clamp(31px, 4vw, 54px); line-height: 1.1; letter-spacing: -.037em; }
-.sc-story-title { font-size: clamp(32px, 4vw, 52px); line-height: 1.08; letter-spacing: -.034em; }
-.sc-reviews-title { font-size: clamp(38px, 4.6vw, 62px); line-height: 1.08; letter-spacing: -.04em; }
-.sc-reviews-title-long { font-size: clamp(32px, 3.8vw, 50px); }
+.sc-social-proof h2 { font-size: clamp(19px, 2.75vw, 36px); line-height: 1.08; text-wrap: balance; }
+.sc-social-proof p { margin-top: 14px; font-size: clamp(9.5px, 1.4vw, 17px); line-height: 1.3; text-wrap: balance; }
+.sc-section-title { font-size: clamp(31px, 4vw, 54px); line-height: 1.1; }
+.sc-story-title { font-size: clamp(32px, 4vw, 52px); line-height: 1.08; }
+.sc-reviews-title { font-size: clamp(38px, 4.6vw, 62px); line-height: 1.08; }
 @media (min-width: 1024px) {
-  .sc-hero { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 36px; padding: 152px 60px 120px 72px; text-align: left; }
+  .sc-hero { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 36px; padding: 96px 60px 120px 72px; text-align: left; }
   .sc-hero h1 { font-size: clamp(64px, 6.875vw, 99px); }
   .sc-hero-description { font-size: 19px; }
   .sc-hero-visual { width: 100%; height: 459px; }
@@ -59,12 +108,24 @@
 .sc-story-title, .sc-reviews-title { text-wrap: balance; }
 .sc-reviews-section { position: relative; display: grid; gap: 28px; }
 .sc-reviews-intro { position: relative; z-index: 2; }
+.sc-reviews-quote {
+  display: none;
+  position: absolute;
+  inset-inline-end: 4%;
+  top: 48px;
+  width: clamp(100px, 15vw, 190px);
+  height: auto;
+  color: #ffb196;
+  transform: rotate(14deg);
+  pointer-events: none;
+}
 .sc-reviews-cover { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0 42px 42px 42px; outline: 1px solid oklch(0 0 0 / 0.1); outline-offset: -1px; }
 .dark .sc-reviews-cover { outline-color: oklch(1 0 0 / 0.1); }
 .sc-reviews-grid { display: grid; gap: 16px; }
 .sc-review { background: #f7f2ea; color: #17171d; }
 
 @media (min-width: 768px) {
+  .sc-reviews-quote { display: block; }
   .sc-reviews-section { grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto 130px auto; gap: 24px; min-height: 720px; padding-top: 64px; }
   .sc-reviews-intro { grid-column: 1 / 6; grid-row: 1; align-self: start; padding: 2px 0 0 36px; }
   .sc-reviews-cover { grid-column: 5 / 11; grid-row: 1 / 4; align-self: end; }

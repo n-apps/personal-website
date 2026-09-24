@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import {
   RiAppleFill,
+  RiDoubleQuotesR,
   RiGooglePlayFill,
   RiPauseMiniFill,
   RiPlayMiniFill,
@@ -45,10 +46,10 @@ function StoreButtons() {
           className='group inline-flex min-h-14 min-w-[11.5rem] items-center gap-3 rounded-xl bg-primary px-4 text-primary-foreground shadow-[0_1px_1px_oklch(0_0_0/0.12),0_8px_20px_oklch(0_0_0/0.08)] transition-[opacity,transform,box-shadow] hover:opacity-90 hover:shadow-[0_2px_2px_oklch(0_0_0/0.14),0_12px_24px_oklch(0_0_0/0.12)] active:scale-[0.96] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground motion-reduce:transition-none motion-reduce:active:scale-100'>
           <Icon size={29} aria-hidden='true' className='shrink-0' />
           <span className='flex flex-col items-start justify-center text-left leading-none'>
-            <span className='text-[0.62rem] font-normal tracking-tight opacity-80'>
+            <span className='text-[0.62rem] font-normal opacity-80'>
               {store === 'App Store' ? 'Download on the' : 'Get it on'}
             </span>
-            <span className='mt-1 text-[1.22rem] font-medium tracking-[-0.04em]'>
+            <span className='mt-1 text-[1.22rem] font-medium'>
               {store}
             </span>
           </span>
@@ -66,26 +67,11 @@ const testimonials = [
   "I'm a pub quiz host and this is my go to! Super simple, not error prone, clean interface...I'm a fan!",
 ];
 
-const useCases = [
-  'game night',
-  'friendly competition',
-  'board games',
-  'card games',
-  'pub quizzes',
-  'weekend matches',
-  'every little victory',
-  'daily habits',
-  'family challenges',
-  'household chores',
-  'the things you keep track of',
-];
-
 export function ScoreCounterDownloadPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const [isPlaying, setIsPlaying] = useState(false);
   const [visibleTestimonials, setVisibleTestimonials] = useState(testimonials);
-  const [useCase, setUseCase] = useState(useCases[0]);
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [reviewsError, setReviewsError] = useState(false);
   const [restartCount, setRestartCount] = useState(0);
@@ -113,10 +99,7 @@ export function ScoreCounterDownloadPage() {
         ];
       }
       setVisibleTestimonials(candidates.slice(0, 3));
-      const nextUseCases = useCases.filter(
-        (candidate) => candidate !== useCase,
-      );
-      setUseCase(nextUseCases[Math.floor(Math.random() * nextUseCases.length)]);
+
     } catch {
       setReviewsError(true);
     } finally {
@@ -138,10 +121,18 @@ export function ScoreCounterDownloadPage() {
 
   return (
     <div className='sc-download min-h-screen px-5 sm:px-8'>
+      <header className='mx-auto flex max-w-[1260px] items-center pt-6 sm:pt-8'>
+        <img
+          src='/images/score-counter/logo.svg'
+          width={48}
+          height={48}
+          alt='Score Counter'
+          className='sc-logo size-12 dark:invert'
+        />
+      </header>
       <main className='mx-auto flex max-w-[1260px] flex-col items-center pb-8 text-center'>
         <section aria-labelledby='download-heading' className='sc-hero'>
           <SectionAnimate delay={0.05}>
-            <p className='mb-6 text-base font-medium lg:hidden'>Score Counter</p>
             <h1 id='download-heading'>
               Keep score.
               <br />
@@ -274,26 +265,29 @@ export function ScoreCounterDownloadPage() {
           <section
             aria-labelledby='reviews-heading'
             className='sc-reviews-section w-full pb-12 pt-14 sm:pb-16 sm:pt-16'>
+            <RiDoubleQuotesR
+              aria-hidden='true'
+              className='sc-reviews-quote'
+            />
             <div className='sc-reviews-intro text-left'>
               <h2
                 id='reviews-heading'
-                className={`sc-reviews-title ${useCase.length > 24 ? 'sc-reviews-title-long' : ''}`}>
+                className='sc-reviews-title'>
                 Good company
                 <br />
                 for{' '}
-                <span className='italic'>
-                  {useCase.replace(/(\S+)\s+(\S+)$/, '$1\u00a0$2')}.
-                </span>
+                <span className='italic'>game night.</span>
               </h2>
               <button
                 type='button'
                 onClick={showMoreReviews}
-                disabled={reviewsLoading}
+                aria-disabled={reviewsLoading}
+                aria-busy={reviewsLoading}
                 data-goatcounter-click='score-counter-more-reviews'
                 aria-controls='score-counter-reviews'
-                className='sc-reviews-more group mt-5 inline-flex min-h-11 cursor-pointer items-center gap-3 text-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground disabled:cursor-wait disabled:opacity-60 sm:mt-7 sm:text-xl'>
-                <span>{reviewsLoading ? 'Loading reviews…' : 'More from users'}</span>
-                <span className='flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#ffb196] text-[#17171d] transition-transform group-hover:rotate-[-12deg] group-active:scale-[0.96] motion-reduce:transition-none motion-reduce:group-hover:rotate-0 motion-reduce:group-active:scale-100'>
+                className='sc-reviews-more group mt-6 inline-flex min-h-12 cursor-pointer items-center gap-3 rounded-xl bg-[#ffb196] px-5 py-3 text-base font-medium text-[#17171d] transition-colors hover:bg-[#ff9c7a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground aria-disabled:cursor-wait motion-reduce:transition-none'>
+                <span>More from users</span>
+                <span className='flex size-6 shrink-0 items-center justify-center transition-transform group-hover:rotate-[-12deg] motion-reduce:transition-none motion-reduce:group-hover:rotate-0'>
                   <RiRestartFill
                     key={restartCount}
                     size={22}
@@ -334,7 +328,7 @@ export function ScoreCounterDownloadPage() {
                       }
                   }
                   className='sc-review flex min-h-[216px] flex-col rounded-[30px] p-6 sm:p-8'>
-                  <blockquote className='flex-1 text-lg leading-[1.35] tracking-[-0.02em] lg:text-xl'>
+                  <blockquote className='flex-1 text-lg leading-[1.35] lg:text-xl'>
                     <p>{quote}</p>
                   </blockquote>
                   <figcaption className='mt-8 text-sm'>
@@ -365,7 +359,7 @@ export function ScoreCounterDownloadPage() {
           {/* Decorative illustration – aria-hidden, purely visual */}
           <div
             aria-hidden='true'
-            className='pointer-events-none mt-10 w-full overflow-hidden opacity-45 dark:opacity-25'>
+            className='sc-footer-illustration pointer-events-none mt-10 w-full overflow-hidden opacity-45 dark:opacity-25'>
             <svg
               viewBox='0 0 1448 520'
               fill='none'
