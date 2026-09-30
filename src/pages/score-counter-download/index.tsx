@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import {
@@ -289,7 +290,8 @@ export function ScoreCounterDownloadPage() {
                 </p>
               )}
             </div>
-            <img
+            <ResponsiveImage
+              sizes='(min-width: 768px) 600px, calc(100vw - 48px)'
               src='/images/score-counter/score-reviews-hero.png'
               alt='Friends gathered around a table for game night'
               width={600}

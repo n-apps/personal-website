@@ -29,3 +29,9 @@ ffmpeg -i public/videos/score-counter-flow.mp4 -an -c:v libx264 -preset slow -cr
 ```
 
 Posters are actual clip frames, not generated illustrations. `useViewportVideo` gates source assignment/playback by proximity, viewport visibility, document visibility and user preference; reduced-motion users see a poster and can explicitly play. The native play call stays inside the click gesture. The Score Counter landing preview keeps its WebM/MP4 source fallback and uses the same playback controls.
+
+## Asset generation
+
+`pnpm encode:images` uses development-only Sharp to produce checked-in, content-hashed AVIF (4:4:4) and WebP files plus `src/data/responsive-images.json`. Originals remain untouched. `ResponsiveImage` selects by CSS width and device pixel ratio; the root HTML preloads the same responsive AVIF candidates. The favicon is a 48px PNG; the 180px Apple touch icon is separate.
+
+For fonts, install Python `fonttools[woff]`, then run `python3 scripts/subset-fonts.py`. OpenRunde's initial subsets cover Latin, punctuation and all current source/data characters; remaining glyphs use the original WOFF2 files only when needed. Regenerate after adding copy in a new script. Newsreader retains both variable axes and is self-hosted using the original Google Fonts Latin faces. Font license notices are in `public/fonts/`. WOFF fallbacks and Google Fonts preconnects are no longer needed for the portfolio; Missing Tracks still loads its own route-only fonts.

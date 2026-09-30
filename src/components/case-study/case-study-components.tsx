@@ -240,6 +240,7 @@ export function CaseFigure({
     <figure className="-mx-4 sm:mx-0">
       <ImageWithFallback
         src={src}
+        sizes="(min-width: 640px) 576px, 100vw"
         width={width}
         height={height}
         alt={alt}

@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { RiDice5Fill, RiLineChartLine } from '@remixicon/react';
 
 const asset = (name: string) => `/images/score-counter/${name}.png`;
@@ -23,8 +24,9 @@ export function ProductShowcase() {
               Every player. Every game. Every point.
             </p>
           </div>
-          <img
+          <ResponsiveImage
             src={asset('score-value')}
+            sizes="(min-width: 1280px) 540px, (min-width: 768px) 44vw, 90vw"
             width={1500}
             height={1200}
             loading='lazy'
@@ -50,8 +52,9 @@ export function ProductShowcase() {
             aria-hidden='true'
             className='absolute right-[7%] top-[13%] h-[70%] w-[32%] rotate-[14deg] rounded-[24px] bg-[#FFE45E]'
           />
-          <img
+          <ResponsiveImage
             src={asset('score-progress')}
+            sizes="(min-width: 1280px) 130px, (min-width: 768px) 11vw, 22vw"
             width={1008}
             height={2130}
             loading='lazy'
@@ -77,8 +80,9 @@ export function ProductShowcase() {
               Keep the game going.
             </p>
           </div>
-          <img
+          <ResponsiveImage
             src={asset('score-dice')}
+            sizes="(min-width: 1280px) 130px, (min-width: 768px) 11vw, 16.5vw"
             width={1008}
             height={2130}
             loading='lazy'
@@ -86,8 +90,9 @@ export function ProductShowcase() {
             alt='Built-in dice roller showing a roll of twenty.'
             className={`${phone} bottom-[9%] right-[26%] w-[16.5%] -rotate-[10deg]`}
           />
-          <img
+          <ResponsiveImage
             src={asset('score-timer')}
+            sizes="(min-width: 1280px) 130px, (min-width: 768px) 11vw, 19vw"
             width={1008}
             height={2130}
             loading='lazy'

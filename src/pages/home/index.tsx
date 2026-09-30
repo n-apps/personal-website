@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '@/components/ui/responsive-image';
 const scoreCounterCover = '/images/score-counter-cover.png';
 const designSystemCover = '/images/design-system-cover.png';
 const whiteLabelEsimCover = '/images/white-label-esim-cover.png';
@@ -260,8 +261,9 @@ function WorkExperienceList() {
                   width: EXPERIENCE_POPOVER_WIDTH,
                   height: EXPERIENCE_POPOVER_HEIGHT,
                 }}>
-                <img
+                <ResponsiveImage
                   src={activeImage}
+                  sizes="224px"
                   width={672}
                   height={840}
                   alt=''
@@ -363,7 +365,7 @@ export function HomePage() {
                 data-goatcounter-click={`case-study-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
                 className='work-card group block rounded-xl overflow-hidden bg-card border border-border transition-colors hover:border-muted-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'>
                 <div className='overflow-hidden'>
-                  <img
+                  <ResponsiveImage
                     src={project.cover}
                     alt={project.title}
                     width={1920}
