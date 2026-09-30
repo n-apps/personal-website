@@ -10,11 +10,11 @@ pnpm build:cloudflare
 
 This produces the usual static `dist` plus `_headers`. It changes neither the current workflow nor hosting/DNS. It prepares:
 
-- HTTP CSP including `frame-ancestors 'self'`, HSTS for this host only, `nosniff`, SAMEORIGIN framing, strict-origin referrers and disabled unused device permissions.
+- HTTP CSP including `frame-ancestors 'none'`, HSTS for this host only, `nosniff`, DENY framing, strict-origin referrers and disabled unused device permissions.
 - Revalidated HTML at exact entry paths, including index.html aliases and 404.html.
 - One-year immutable caching for content-hashed JS/CSS, responsive images and font subsets. Unhashed masters retain provider defaults.
 
-Deploying to Cloudflare requires a separate hosting decision. If chosen, publish `dist` as a static Pages project, verify custom-domain redirects/canonicals, then change DNS. This file applies to static responses, not Pages Functions. Cloudflare combines matching header rules; exact HTML cache rules avoid conflicts with hashed asset rules. [Cloudflare Pages header documentation](https://developers.cloudflare.com/pages/configuration/headers/).
+Deploying to Cloudflare requires a separate hosting decision. If chosen, publish `dist` as a static Pages project, verify custom-domain redirects/canonicals, then change DNS. This file applies to static responses, not Pages Functions. The framing rules prevent embedding the website in any iframe, including on this same domain. CSP script hashes are regenerated from the built HTML rather than copied manually; HSTS intentionally excludes `includeSubDomains`. Cloudflare combines matching header rules; exact HTML cache rules avoid conflicts with hashed asset rules. [Cloudflare Pages header documentation](https://developers.cloudflare.com/pages/configuration/headers/).
 
 After deployment, inspect a real HTML response and one hashed asset:
 
