@@ -69,4 +69,4 @@ GoatCounter tracking is injected by `src/lib/use-analytics.tsx`, which wraps rou
 
 Use `m` from `motion/react`, inside `AppShell`'s strict deferred `LazyMotion` boundary. Missing Tracks uses a CSS backdrop on mobile/reduced-motion/data-saving visits and loads its desktop shader after 800ms; native dialogs and keyboard menus preserve focus. Fiber and Three are needed by the shader. Paper Shaders already pauses its own animation loop.
 
-`src/lib/security-policy.server.ts` generates the meta CSP from actual inline script hashes. Shared metadata owns favicon and theme-color too. Weather and its existing client key are intentionally retained. GitHub Pages response headers/cache settings are not configurable here; `pnpm build:cloudflare` creates an opt-in `_headers` artifact only. See `hosting/README.md`; do not treat preparation as deployment.
+`src/lib/security-policy.server.ts` generates the meta CSP from actual inline script hashes. Shared metadata owns favicon and theme-color too. Weather and its existing client key are intentionally retained. Production deploys to GitHub Pages through `.github/workflows/main.yml`.

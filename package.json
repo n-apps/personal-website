@@ -9,8 +9,7 @@
     "type-check": "tsc --noEmit",
     "check:routes": "node scripts/check-route-entries.mjs",
     "check:theme": "node scripts/check-theme-storage.mjs",
-    "encode:images": "node scripts/encode-images.mjs",
-    "build:cloudflare": "pnpm build && node scripts/prepare-cloudflare.mjs"
+    "encode:images": "node scripts/encode-images.mjs"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.9",

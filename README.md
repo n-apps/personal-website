@@ -48,5 +48,3 @@ Missing Tracks menus support arrows, Home/End, Tab and Escape with focus restora
 Motion uses `m` under a strict `LazyMotion` boundary with deferred `domAnimation` features. Keep this boundary and avoid importing full `motion` components into route code. The decorative separator uses native markup; unused camera-controls, three-stdlib and Radix separator dependencies are removed. Fiber and Three remain required by the desktop shader; the lockfile now resolves Fiber 9.8.1.
 
 A build-generated meta CSP hashes the early theme script and permits existing weather, analytics, music search, artwork and route-specific fonts. JavaScript has no `unsafe-inline` or `unsafe-eval` allowance. Inline styles remain allowed for React and Motion. The favicon, theme-color and route metadata share one source, including Missing Tracks navigation.
-
-GitHub Pages cannot apply repository-defined security response headers or immutable cache rules. See [hosting options](hosting/README.md) for an opt-in Cloudflare Pages artifact. This does not change hosting or DNS and is not part of the current GitHub deployment.
