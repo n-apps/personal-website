@@ -6,7 +6,9 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "check:routes": "node scripts/check-route-entries.mjs",
+    "check:theme": "node scripts/check-theme-storage.mjs"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.9",

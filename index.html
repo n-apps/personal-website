@@ -71,14 +71,13 @@
   <body>
     <script>
       (function () {
+        var saved;
         try {
-          var saved = localStorage.getItem('theme');
-          var isDark =
-            saved === 'dark' ||
-            (!saved &&
-              window.matchMedia('(prefers-color-scheme: dark)').matches);
-          if (isDark) document.documentElement.classList.add('dark');
+          saved = localStorage.getItem('theme');
         } catch (e) {}
+        var isDark = saved === 'dark' ||
+          (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) document.documentElement.classList.add('dark');
       })();
     </script>
     <div id="root"></div>

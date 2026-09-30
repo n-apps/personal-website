@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router";
+import { useRouteMetadata } from './use-route-metadata';
 
 type GoatCounter = {
   no_onload: boolean;
@@ -14,6 +15,7 @@ declare global {
 }
 
 export function AnalyticsTracker() {
+  useRouteMetadata();
   const { pathname, search } = useLocation();
   const path = pathname + search;
   const currentPath = useRef(path);

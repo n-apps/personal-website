@@ -15,7 +15,6 @@ import './score-counter.css';
 import { DashedDivider } from '@/components/ui/dashed-divider';
 import { SectionAnimate } from '@/components/ui/section-animate';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
-import { applyScoreCounterMetadata, scoreCounterMetadata } from '@/lib/score-counter-metadata';
 
 const stores = [
   {
@@ -116,7 +115,6 @@ export function ScoreCounterDownloadPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    return applyScoreCounterMetadata(scoreCounterMetadata);
   }, []);
 
   return (

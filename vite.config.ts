@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { scoreCounterHead, scoreCounterPrivacyHead } from './src/lib/score-counter-metadata'
+import { notFoundMetadata, routeHead, routeMetadata } from './src/lib/route-metadata'
 
 export default defineConfig({
   base: '/',
@@ -12,14 +12,24 @@ export default defineConfig({
     react(),
     tailwindcss(),
     {
-      name: 'score-counter-static-entry',
+      name: 'static-route-entries',
       enforce: 'post',
       generateBundle(_, bundle) {
         const entry = bundle['index.html'];
         if (entry?.type !== 'asset') throw new Error('Missing index.html');
-        // GitHub Pages serves this file directly, including metadata for link bots.
-        this.emitFile({ type: 'asset', fileName: 'score-counter/index.html', source: scoreCounterHead(String(entry.source)) });
-        this.emitFile({ type: 'asset', fileName: 'score-counter/privacy/index.html', source: scoreCounterPrivacyHead(String(entry.source)) });
+        const template = String(entry.source);
+        // Actual files give known deep links a 200 response on GitHub Pages.
+        for (const [route, metadata] of Object.entries(routeMetadata)) {
+          const source = routeHead(template, metadata);
+          if (route === '/') entry.source = source;
+          else this.emitFile({ type: 'asset', fileName: `${route.slice(1)}/index.html`, source });
+        }
+        this.emitFile({ type: 'asset', fileName: '404.html', source: routeHead(template, notFoundMetadata, true) });
+        this.emitFile({ type: 'asset', fileName: 'robots.txt', source: 'User-agent: *\nAllow: /\nSitemap: https://romamakes.com/sitemap.xml\n' });
+        this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source:
+          '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          + Object.values(routeMetadata).map(({ url }) => `  <url><loc>${url}</loc></url>`).join('\n')
+          + '\n</urlset>\n' });
       },
     },
   ],

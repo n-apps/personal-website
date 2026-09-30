@@ -3,28 +3,23 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      pages: read
     steps:
       - uses: actions/checkout@v7
 
@@ -38,14 +33,32 @@ jobs:
           cache: 'pnpm'
 
       - uses: actions/configure-pages@v6
+        if: github.event_name != 'pull_request'
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run type-check
+      - run: pnpm run check:theme
       - run: pnpm run build
-      - run: cp dist/index.html dist/404.html
+      - run: pnpm run check:routes
 
       - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request'
         with:
           path: dist
 
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    steps:
       - uses: actions/deploy-pages@v5
         id: deployment

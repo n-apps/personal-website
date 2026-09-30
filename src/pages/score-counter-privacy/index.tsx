@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import { useEffect } from 'react';
 import './privacy.css';
-import { applyScoreCounterMetadata, scoreCounterPrivacyMetadata } from '@/lib/score-counter-metadata';
 
 const sections = [
   {
@@ -207,7 +206,6 @@ const sections = [
 export function ScoreCounterPrivacyPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    return applyScoreCounterMetadata(scoreCounterPrivacyMetadata);
   }, []);
 
   return (

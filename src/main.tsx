@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import App from './app/App.tsx';
 import './styles/index.css';
+import { prefersDarkTheme } from './lib/theme';
 
 const preloadReloadKey = 'vite-preload-error-reload';
 const preloadReloadCooldown = 60_000;
@@ -33,13 +34,7 @@ const egg = String.raw`
 ╰────────────────────────────────────────╯
 `;
 
-const isDarkTheme = (() => {
-  if (typeof window === 'undefined') return false;
-  const saved = localStorage.getItem('theme');
-  if (saved === 'dark') return true;
-  if (saved === 'light') return false;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-})();
+const isDarkTheme = prefersDarkTheme();
 
 console.log(
   `%c${egg}`,

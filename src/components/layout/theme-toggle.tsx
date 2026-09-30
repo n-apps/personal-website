@@ -2,21 +2,16 @@ import { useEffect, useState } from "react";
 import { RiContrast2Fill } from "@remixicon/react";
 import { motion, useReducedMotion } from "motion/react";
 import { playToggleSound } from "@/lib/ui-sounds";
-
-function getInitialTheme() {
-  if (typeof window === "undefined") return false;
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark") return true;
-  if (saved === "light") return false;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
+import { readThemePreference, systemPrefersDark, writeThemePreference } from "@/lib/theme";
 
 type ThemeToggleProps = {
   className?: string;
 };
 
 export function ThemeToggle({ className = "" }: ThemeToggleProps) {
-  const [isDark, setIsDark] = useState(getInitialTheme);
+  const [preference, setPreference] = useState(readThemePreference);
+  const [systemDark, setSystemDark] = useState(systemPrefersDark);
+  const isDark = preference === "dark" || (preference === null && systemDark);
   const reduceMotion = useReducedMotion() === true;
 
   useEffect(() => {
@@ -26,9 +21,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (event: MediaQueryListEvent) => {
-      if (localStorage.getItem("theme") === null) {
-        setIsDark(event.matches);
-      }
+      setSystemDark(event.matches);
     };
     media.addEventListener("change", handleChange);
     return () => media.removeEventListener("change", handleChange);
@@ -37,8 +30,9 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
   const handleToggle = () => {
     const next = !isDark;
     playToggleSound(next);
-    localStorage.setItem("theme", next ? "dark" : "light");
-    setIsDark(next);
+    const nextPreference = next ? "dark" : "light";
+    setPreference(nextPreference);
+    writeThemePreference(nextPreference);
   };
 
   return (
