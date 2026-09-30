@@ -43,7 +43,7 @@ Missing Tracks menus support arrows, Home/End, Tab and Escape with focus restora
 
 ## Static output and security
 
-`pnpm build` builds the browser bundle, temporarily builds the shared route tree for server rendering, and writes eight finished HTML bodies. Route CSS is linked before hydration. The server bundle and SSR manifest are removed; deployment remains static. `src/lib/static-routes.ts` selects content pages; tools and reviews stay client-rendered. React still hydrates content pages for navigation and interactions. Initial static content skips entrance hiding, while subsequent navigation retains motion.
+`pnpm build` builds the browser bundle, temporarily builds the shared route tree for server rendering, and writes eight finished HTML bodies. Route CSS is linked before hydration. The server bundle and SSR manifest are removed; deployment remains static. `src/lib/static-routes.ts` selects content pages; tools and reviews stay client-rendered. React still hydrates content pages for navigation and interactions. Prerendered sections use CSS slide/fade entrances with their existing stagger, without waiting for hydration or deferred Motion. Viewport reveals activate after hydration; without JavaScript their content stays readable. Reduced-motion visits skip the CSS effects, while client navigation retains Motion.
 
 Motion uses `m` under a strict `LazyMotion` boundary with deferred `domAnimation` features. Keep this boundary and avoid importing full `motion` components into route code. The decorative separator uses native markup; unused camera-controls, three-stdlib and Radix separator dependencies are removed. Fiber and Three remain required by the desktop shader; the lockfile now resolves Fiber 9.8.1.
 
