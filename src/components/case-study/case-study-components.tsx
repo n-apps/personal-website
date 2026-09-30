@@ -8,7 +8,7 @@ import {
   RiPauseMiniFill,
   RiPlayMiniFill,
 } from "@remixicon/react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
 import { useViewportVideo } from "@/components/ui/use-viewport-video";
 import { nbsp } from "@/lib/nbsp";
@@ -296,7 +296,7 @@ export function CaseVideo({
           onPlay={onPlay}
           onPause={onPause}
         />
-        <motion.button
+        <m.button
           type="button"
           onClick={togglePlayback}
           aria-label={isPlaying ? "Pause video" : "Play video"}
@@ -304,7 +304,7 @@ export function CaseVideo({
           whileTap={reduceMotion ? undefined : { scale: 0.96 }}
         >
           <AnimatePresence initial={false} mode="popLayout">
-            <motion.span
+            <m.span
               key={isPlaying ? "pause" : "play"}
               className="flex items-center justify-center"
               initial={
@@ -333,9 +333,9 @@ export function CaseVideo({
                   aria-hidden
                 />
               )}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
-        </motion.button>
+        </m.button>
       </div>
       <figcaption
         className="px-4 pt-3 text-pretty text-muted-foreground sm:px-0"

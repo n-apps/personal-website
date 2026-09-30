@@ -10,7 +10,6 @@ This project is built using modern web technologies to ensure optimal performanc
 *   **Framework**: React 19, Vite 8
 *   **Routing**: React Router 7
 *   **Styling**: Tailwind CSS v4
-*   **UI Components**: Radix UI primitives
 *   **Animations**: Motion (Framer Motion)
 *   **Icons**: Remix Icon React
 
@@ -18,7 +17,7 @@ This project is built using modern web technologies to ensure optimal performanc
 
 Use Node 24 or newer. Run `pnpm type-check`, `pnpm check:theme`, `pnpm build`, then `pnpm check:routes`. Route checks verify all known entry URLs, canonical/social metadata, referenced assets, sitemap, robots, redirects and a genuine 404 fallback.
 
-GitHub Actions runs these checks on pull requests and before deployment. Only main pushes and manual workflow runs deploy to GitHub Pages. Add route metadata in `src/lib/route-metadata.ts` whenever adding a page in `src/app/routes.ts`. The generated HTML provides entry metadata; page bodies still render in React.
+GitHub Actions runs these checks on pull requests and before deployment. Only main pushes and manual workflow runs deploy to GitHub Pages. Add route metadata in `src/lib/route-metadata.ts` whenever adding a page in `src/app/route-config.ts`. Eight content routes also have visible prerendered page bodies. Interactive tools and reviews remain client-rendered.
 
 ## Media
 
@@ -41,3 +40,13 @@ For fonts, install Python `fonttools[woff]`, then run `python3 scripts/subset-fo
 Missing Tracks renders a CSS green backdrop on phones, coarse-pointer devices, data-saving connections and reduced-motion visits. Suitable desktops load the original shader after 800ms; hidden tabs unmount its canvas, and import/render/context failures leave the CSS backdrop available. Paper Shaders already pauses its own offscreen/hidden animation loop, so no additional lifecycle wrapper is needed there.
 
 Missing Tracks menus support arrows, Home/End, Tab and Escape with focus restoration; native modal dialogs supply inertness and modal focus behavior. Demo tabs use a named tablist, roving focus and a labelled panel. Form text is 16px on mobile, secondary text no longer loses contrast through opacity, and mobile icon targets are at least 44px. The footer typewriter and glow stop for reduced motion or hidden tabs; the minute-only clock updates once a minute. Weather and its existing client key are retained.
+
+## Static output and security
+
+`pnpm build` builds the browser bundle, temporarily builds the shared route tree for server rendering, and writes eight finished HTML bodies. Route CSS is linked before hydration. The server bundle and SSR manifest are removed; deployment remains static. `src/lib/static-routes.ts` selects content pages; tools and reviews stay client-rendered. React still hydrates content pages for navigation and interactions. Initial static content skips entrance hiding, while subsequent navigation retains motion.
+
+Motion uses `m` under a strict `LazyMotion` boundary with deferred `domAnimation` features. Keep this boundary and avoid importing full `motion` components into route code. The decorative separator uses native markup; unused camera-controls, three-stdlib and Radix separator dependencies are removed. Fiber and Three remain required by the desktop shader; the lockfile now resolves Fiber 9.8.1.
+
+A build-generated meta CSP hashes the early theme script and permits existing weather, analytics, music search, artwork and route-specific fonts. JavaScript has no `unsafe-inline` or `unsafe-eval` allowance. Inline styles remain allowed for React and Motion. The favicon, theme-color and route metadata share one source, including Missing Tracks navigation.
+
+GitHub Pages cannot apply repository-defined security response headers or immutable cache rules. See [hosting options](hosting/README.md) for an opt-in Cloudflare Pages artifact. This does not change hosting or DNS and is not part of the current GitHub deployment.

@@ -4,36 +4,33 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "dev": "vite",
     "type-check": "tsc --noEmit",
     "check:routes": "node scripts/check-route-entries.mjs",
     "check:theme": "node scripts/check-theme-storage.mjs",
-    "encode:images": "node scripts/encode-images.mjs"
+    "encode:images": "node scripts/encode-images.mjs",
+    "build:cloudflare": "pnpm build && node scripts/prepare-cloudflare.mjs"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.9",
     "@paper-design/shaders-react": "0.0.80",
-    "@radix-ui/react-separator": "1.1.11",
     "@react-three/fiber": "^9.7.0",
     "@remixicon/react": "^4.9.0",
     "@rexa-developer/tiks": "^0.3.0",
     "@shadergradient/react": "^2.4.20",
-    "camera-controls": "^3.1.2",
     "motion": "12.42.2",
     "react": "19.2.8",
     "react-colorful": "^5.8.1",
     "react-dom": "19.2.8",
     "react-router": "7.18.2",
-    "three": "^0.185.1",
-    "three-stdlib": "^2.36.1"
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.3.2",
     "@types/node": "^25.9.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "6.0.3",
     "sharp": "^0.35.5",
     "tailwindcss": "4.3.2",

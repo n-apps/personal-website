@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { metadataForPath, metadataValues, notFoundMetadata } from './route-metadata';
+import { appearanceForPath, metadataForPath, metadataValues, notFoundMetadata } from './route-metadata';
 
 export function useRouteMetadata() {
   const { pathname } = useLocation();
@@ -9,6 +9,9 @@ export function useRouteMetadata() {
     const metadata = metadataForPath(pathname);
     const current = metadata ?? notFoundMetadata;
     document.title = current.title;
+    const appearance = appearanceForPath(new URL(current.url).pathname);
+    const icon = document.head.querySelector<HTMLLinkElement>('link[rel="icon"]');
+    if (icon) { icon.href = appearance.favicon; icon.type = appearance.type; }
     document.head.querySelectorAll(
       'meta[property="og:image:alt"], meta[name="twitter:image:alt"], meta[name="robots"], link[rel="canonical"]',
     ).forEach((element) => element.remove());

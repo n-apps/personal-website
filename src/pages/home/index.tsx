@@ -9,7 +9,7 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router';
 import {
   AnimatePresence,
-  motion,
+  m,
   useMotionValue,
   useReducedMotion,
   useSpring,
@@ -241,7 +241,7 @@ function WorkExperienceList() {
         createPortal(
           <AnimatePresence initial={false}>
             {activeImage && (
-              <motion.div
+              <m.div
                 key={activeImage}
                 initial={
                   reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }
@@ -272,7 +272,7 @@ function WorkExperienceList() {
                   onLoad={() => setReadyImage(activeImage)}
                   className='size-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10'
                 />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>,
           document.body,

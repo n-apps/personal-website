@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import type { Variants } from "motion/react";
 import { Link } from "react-router";
 import { BrandDetailsCard, BrandStylingCard } from "../components/brand-settings-form";
@@ -210,14 +210,14 @@ export function CustomizeEsimDemoPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <motion.div
+      <m.div
         className="mx-auto w-full max-w-[1440px] px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-12"
         variants={reduceMotion ? pageRevealReduced : pageReveal}
         initial="hidden"
         animate="show"
       >
         {/* Back to case study */}
-        <motion.div variants={reduceMotion ? revealItemReduced : revealItem}>
+        <m.div variants={reduceMotion ? revealItemReduced : revealItem}>
           <Link
             to="/work/white-label-esim"
             data-goatcounter-click="white-label-demo-back-to-case-study"
@@ -237,18 +237,18 @@ export function CustomizeEsimDemoPage() {
             </svg>
             Back to case study
           </Link>
-        </motion.div>
+        </m.div>
 
         {/* Header */}
-        <motion.div
+        <m.div
           className="mt-6"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           <DemoNavbar />
-        </motion.div>
+        </m.div>
 
         {/* Hero */}
-        <motion.section
+        <m.section
           className="mt-10 max-w-3xl"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
@@ -277,10 +277,10 @@ export function CustomizeEsimDemoPage() {
           <p className="mt-3 max-w-2xl text-pretty text-base leading-relaxed text-ink-600">
             Set up the brand identity and decide how eSIM details are presented to your customers
           </p>
-        </motion.section>
+        </m.section>
 
         {/* Segmented control */}
-        <motion.div
+        <m.div
           className="mt-8"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
@@ -294,10 +294,10 @@ export function CustomizeEsimDemoPage() {
             value={activeTab}
             onChange={setActiveTab}
           />
-        </motion.div>
+        </m.div>
 
         {/* Section content */}
-        <motion.section
+        <m.section
           className="mt-6"
           role="tabpanel"
           id="brand-settings-panel"
@@ -306,7 +306,7 @@ export function CustomizeEsimDemoPage() {
         >
           <AnimatePresence initial={false} mode="wait">
             {activeTab === "details" ? (
-              <motion.div
+              <m.div
                 key="details"
                 className="lg:max-w-[calc(100%-420px-24px)]"
                 variants={reduceMotion ? tabContentReduced : tabContent}
@@ -324,9 +324,9 @@ export function CustomizeEsimDemoPage() {
                   validationRequest={detailsValidationRequest}
                   continueToStyling={continueToStyling}
                 />
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.div
+              <m.div
                 key="styling"
                 className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-start"
                 variants={reduceMotion ? tabContentReduced : tabContent}
@@ -351,18 +351,18 @@ export function CustomizeEsimDemoPage() {
                     onRegisterScroll={handleRegisterScroll}
                   />
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
-        </motion.section>
+        </m.section>
 
-        <motion.footer
+        <m.footer
           className="mt-12 border-t border-line pt-6 text-xs leading-normal text-ink-500 sm:mt-16"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           functional prototype for the feature X. v 1.1.0
-        </motion.footer>
-      </motion.div>
+        </m.footer>
+      </m.div>
     </main>
   );
 }

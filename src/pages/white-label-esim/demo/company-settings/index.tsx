@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import type { Variants } from "motion/react";
 import { Link } from "react-router";
 import { DemoNavbar } from "../components/demo-navbar";
@@ -36,14 +36,14 @@ export function CompanySettingsDemoPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <motion.div
+      <m.div
         className="mx-auto w-full max-w-[1440px] px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-12"
         variants={reduceMotion ? pageRevealReduced : pageReveal}
         initial="hidden"
         animate="show"
       >
         {/* Back to case study */}
-        <motion.div variants={reduceMotion ? revealItemReduced : revealItem}>
+        <m.div variants={reduceMotion ? revealItemReduced : revealItem}>
           <Link
             to="/work/white-label-esim"
             data-goatcounter-click="white-label-demo-back-to-case-study"
@@ -63,18 +63,18 @@ export function CompanySettingsDemoPage() {
             </svg>
             Back to case study
           </Link>
-        </motion.div>
+        </m.div>
 
         {/* Header */}
-        <motion.div
+        <m.div
           className="mt-6"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           <DemoNavbar />
-        </motion.div>
+        </m.div>
 
         {/* Title row + primary action */}
-        <motion.section
+        <m.section
           className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
@@ -99,10 +99,10 @@ export function CompanySettingsDemoPage() {
             </svg>
             Add new brand
           </Link>
-        </motion.section>
+        </m.section>
 
         {/* Brands table */}
-        <motion.section
+        <m.section
           className="mt-8 overflow-hidden rounded-2xl bg-surface-muted shadow-[0_0_0_1px_oklch(0_0_0/0.06),0_1px_2px_-1px_oklch(0_0_0/0.06),0_2px_4px_oklch(0_0_0/0.04)]"
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
@@ -132,8 +132,8 @@ export function CompanySettingsDemoPage() {
               You can add and manage your brand settings here.
             </p>
           </div>
-        </motion.section>
-      </motion.div>
+        </m.section>
+      </m.div>
     </main>
   );
 }

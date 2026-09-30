@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { TrackFormFields } from './TrackFormFields';
 import type { TrackDraft } from '../types/track';
 
@@ -24,7 +24,7 @@ export function AddTrackForm({ onAdd }: AddTrackFormProps) {
   };
 
   return (
-    <motion.section
+    <m.section
       id='add-track'
       aria-labelledby='add-track-heading'
       initial={{ opacity: 0, y: 16 }}
@@ -51,6 +51,6 @@ export function AddTrackForm({ onAdd }: AddTrackFormProps) {
         layout='page'
         sample={SAMPLE_TRACK}
       />
-    </motion.section>
+    </m.section>
   );
 }

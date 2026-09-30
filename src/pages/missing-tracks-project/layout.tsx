@@ -3,7 +3,6 @@ import { MotionConfig } from 'motion/react';
 import { Outlet, useLocation } from 'react-router';
 import { ShaderBackdrop } from './components/ShaderBackdrop';
 import { TopNav } from './components/TopNav';
-import { useDocumentMetadata } from './hooks/useDocumentMetadata';
 
 // Strichpunkt Sans (the .mt-root body font) and Madimi One (the wordmark) are
 // used only on this route, so load their stylesheet on mount instead of site-wide
@@ -34,11 +33,6 @@ function useMissingTracksFonts() {
 export function MissingTracksLayout() {
   const { pathname } = useLocation();
   useMissingTracksFonts();
-
-  useDocumentMetadata({
-    themeColor: '#141b16', // Matches --color-mt-bg
-    favicon: '/favicon-mt.svg',
-  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

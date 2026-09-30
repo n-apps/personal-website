@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 
 type Props = {
   checked: boolean;
@@ -23,7 +23,7 @@ export function Checkbox({ checked, onChange, label, id }: Props) {
         />
         <AnimatePresence initial={false}>
           {checked && (
-            <motion.svg
+            <m.svg
               key="checkmark"
               aria-hidden="true"
               viewBox="0 0 16 16"
@@ -38,7 +38,7 @@ export function Checkbox({ checked, onChange, label, id }: Props) {
               transition={{ type: "spring", duration: 0.3, bounce: 0 }}
             >
               <path d="M3 8.5 6.5 12 13 4.5" />
-            </motion.svg>
+            </m.svg>
           )}
         </AnimatePresence>
       </span>

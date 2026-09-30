@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router";
 import { useRouteMetadata } from './use-route-metadata';
+import { StaticMarkupContext, useStaticMarkup } from './static-markup';
 
 type GoatCounter = {
   no_onload: boolean;
@@ -17,6 +18,8 @@ declare global {
 export function AnalyticsTracker() {
   useRouteMetadata();
   const { pathname, search } = useLocation();
+  const staticMarkup = useStaticMarkup();
+  const initialPath = useRef(pathname);
   const path = pathname + search;
   const currentPath = useRef(path);
   const countedPath = useRef<string | null>(null);
@@ -65,5 +68,5 @@ export function AnalyticsTracker() {
     countedPath.current = path;
   }, [path]);
 
-  return <Outlet />;
+  return <StaticMarkupContext value={staticMarkup && initialPath.current === pathname}><Outlet /></StaticMarkupContext>;
 }

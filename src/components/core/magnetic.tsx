@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { m, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import type { PointerEvent, ReactNode } from "react";
 
 interface MagneticProps {
@@ -35,7 +35,7 @@ export function Magnetic({
   }
 
   return (
-    <motion.div
+    <m.div
       className={className}
       style={{ x: springX, y: springY }}
       onPointerMove={handlePointerMove}
@@ -43,6 +43,6 @@ export function Magnetic({
       onPointerCancel={resetPosition}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

@@ -8,7 +8,7 @@ import {
   RiTimeLine,
   RiExternalLinkLine,
 } from '@remixicon/react';
-import { motion, useAnimationControls } from 'motion/react';
+import { m, useAnimationControls } from 'motion/react';
 import { Button } from './ui/Button';
 import { IconButton } from './ui/IconButton';
 import { Popover, PopoverItem } from './ui/Popover';
@@ -61,7 +61,7 @@ export const TrackCard = memo(forwardRef<HTMLElement, TrackCardProps>(function T
   }, [track.lastCheckedAt, ringControls, iconControls]);
 
   return (
-    <motion.article
+    <m.article
       ref={ref}
       role="listitem"
       layout
@@ -71,7 +71,7 @@ export const TrackCard = memo(forwardRef<HTMLElement, TrackCardProps>(function T
       transition={{ duration: 0.28, ease: 'easeOut' }}
       className="group relative flex flex-col gap-4 rounded-mt-card border border-mt-border/40 bg-mt-surface p-4 transition-colors duration-200 hover:border-mt-border/70 hover:bg-mt-interactive/30 md:flex-row md:items-center md:gap-5"
     >
-      <motion.span
+      <m.span
         aria-hidden="true"
         initial={{ opacity: 0 }}
         animate={ringControls}
@@ -101,12 +101,12 @@ export const TrackCard = memo(forwardRef<HTMLElement, TrackCardProps>(function T
             </p>
           ) : null}
           <p className="mt-0.5 flex items-center gap-1.5 text-[11px] uppercase tracking-mt-label text-mt-text-secondary/80">
-            <motion.span
+            <m.span
               animate={iconControls}
               className="inline-flex shrink-0 origin-center"
             >
               <RiTimeLine className="size-3.5" aria-hidden="true" />
-            </motion.span>
+            </m.span>
             <span className="min-w-0 truncate">
               Added {formatAddedAt(track.addedAt)}
               <span aria-hidden="true"> · </span>
@@ -185,6 +185,6 @@ export const TrackCard = memo(forwardRef<HTMLElement, TrackCardProps>(function T
           )}
         </Popover>
       </div>
-    </motion.article>
+    </m.article>
   );
 }));

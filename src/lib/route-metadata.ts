@@ -63,8 +63,16 @@ export function metadataForPath(pathname: string) {
   return Object.prototype.hasOwnProperty.call(routeMetadata, path) ? routeMetadata[path] : null;
 }
 
+export function appearanceForPath(pathname: string) {
+  return pathname.startsWith('/missing-tracks-project')
+    ? { favicon: '/favicon-mt.svg', type: 'image/svg+xml', themeColor: '#141b16' }
+    : { favicon: '/favicon-48.png', type: 'image/png', themeColor: '#F55817' };
+}
+
 export function metadataValues(metadata: PageMetadata) {
+  const appearance = appearanceForPath(new URL(metadata.url).pathname);
   return [
+    ['name', 'theme-color', appearance.themeColor],
     ['name', 'description', metadata.description],
     ['property', 'og:title', metadata.title],
     ['property', 'og:description', metadata.description],
@@ -91,10 +99,12 @@ function escapeHtml(value: string) {
 export function routeHead(html: string, metadata: PageMetadata, notFound = false) {
   const clean = html
     .replace(/<title>[\s\S]*?<\/title>/g, '')
-    .replace(/<meta\s+(?:name|property)="(?:description|robots|og:(?:title|description|url|image(?::alt)?)|twitter:(?:title|description|url|image(?::alt)?))"[^>]*>/g, '')
-    .replace(/<link\s+rel="canonical"[^>]*>/g, '');
+    .replace(/<meta\s+(?:name|property)="(?:theme-color|description|robots|og:(?:title|description|url|image(?::alt)?)|twitter:(?:title|description|url|image(?::alt)?))"[^>]*>/g, '')
+    .replace(/<link\s+rel="(?:canonical|icon)"[^>]*>/g, '');
+  const appearance = appearanceForPath(new URL(metadata.url).pathname);
   const tags = [
     `<title>${escapeHtml(metadata.title)}</title>`,
+    `<link rel="icon" href="${appearance.favicon}" type="${appearance.type}" />`,
     ...metadataValues(metadata).map(([attribute, key, value]) =>
       `<meta ${attribute}="${key}" content="${escapeHtml(value)}" />`),
     notFound ? '<meta name="robots" content="noindex" />'

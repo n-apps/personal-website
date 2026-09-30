@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { RiArrowDownLine, RiCheckboxCircleFill } from '@remixicon/react';
 import { Button } from './ui/Button';
 import { useRandomCover } from '../hooks/useRandomCover';
@@ -44,15 +44,15 @@ export function Hero() {
       aria-labelledby='hero-heading'
       className='grid items-center gap-10 pt-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12 md:pt-16'>
       <div className='flex flex-col gap-6'>
-        <motion.h1
+        <m.h1
           id='hero-heading'
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.42, delay: 0.05, ease }}
           className='text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-mt-text md:text-5xl lg:text-5xl'>
           The songs the labels quietly pulled from <span className='text-mt-green'>your library.</span>
-        </motion.h1>
-        <motion.p
+        </m.h1>
+        <m.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.42, delay: 0.1, ease }}
@@ -60,8 +60,8 @@ export function Hero() {
           It's usually temporary: licensing lapses, a label pulls its catalog,
           regions disagree. Save a track here, check back when it returns, and
           listen elsewhere in the meantime.
-        </motion.p>
-        <motion.div
+        </m.p>
+        <m.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.42, delay: 0.15, ease }}
@@ -77,10 +77,10 @@ export function Hero() {
             }}>
             Add a missing track
           </Button>
-        </motion.div>
+        </m.div>
       </div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.1, ease }}
@@ -124,7 +124,7 @@ export function Hero() {
             <RiCheckboxCircleFill className='absolute bottom-3 right-3 size-9 text-mt-green drop-shadow-[0_1px_4px_oklch(0.18_0.02_150/0.7)]' />
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

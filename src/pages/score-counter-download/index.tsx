@@ -1,3 +1,4 @@
+import { useStaticMarkup } from '@/lib/static-markup';
 import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
@@ -9,7 +10,7 @@ import {
   RiPlayMiniFill,
   RiRestartFill,
 } from '@remixicon/react';
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import { ColorPanels } from '@paper-design/shaders-react';
 import { ProductShowcase } from './product-showcase';
 import './score-counter.css';
@@ -70,6 +71,7 @@ const testimonials = [
 
 export function ScoreCounterDownloadPage() {
   const reduceMotion = useReducedMotion();
+  const staticMarkup = useStaticMarkup();
   const { videoRef, isPlaying, togglePlayback, onPlay, onPause } =
     useViewportVideo(reduceMotion === false);
   const [visibleTestimonials, setVisibleTestimonials] = useState(testimonials);
@@ -304,9 +306,9 @@ export function ScoreCounterDownloadPage() {
               aria-live='polite'
               className='sc-reviews-grid text-left'>
               {visibleTestimonials.map((quote, index) => (
-                <motion.figure
+                <m.figure
                   key={quote}
-                  initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                  initial={reduceMotion || staticMarkup ? false : { opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={
                     reduceMotion ? { duration: 0 }
@@ -323,7 +325,7 @@ export function ScoreCounterDownloadPage() {
                   <figcaption className='mt-8 text-sm'>
                     Google Play review
                   </figcaption>
-                </motion.figure>
+                </m.figure>
               ))}
             </div>
           </section>

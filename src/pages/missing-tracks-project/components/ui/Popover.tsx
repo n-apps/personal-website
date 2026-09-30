@@ -8,7 +8,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { cn } from '../../lib/cn';
 
 type TriggerProps = {
@@ -110,7 +110,7 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
       {triggerWithProps}
       <AnimatePresence>
         {open ? (
-          <motion.div
+          <m.div
             ref={contentRef}
             role="menu"
             id={`${id}-menu`}
@@ -127,7 +127,7 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
             )}
           >
             {content}
-          </motion.div>
+          </m.div>
         ) : null}
       </AnimatePresence>
     </span>

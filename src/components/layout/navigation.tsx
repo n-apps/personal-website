@@ -1,16 +1,18 @@
 import { Link, useLocation } from "react-router";
 import { ThemeToggle } from "./theme-toggle";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { fluidSmall } from "@/lib/typography";
+import { useStaticMarkup } from '@/lib/static-markup';
 
 export function Navigation() {
   const location = useLocation();
   const reduceMotion = useReducedMotion() === true;
+  const staticMarkup = useStaticMarkup();
 
   return (
-    <motion.nav
+    <m.nav
       className="pt-6 pb-12 sm:pt-10 sm:pb-16 flex items-center justify-between w-full"
-      initial={reduceMotion ? false : { opacity: 0, y: -10 }}
+      initial={reduceMotion || staticMarkup ? false : { opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={
         reduceMotion
@@ -18,7 +20,7 @@ export function Navigation() {
           : { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
       }
     >
-      {location.pathname !== "/support" && (
+      {location.pathname.replace(/\/$/, "") !== "/support" && (
         <Link
           to="/"
           data-goatcounter-click="nav-home-logo"
@@ -43,6 +45,6 @@ export function Navigation() {
       <div className="flex items-center gap-4">
         <ThemeToggle className="-my-1.5 -mr-1.5" />
       </div>
-    </motion.nav>
+    </m.nav>
   );
 }

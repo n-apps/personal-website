@@ -1,7 +1,9 @@
-import { router } from "@/app/routes";
 import { playTransitionSound } from "@/lib/ui-sounds";
 
 export type TransitionPhase = "idle" | "entering" | "exiting";
+
+let navigateRoute: (to: string) => Promise<void>;
+export function configureTransitionNavigation(navigate: typeof navigateRoute) { navigateRoute = navigate; }
 
 let phase: TransitionPhase = "idle";
 const listeners = new Set<() => void>();
@@ -42,7 +44,7 @@ export async function navigateWithTransition(
 
     if (reduceMotion) {
       await (preload?.() ?? Promise.resolve());
-      await router.navigate(to);
+      await navigateRoute(to);
       return;
     }
 
@@ -51,7 +53,7 @@ export async function navigateWithTransition(
     await twoFrames();
     const preloadPromise = preload?.() ?? Promise.resolve();
     await Promise.all([enterPromise, preloadPromise]);
-    await router.navigate(to);
+    await navigateRoute(to);
     await twoFrames();
     set("exiting");
     await wait(300);

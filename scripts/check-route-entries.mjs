@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile, stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import path from 'node:path';
@@ -6,10 +7,11 @@ import { fileURLToPath } from 'node:url';
 import { stripTypeScriptTypes } from 'node:module';
 import { runInNewContext } from 'node:vm';
 import { routeMetadata } from '../src/lib/route-metadata.ts';
+import { staticRouteModules } from '../src/lib/static-routes.ts';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const dist = path.resolve(root, process.argv[2] ?? 'dist');
-const routerSource = stripTypeScriptTypes(await readFile(path.join(root, 'src/app/routes.ts'), 'utf8'));
+const routerSource = stripTypeScriptTypes(await readFile(path.join(root, 'src/app/route-config.ts'), 'utf8'));
 const actualRoutes = new Set();
 const bindings = {};
 // Capture the real route configuration without importing React components or starting a browser router.
@@ -22,7 +24,7 @@ const executable = routerSource.replace(/^import\s+([\s\S]*?)\s+from\s+["'][^"']
 }).replace(/^export\s+/gm, '');
 bindings.lazy = () => null;
 bindings.createBrowserRouter = (routes) => routes;
-const routes = runInNewContext(`${executable}\nrouter;`, bindings, { timeout: 1000 });
+const routes = runInNewContext(`${executable}\nrouteConfig;`, bindings, { timeout: 1000 });
 
 function collectRoutes(array, parent = '') {
   assert(Array.isArray(array), 'Router children must be route arrays');
@@ -87,13 +89,31 @@ try {
     assert.equal((html.match(/<title>/g) ?? []).length, 1, `${route}: duplicate title`);
     assert.equal((html.match(/rel="canonical"/g) ?? []).length, 1, `${route}: duplicate canonical`);
     assert.doesNotMatch(html, /name="robots" content="noindex"/);
-    assert.equal((html.match(/rel="preload" as="image"/g) ?? []).length, route === '/' ? 1 : 0,
+    const policy = html.match(/http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1];
+    assert(policy, `${route}: missing CSP`);
+    assert(html.indexOf('http-equiv="Content-Security-Policy"') < html.indexOf('<script'), `${route}: late CSP`);
+    const scriptPolicy = policy.split(';').find(directive => directive.trim().startsWith('script-src '));
+    assert(scriptPolicy && !/unsafe-inline|unsafe-eval/.test(scriptPolicy), `${route}: unsafe script policy`);
+    for (const [, attributes, code] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
+      if (!/\bsrc\s*=/.test(attributes) && code.trim()) {
+        const hash = createHash('sha256').update(code).digest('base64');
+        assert(scriptPolicy.includes(`'sha256-${hash}'`), `${route}: inline script hash differs from CSP`);
+      }
+    }
+    assert.equal((html.match(/name="theme-color"/g) ?? []).length, 1, `${route}: duplicate theme-color`);
+    assert.equal((html.match(/rel="icon"/g) ?? []).length, 1, `${route}: duplicate favicon`);
+    if (route in staticRouteModules) {
+      assert.match(html, /id="root" data-prerendered="true"/, `${route}: missing prerender marker`);
+      assert.match(html, /<h1[\s>]/, `${route}: missing static page content`);
+      assert.doesNotMatch(html, /<!--\$(?:!|\?)-->|data-msg=/, `${route}: failed server-rendered Suspense boundary`);
+    }
+    assert.equal((html.match(/<link[^>]*rel="preload"[^>]*design-system-cover[^>]*>/g) ?? []).length, route === '/' ? 1 : 0,
       `${route}: homepage image hint must not leak to unrelated entries`);
     for (const key of ['description', 'og:title', 'og:description', 'og:url', 'og:image', 'twitter:title', 'twitter:description', 'twitter:url', 'twitter:image']) {
       assert.equal((html.match(new RegExp(`(?:name|property)="${key}"`, 'g')) ?? []).length, 1,
         `${route}: missing or duplicate ${key}`);
     }
-    for (const match of html.matchAll(/(?:src|href)="(\/(?:assets|images)\/[^"?]+)"/g)) {
+    for (const match of html.matchAll(/(?:src|href)="(\/(?:assets|images|fonts)\/[^"?]+)"/g)) {
       assert.equal((await fetch(`${base}${match[1]}`)).status, 200, `${route}: missing entry asset ${match[1]}`);
     }
     assert.equal((await fetch(`${base}${new URL(metadata.image).pathname}`)).status, 200,

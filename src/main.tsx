@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './app/App.tsx';
 import './styles/index.css';
 import { prefersDarkTheme } from './lib/theme';
@@ -41,4 +41,7 @@ console.log(
   `font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: ${isDarkTheme ? '#F55817' : '#0a0a0a'}; font-size: 12px; line-height: 1.35; font-weight: 500;`,
 );
 
-createRoot(document.getElementById('root')!).render(<App />);
+const root = document.getElementById('root')!;
+const staticMarkup = root.dataset.prerendered === 'true';
+if (staticMarkup) hydrateRoot(root, <App staticMarkup />);
+else createRoot(root).render(<App />);

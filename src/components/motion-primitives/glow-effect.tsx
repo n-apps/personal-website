@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { m, useReducedMotion } from 'motion/react';
 import { usePageVisible } from '@/lib/use-page-visible';
 import type { Transition } from 'motion/react';
 
@@ -138,7 +138,7 @@ export function GlowEffect({
   };
 
   return (
-    <motion.div
+    <m.div
       style={
         {
           ...style,

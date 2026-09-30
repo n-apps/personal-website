@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { RiArrowRightLine } from '@remixicon/react';
 import { Button } from '../components/ui/Button';
@@ -54,7 +54,7 @@ function AboutHero() {
     <section
       aria-labelledby='about-hero-heading'
       className='flex flex-col gap-7 pt-10 md:pt-16'>
-      <motion.h1
+      <m.h1
         id='about-hero-heading'
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -62,8 +62,8 @@ function AboutHero() {
         className='text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-mt-text md:text-5xl lg:text-5xl'>
         <span className='block'>The track you found isn't on Spotify yet.</span>
         <span className='block text-mt-green'>Don't lose it.</span>
-      </motion.h1>
-      <motion.p
+      </m.h1>
+      <m.p
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.42, delay: 0.12, ease }}
@@ -72,21 +72,21 @@ function AboutHero() {
         bookmarked it, and want to add it to your Spotify library, but bam—the
         track isn't available and you hit a dead end. Save it to a small
         watchlist so it isn't forgotten, then recheck when it comes back.
-      </motion.p>
+      </m.p>
     </section>
   );
 }
 
 function HowItWorks() {
   return (
-    <motion.section
+    <m.section
       aria-labelledby='how-it-works-heading'
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.42, ease }}
       className='rounded-mt-card bg-mt-surface px-6 py-8 text-mt-text shadow-mt-card ring-1 ring-mt-border sm:px-9 sm:py-10 lg:px-12 lg:py-12'>
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
@@ -100,7 +100,7 @@ function HowItWorks() {
         <p className='max-w-2xl text-pretty text-lg font-bold leading-snug text-mt-text-secondary sm:text-xl'>
           From a dead end to a song you can play again.
         </p>
-      </motion.div>
+      </m.div>
 
       <ol className='mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-9'>
         {STEPS.map((step, i) => {
@@ -108,7 +108,7 @@ function HowItWorks() {
             <li
               key={step.n}
               className='min-w-0'>
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
@@ -124,19 +124,19 @@ function HowItWorks() {
                 <p className='text-pretty text-[15px] font-medium leading-relaxed text-mt-text-secondary sm:text-base lg:text-[15px] xl:text-base'>
                   {step.desc}
                 </p>
-              </motion.div>
+              </m.div>
             </li>
           );
         })}
       </ol>
-    </motion.section>
+    </m.section>
   );
 }
 
 function ClosingCta() {
   const navigate = useNavigate();
   return (
-    <motion.section
+    <m.section
       aria-labelledby='about-cta-heading'
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ function ClosingCta() {
           Open the watchlist
         </Button>
       </div>
-    </motion.section>
+    </m.section>
   );
 }
 

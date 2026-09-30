@@ -1,6 +1,6 @@
 import { type CSSProperties, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, m, useReducedMotion } from 'motion/react';
 import { playPopSound } from '@/lib/ui-sounds';
 
 const WHEEL_REVEAL_THRESHOLD = 600;
@@ -242,7 +242,7 @@ export function EasterEggFooter() {
         </button>
         <AnimatePresence>
           {bork && (
-            <motion.div
+            <m.div
               key={bork.key}
               initial={reduceMotion ? false : { opacity: 0, y: 4, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -264,7 +264,7 @@ export function EasterEggFooter() {
                 pointerEvents: 'none',
               }}>
               {bork.msg}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

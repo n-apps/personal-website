@@ -5,8 +5,9 @@ import react from '@vitejs/plugin-react'
 import { notFoundMetadata, routeHead, routeMetadata } from './src/lib/route-metadata'
 import responsiveImages from './src/data/responsive-images.json'
 import fontAssets from './src/data/font-assets.json'
+import { withContentSecurityPolicy } from './src/lib/security-policy.server'
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   base: '/',
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
@@ -17,13 +18,14 @@ export default defineConfig({
       name: 'static-route-entries',
       enforce: 'post',
       generateBundle(_, bundle) {
+        if (isSsrBuild) return;
         const entry = bundle['index.html'];
         if (entry?.type !== 'asset') throw new Error('Missing index.html');
-        const template = String(entry.source);
+        const template = withContentSecurityPolicy(String(entry.source));
         // Actual files give known deep links a 200 response on GitHub Pages.
         for (const [route, metadata] of Object.entries(routeMetadata)) {
           let source = routeHead(template, metadata);
-          if (!route.startsWith('/score-counter') && !route.startsWith('/missing-tracks-project') && !route.startsWith('/work/white-label-esim/demo')) {
+          if (route !== '/score-counter' && !route.startsWith('/missing-tracks-project') && !route.startsWith('/work/white-label-esim/demo')) {
             source = source.replace('</head>', `<link rel="preload" href="${fontAssets.Regular}" as="font" type="font/woff2" crossorigin />\n</head>`);
           }
           // The homepage's first visible cover must be discoverable before React executes.
@@ -52,4 +54,4 @@ export default defineConfig({
 
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
-})
+}))

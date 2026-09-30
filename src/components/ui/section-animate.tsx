@@ -1,5 +1,6 @@
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { useStaticMarkup } from '@/lib/static-markup';
 
 interface SectionAnimateProps {
   children: ReactNode;
@@ -15,14 +16,15 @@ export function SectionAnimate({
   inView = false,
 }: SectionAnimateProps) {
   const reduceMotion = useReducedMotion() === true;
+  const staticMarkup = useStaticMarkup();
   const reveal = { opacity: 1, y: 0 };
 
   return (
-    <motion.div
+    <m.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      animate={inView && !reduceMotion ? undefined : reveal}
-      whileInView={inView && !reduceMotion ? reveal : undefined}
+      initial={reduceMotion || staticMarkup ? false : { opacity: 0, y: 16 }}
+      animate={inView && !reduceMotion && !staticMarkup ? undefined : reveal}
+      whileInView={inView && !reduceMotion && !staticMarkup ? reveal : undefined}
       viewport={inView && !reduceMotion ? { once: true, amount: 0.1 } : undefined}
       transition={
         reduceMotion
@@ -35,6 +37,6 @@ export function SectionAnimate({
       }
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
