@@ -1,14 +1,14 @@
 import { useEffect, Suspense } from 'react';
 import { MotionConfig } from 'motion/react';
 import { Outlet, useLocation } from 'react-router';
-import { MissingTracksShaderBackground } from './components/MissingTracksShaderBackground';
+import { ShaderBackdrop } from './components/ShaderBackdrop';
 import { TopNav } from './components/TopNav';
 import { useDocumentMetadata } from './hooks/useDocumentMetadata';
 
 // Strichpunkt Sans (the .mt-root body font) and Madimi One (the wordmark) are
 // used only on this route, so load their stylesheet on mount instead of site-wide
 // in index.html — otherwise every page would block on a Google Fonts request for
-// a route most visitors never open. Preconnects already live in index.html.
+// a route most visitors never open. No site-wide font preconnects are required.
 // Injected once and left in place so the browser cache serves it across the app
 // and About pages.
 const FONT_HREF =
@@ -36,8 +36,6 @@ export function MissingTracksLayout() {
   useMissingTracksFonts();
 
   useDocumentMetadata({
-    title: 'Missing Tracks Watchlist',
-    description: 'A watchlist for Spotify tracks that go temporarily unavailable when licensing lapses. Save them, check back when they return, and find them elsewhere meanwhile.',
     themeColor: '#141b16', // Matches --color-mt-bg
     favicon: '/favicon-mt.svg',
   });
@@ -49,7 +47,7 @@ export function MissingTracksLayout() {
   return (
     <MotionConfig reducedMotion='user'>
       <div id='top' className='mt-root min-h-[100dvh]'>
-        <MissingTracksShaderBackground />
+        <ShaderBackdrop />
         <TopNav />
         <Suspense fallback={null}>
           <Outlet />

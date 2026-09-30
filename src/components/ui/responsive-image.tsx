@@ -1,4 +1,4 @@
-import type { ImgHTMLAttributes } from 'react';
+import { useLayoutEffect, useRef, type ImgHTMLAttributes } from 'react';
 import manifest from '@/data/responsive-images.json';
 
 export const portfolioImageSizes = '(min-width: 608px) 576px, calc(100vw - 32px)';
@@ -10,13 +10,20 @@ export function imageSrcSet(variants: { src: string; width: number }[]) {
   return variants.map(({ src, width }) => `${src} ${width}w`).join(', ');
 }
 
-export function ResponsiveImage({ src, sizes = portfolioImageSizes, ...props }: ImgHTMLAttributes<HTMLImageElement>) {
+export function ResponsiveImage({ src, sizes = portfolioImageSizes, loading, ...props }: ImgHTMLAttributes<HTMLImageElement>) {
+  const imageRef = useRef<HTMLImageElement>(null);
+  useLayoutEffect(() => {
+    // WebKit can fetch a detached eager <img> before React attaches its <picture>.
+    // Defer that fallback until the source elements are connected; the AVIF
+    // preload is already in flight, and this runs before the first paint.
+    if (imageRef.current) imageRef.current.loading = loading ?? 'eager';
+  }, [src, loading]);
   const images = imageVariants(src);
-  if (!images) return <img src={src} {...props} />;
+  if (!images) return <img src={src} loading={loading} {...props} />;
   return (
     <picture>
       <source type="image/avif" srcSet={imageSrcSet(images.avif)} sizes={sizes} />
-      <img src={images.webp[0].src} srcSet={imageSrcSet(images.webp)} sizes={sizes} {...props} />
+      <img ref={imageRef} src={images.webp[0].src} srcSet={imageSrcSet(images.webp)} sizes={sizes} loading="lazy" {...props} />
     </picture>
   );
 }

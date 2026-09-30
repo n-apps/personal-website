@@ -51,7 +51,7 @@ const missingTracksShaderProps = {
 
 export function MissingTracksShaderBackground() {
   return (
-    <div className='mt-shader-background' aria-hidden='true'>
+    <div className='absolute inset-0' aria-hidden='true'>
       <ShaderGradientCanvas
         className='mt-shader-canvas'
         fov={45}

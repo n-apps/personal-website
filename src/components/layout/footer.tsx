@@ -1,4 +1,6 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useReducedMotion } from 'motion/react';
+import { usePageVisible } from '@/lib/use-page-visible';
+import { useEffect, useState, useRef } from "react";
 import { fluidSmall } from "@/lib/typography";
 
 const WEATHER_API_URL =
@@ -130,24 +132,19 @@ function useWeather() {
 
 function useCurrentTime() {
   const [time, setTime] = useState("");
-
+  const visible = usePageVisible();
   useEffect(() => {
+    if (!visible) return;
+    let timer: ReturnType<typeof setTimeout>;
     const update = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "Europe/Kiev",
-          hour12: false,
-        })
-      );
+      setTime(new Date().toLocaleTimeString("en-US", {
+        hour: "2-digit", minute: "2-digit", timeZone: "Europe/Kiev", hour12: false,
+      }));
+      timer = setTimeout(update, 60_000 - Date.now() % 60_000);
     };
     update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, []);
-
+    return () => clearTimeout(timer);
+  }, [visible]);
   return time;
 }
 
@@ -156,69 +153,26 @@ const phrases = ["Ship fast.", "Iterate.", "Repeat."];
 
 function useTypewriter() {
   const [text, setText] = useState("");
-  const phraseIndexRef = useRef(0);
-  const cancelRef = useRef(false);
-
-  const typeWriter = useCallback(
-    (phrase: string, index: number): Promise<void> => {
-      return new Promise((resolve) => {
-        if (cancelRef.current) return;
-        if (index <= phrase.length) {
-          setText(phrase.substring(0, index));
-          setTimeout(() => {
-            resolve(typeWriter(phrase, index + 1));
-          }, 100); // Typing speed: 100ms (matches original)
-        } else {
-          // Pause before deleting: 2000ms
-          setTimeout(resolve, 2000);
-        }
-      });
-    },
-    []
-  );
-
-  const deleteText = useCallback((): Promise<void> => {
-    return new Promise((resolve) => {
-      if (cancelRef.current) return;
-      setText((prev) => {
-        if (prev.length > 0) {
-          const next = prev.substring(0, prev.length - 1);
-          // Random delay 30–80ms + 10% chance of extra 0–200ms pause (matches original)
-          const randomDelay = Math.floor(Math.random() * 50) + 30;
-          const extraDelay = Math.random() < 0.1 ? Math.random() * 200 : 0;
-          setTimeout(() => {
-            resolve(deleteText());
-          }, randomDelay + extraDelay);
-          return next;
-        } else {
-          resolve();
-          return prev;
-        }
-      });
-    });
-  }, []);
-
-  const startLoop = useCallback(async () => {
-    while (!cancelRef.current) {
-      const currentPhrase = phrases[phraseIndexRef.current];
-      await typeWriter(currentPhrase, 0);
-      if (cancelRef.current) break;
-      await deleteText();
-      if (cancelRef.current) break;
-      phraseIndexRef.current =
-        (phraseIndexRef.current + 1) % phrases.length;
-    }
-  }, [typeWriter, deleteText]);
-
+  const reduceMotion = useReducedMotion() === true;
+  const visible = usePageVisible();
+  const position = useRef({ phrase: 0, length: 0, deleting: false });
   useEffect(() => {
-    cancelRef.current = false;
-    startLoop();
-    return () => {
-      cancelRef.current = true;
+    if (reduceMotion || !visible) return;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      const state = position.current;
+      const phrase = phrases[state.phrase];
+      state.length += state.deleting ? -1 : 1;
+      setText(phrase.slice(0, state.length));
+      let delay = state.deleting ? 55 : 100;
+      if (state.length === phrase.length) { state.deleting = true; delay = 2000; }
+      else if (state.length === 0) { state.deleting = false; state.phrase = (state.phrase + 1) % phrases.length; delay = 200; }
+      timer = setTimeout(tick, delay);
     };
-  }, [startLoop]);
-
-  return text;
+    timer = setTimeout(tick, 100);
+    return () => clearTimeout(timer);
+  }, [reduceMotion, visible]);
+  return reduceMotion ? phrases[0] : text;
 }
 
 export function Footer() {
@@ -280,7 +234,7 @@ export function Footer() {
           }}
         >
           {typewriterText}
-          <span className="animate-pulse">|</span>
+          <span className="animate-pulse motion-reduce:animate-none">|</span>
         </span>
       </div>
     </footer>

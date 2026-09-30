@@ -7,7 +7,7 @@ export function Footer() {
           <a
             href="https://romamakes.com/"
             data-goatcounter-click="missing-tracks-footer-portfolio"
-            className="text-mt-text transition-colors duration-150 hover:text-mt-green"
+            className="text-mt-text underline underline-offset-4 decoration-from-font transition-colors duration-150 hover:text-mt-green"
             target="_blank"
             rel="noreferrer"
           >

@@ -75,7 +75,7 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: var(--color-mt-bg);
+  background: radial-gradient(ellipse at 65% 15%, oklch(0.43 0.075 150 / 0.6), transparent 65%), radial-gradient(ellipse at 15% 75%, oklch(0.38 0.08 145 / 0.45), transparent 60%), var(--color-mt-bg);
 }
 
 .mt-shader-canvas,
@@ -143,4 +143,17 @@
 .mt-root .form-inverted input:focus,
 .mt-root .form-inverted textarea:focus {
   box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.04);
+}
+
+.mt-dialog {
+  color-scheme: dark;
+  font-family: var(--font-mt-sans);
+}
+.mt-dialog::backdrop {
+  background: oklch(0.213 0.013 150 / 0.8);
+  backdrop-filter: blur(4px);
+}
+.mt-dialog :focus-visible {
+  outline: 2px solid var(--color-mt-green);
+  outline-offset: 2px;
 }

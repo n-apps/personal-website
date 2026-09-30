@@ -24,7 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       >
         <span>{label}</span>
         {optional ? (
-          <span className="text-[10px] tracking-mt-label text-mt-text-secondary/70 normal-case">
+          <span className="text-[10px] tracking-mt-label text-mt-text-secondary normal-case">
             optional
           </span>
         ) : null}
@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy}
         className={cn(
-          'h-11 w-full rounded-mt-link bg-mt-interactive px-3.5 text-sm text-mt-text placeholder:text-mt-text-secondary/60',
+          'h-11 w-full rounded-mt-link bg-mt-interactive px-3.5 text-base sm:text-sm text-mt-text placeholder:text-mt-text-secondary',
           'border border-mt-border/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]',
           'transition-[border-color,box-shadow] duration-150 ease-out',
           'hover:border-mt-text-secondary/60 focus:outline-none focus:border-mt-green focus:shadow-[0_0_0_2px_rgba(127,238,100,0.35)]',
@@ -49,7 +49,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           {error}
         </p>
       ) : hint ? (
-        <p id={`${inputId}-hint`} className="text-xs text-mt-text-secondary/80">
+        <p id={`${inputId}-hint`} className="text-xs text-mt-text-secondary">
           {hint}
         </p>
       ) : null}

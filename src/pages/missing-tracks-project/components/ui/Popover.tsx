@@ -13,8 +13,10 @@ import { cn } from '../../lib/cn';
 
 type TriggerProps = {
   onClick?: React.MouseEventHandler<HTMLElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
   ref?: React.Ref<HTMLElement>;
   'aria-expanded'?: boolean;
+  'aria-controls'?: string;
   'aria-haspopup'?: boolean | 'menu' | 'dialog' | 'listbox' | 'tree' | 'grid';
   id?: string;
 };
@@ -31,10 +33,14 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
   const triggerRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const id = useId();
+  const focusLast = useRef(false);
 
   useEffect(() => {
     if (!open) return;
-    const onDown = (e: MouseEvent) => {
+    const items = () => Array.from(contentRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]:not(:disabled)') ?? []);
+    const firstItems = items();
+    (focusLast.current ? firstItems[firstItems.length - 1] : firstItems[0])?.focus();
+    const onDown = (e: PointerEvent) => {
       const target = e.target as Node;
       if (
         contentRef.current?.contains(target) ||
@@ -46,14 +52,26 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
         setOpen(false);
         triggerRef.current?.focus?.();
+      } else if (e.key === 'Tab') {
+        setOpen(false);
+        // Return to the trigger before the browser performs normal Tab navigation.
+        triggerRef.current?.focus();
+      } else if (contentRef.current?.contains(e.target as Node) && ['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.key)) {
+        e.preventDefault();
+        const list = items();
+        const index = list.indexOf(document.activeElement as HTMLElement);
+        const next = e.key === 'Home' ? 0 : e.key === 'End' ? list.length - 1 :
+          (index + (e.key === 'ArrowDown' ? 1 : -1) + list.length) % list.length;
+        list[next]?.focus();
       }
     };
-    document.addEventListener('mousedown', onDown);
+    document.addEventListener('pointerdown', onDown);
     document.addEventListener('keydown', onKey);
     return () => {
-      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('pointerdown', onDown);
       document.removeEventListener('keydown', onKey);
     };
   }, [open]);
@@ -68,14 +86,24 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
     },
     'aria-expanded': open,
     'aria-haspopup': 'menu',
+    'aria-controls': open ? `${id}-menu` : undefined,
     id,
     onClick: (e) => {
       originalOnClick?.(e);
+      focusLast.current = false;
       setOpen((v) => !v);
+    },
+    onKeyDown: (e) => {
+      trigger.props.onKeyDown?.(e);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        focusLast.current = e.key === 'ArrowUp';
+        setOpen(true);
+      }
     },
   } satisfies TriggerProps);
 
-  const content = typeof children === 'function' ? children({ close: () => setOpen(false) }) : children;
+  const content = typeof children === 'function' ? children({ close: () => { setOpen(false); triggerRef.current?.focus(); } }) : children;
 
   return (
     <span className="relative inline-flex">
@@ -85,6 +113,7 @@ export function Popover({ trigger, children, align = 'end', className }: Popover
           <motion.div
             ref={contentRef}
             role="menu"
+            id={`${id}-menu`}
             aria-labelledby={id}
             initial={{ opacity: 0, y: -4, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -123,8 +152,9 @@ export function PopoverItem({
     <button
       type={type ?? 'button'}
       role="menuitem"
+      tabIndex={-1}
       className={cn(
-        'flex w-full cursor-pointer items-center gap-2.5 rounded-[6px] px-2.5 py-2 text-left text-sm',
+        'flex min-h-11 w-full cursor-pointer items-center gap-2.5 rounded-[6px] px-2.5 py-2 text-left text-sm',
         'text-mt-text transition-colors duration-150',
         'hover:bg-mt-interactive focus:bg-mt-interactive focus:outline-none',
         destructive && 'text-mt-red hover:bg-mt-red/10 focus:bg-mt-red/10',

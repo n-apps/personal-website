@@ -244,10 +244,10 @@ export function EasterEggFooter() {
           {bork && (
             <motion.div
               key={bork.key}
-              initial={{ opacity: 0, y: 4, scale: 0.96 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 4, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -2, scale: 0.96 }}
-              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -2, scale: 0.96 }}
+              transition={{ duration: reduceMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 position: 'absolute',
                 bottom: 'calc(100% + 8px)',

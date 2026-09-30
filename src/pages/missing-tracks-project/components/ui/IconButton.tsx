@@ -13,8 +13,8 @@ export interface IconButtonProps
 }
 
 const sizes: Record<IconButtonSize, string> = {
-  sm: 'h-8 w-8 [&_svg]:size-4',
-  md: 'h-10 w-10 [&_svg]:size-5',
+  sm: 'h-11 w-11 sm:h-10 sm:w-10 [&_svg]:size-4',
+  md: 'h-11 w-11 [&_svg]:size-5',
   lg: 'h-12 w-12 [&_svg]:size-6',
 };
 

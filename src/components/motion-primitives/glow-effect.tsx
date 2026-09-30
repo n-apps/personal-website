@@ -1,7 +1,8 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
+import { usePageVisible } from '@/lib/use-page-visible';
 import type { Transition } from 'motion/react';
 
 const cn = (...classes: Array<string | undefined | false>) =>
@@ -42,6 +43,8 @@ export function GlowEffect({
   scale = 1,
   duration = 5,
 }: GlowEffectProps) {
+  const reduceMotion = useReducedMotion() === true;
+  const visible = usePageVisible();
   const BASE_TRANSITION: Transition = {
     repeat: Infinity,
     duration,
@@ -140,11 +143,10 @@ export function GlowEffect({
         {
           ...style,
           '--scale': scale,
-          willChange: 'transform',
           backfaceVisibility: 'hidden',
         } as CSSProperties
       }
-      animate={animations[mode]}
+      animate={animations[reduceMotion || !visible ? 'static' : mode]}
       className={cn(
         'pointer-events-none absolute inset-0 h-full w-full',
         'scale-[var(--scale)] transform-gpu',

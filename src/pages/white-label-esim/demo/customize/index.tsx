@@ -285,6 +285,8 @@ export function CustomizeEsimDemoPage() {
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           <SegmentedControl
+            label="Brand settings"
+            idPrefix="brand-settings"
             options={[
               { value: "details" as const, label: "Brand details" },
               { value: "styling" as const, label: "Brand styling" },
@@ -297,6 +299,9 @@ export function CustomizeEsimDemoPage() {
         {/* Section content */}
         <motion.section
           className="mt-6"
+          role="tabpanel"
+          id="brand-settings-panel"
+          aria-labelledby={`brand-settings-${activeTab}`}
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           <AnimatePresence initial={false} mode="wait">

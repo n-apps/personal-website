@@ -73,7 +73,7 @@ export function Hero() {
             onClick={() => {
               document
                 .getElementById('add-track')
-                ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                ?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
             }}>
             Add a missing track
           </Button>
