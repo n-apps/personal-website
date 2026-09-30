@@ -10,19 +10,20 @@ export function ImageWithFallback(props: React.ImgHTMLAttributes<HTMLImageElemen
     setDidError(true)
   }
 
-  const { src, alt, style, className, ...rest } = props
+  const { src, alt, style, className, width, height, ...rest } = props
+  const mediaStyle = width && height ? { aspectRatio: `${width} / ${height}`, ...style } : style
   const mediaClassName = `content-media ${className ?? ''}`
 
   return didError ? (
     <div
       className={`inline-block bg-gray-100 text-center align-middle ${mediaClassName}`}
-      style={style}
+      style={mediaStyle}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <img src={ERROR_IMG_SRC} alt="Error loading image" {...rest} data-original-url={src} />
+        <img src={ERROR_IMG_SRC} alt="Error loading image" width={88} height={88} {...rest} data-original-url={src} />
       </div>
     </div>
   ) : (
-    <img src={src} alt={alt} className={mediaClassName} style={style} {...rest} onError={handleError} />
+    <img src={src} alt={alt} width={width} height={height} className={mediaClassName} style={mediaStyle} {...rest} onError={handleError} />
   )
 }

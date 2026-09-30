@@ -45,6 +45,8 @@ export function SaasOnboardingPage() {
       <SectionAnimate delay={0.1}>
         <CaseFigure
           src='/images/saas-onboarding-hero.jpg'
+          width={1920}
+          height={1080}
           alt='Yesim business dashboard with onboarding guidance and account status'
           caption='The intended destination: a dashboard that explains account status and gives a new admin a concrete next action.'
           eager
@@ -83,6 +85,8 @@ export function SaasOnboardingPage() {
       <SectionAnimate delay={0.16}>
         <CaseFigure
           src='/images/saas-onboarding-before.png'
+          width={1920}
+          height={1080}
           alt='The previous Yesim business dashboard with no employees, plans, or guided next action'
           caption='Before: the account was valid, but the page did not connect the missing employee and plan to a useful next step.'
         />
@@ -107,6 +111,8 @@ export function SaasOnboardingPage() {
       <SectionAnimate delay={0.2}>
         <CaseFigure
           src='/images/saas-onboarding-flow.png'
+          width={1920}
+          height={1080}
           alt='A manual account-creation route handed users to an empty dashboard; the shipped self-serve route connects account creation to the first active eSIM'
           caption='The shipped path used the first assigned eSIM as the activation point. It connected self-service signup to a visible product outcome instead of an empty account.'
         />
@@ -132,6 +138,8 @@ export function SaasOnboardingPage() {
       <SectionAnimate delay={0.24}>
         <CaseFigure
           src='/images/saas-onboarding-draft.png'
+          width={1920}
+          height={1080}
           alt='Company information step with business details and document requirements'
           caption='Admins could skip this initial form and resume it later. The screen is not evidence of a separate saved-draft state.'
         />
@@ -156,6 +164,8 @@ export function SaasOnboardingPage() {
       <SectionAnimate delay={0.28}>
         <CaseFigure
           src='/images/saas-onboarding-dashboard.png'
+          width={1920}
+          height={1080}
           alt='Shipped business dashboard with account identity and an onboarding checklist'
           caption='The shipped checklist keeps incomplete setup visible and gives the admin a next action.'
         />

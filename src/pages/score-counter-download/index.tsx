@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import {
   RiAppleFill,
@@ -15,6 +15,7 @@ import './score-counter.css';
 import { DashedDivider } from '@/components/ui/dashed-divider';
 import { SectionAnimate } from '@/components/ui/section-animate';
 import { ThemeToggle } from '@/components/layout/theme-toggle';
+import { useViewportVideo } from '@/components/ui/use-viewport-video';
 
 const stores = [
   {
@@ -67,9 +68,9 @@ const testimonials = [
 ];
 
 export function ScoreCounterDownloadPage() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { videoRef, isPlaying, togglePlayback, onPlay, onPause } =
+    useViewportVideo(reduceMotion === false);
   const [visibleTestimonials, setVisibleTestimonials] = useState(testimonials);
   const [reviewsLoading, setReviewsLoading] = useState(false);
   const [reviewsError, setReviewsError] = useState(false);
@@ -105,13 +106,6 @@ export function ScoreCounterDownloadPage() {
       setReviewsLoading(false);
     }
   };
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (reduceMotion !== false) video.pause();
-    else void video.play().catch(() => setIsPlaying(false));
-  }, [reduceMotion]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -182,14 +176,15 @@ export function ScoreCounterDownloadPage() {
               ref={videoRef}
               width={238}
               height={459}
+              poster='/images/score-counter/hero-poster.webp'
               aria-label='Score Counter app preview'
               className='sc-hero-video'
               muted
               loop
               playsInline
-              preload='metadata'
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}>
+              preload='none'
+              onPlay={onPlay}
+              onPause={onPause}>
               <source src='/videos/score-counter-hero.webm' type='video/webm' />
               <source src='/videos/score-counter-hero.mp4' type='video/mp4' />
               Your browser does not support this video.
@@ -197,13 +192,7 @@ export function ScoreCounterDownloadPage() {
             <button
               type='button'
               aria-label={isPlaying ? 'Pause app preview' : 'Play app preview'}
-              onClick={() => {
-                const video = videoRef.current;
-                if (!video) return;
-                if (video.paused)
-                  void video.play().catch(() => setIsPlaying(false));
-                else video.pause();
-              }}
+              onClick={togglePlayback}
               className='absolute bottom-0 right-0 flex size-11 items-center justify-center rounded-full bg-background text-foreground card-shadow focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground'>
               {isPlaying ?
                 <RiPauseMiniFill size={22} aria-hidden='true' />

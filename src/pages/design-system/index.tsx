@@ -53,6 +53,8 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.08}>
         <CaseFigure
           src='/images/design-system-hero.png'
+          width={1920}
+          height={1080}
           alt='Shared values and semantic tokens feed one component library, which supports three product themes'
           caption="One structural library; semantic themes preserve each product's identity without component forks."
           eager
@@ -90,6 +92,8 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.16}>
         <CaseFigure
           src='/images/design-system-before-after.png'
+          width={1920}
+          height={1080}
           alt='Audit of recurring interface patterns across three Yesim B2B products'
           caption='The audit grouped repeated patterns and exposed where teams were paying for the same decision more than once. High-use tables, forms, and feedback states became the first migration targets.'
         />
@@ -149,6 +153,8 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.22}>
         <CaseFigure
           src='/images/design-system-semantics.png'
+          width={1920}
+          height={1080}
           alt='Token architecture mapping values to primitives and semantic product roles'
           caption='Semantic tokens carry intent. Product themes can change colour, type, radius, and density without changing the component API.'
         />
@@ -168,6 +174,8 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.26}>
         <CaseFigure
           src='/images/design-system-sub-brands.png'
+          width={1920}
+          height={1080}
           alt='The same design-system components rendered across three Yesim product themes'
           caption='The same component structure across three themes. Identity changes through semantics; interaction and accessibility rules remain shared.'
         />
@@ -197,6 +205,8 @@ export function DesignSystemPage() {
       <SectionAnimate delay={0.3}>
         <CaseFigure
           src='/images/design-system-specs.png'
+          width={1920}
+          height={1080}
           alt='Design-system component specification with anatomy, variants, states, and implementation notes'
           caption='Delivery evidence: component anatomy and state documentation turned a Figma asset into a repeatable implementation reference.'
         />

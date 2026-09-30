@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router";
 import {
   RiArrowLeftLine,
@@ -10,6 +10,7 @@ import {
 } from "@remixicon/react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ImageWithFallback } from "@/components/ui/image-with-fallback";
+import { useViewportVideo } from "@/components/ui/use-viewport-video";
 import { nbsp } from "@/lib/nbsp";
 import {
   fluidBase,
@@ -222,11 +223,15 @@ export function OutcomeGrid({ items }: { items: Outcome[] }) {
 /** Image plus an evidence-led caption. */
 export function CaseFigure({
   src,
+  width,
+  height,
   alt,
   caption,
   eager = false,
 }: {
   src: string;
+  width: number;
+  height: number;
   alt: string;
   caption: string;
   eager?: boolean;
@@ -235,9 +240,13 @@ export function CaseFigure({
     <figure className="-mx-4 sm:mx-0">
       <ImageWithFallback
         src={src}
+        width={width}
+        height={height}
         alt={alt}
         className="w-full rounded-none sm:rounded-xl"
         loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : "auto"}
+        decoding="async"
       />
       <figcaption
         className="px-4 pt-3 text-pretty text-muted-foreground sm:px-0"
@@ -252,55 +261,39 @@ export function CaseFigure({
 /** Video plus a caption so motion is treated as product evidence. */
 export function CaseVideo({
   src,
+  poster,
+  width,
+  height,
   label,
   caption,
 }: {
   src: string;
+  poster: string;
+  width: number;
+  height: number;
   label: string;
   caption: string;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion() === true;
-  const [isPlaying, setIsPlaying] = useState(!reduceMotion);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (reduceMotion) {
-      video.pause();
-      setIsPlaying(false);
-      return;
-    }
-
-    void video.play().catch(() => setIsPlaying(false));
-  }, [reduceMotion]);
-
-  const togglePlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      void video.play().catch(() => setIsPlaying(false));
-    } else {
-      video.pause();
-    }
-  };
+  const { videoRef, posterReady, isPlaying, togglePlayback, onPlay, onPause } =
+    useViewportVideo(!reduceMotion, src);
 
   return (
     <figure className="-mx-4 sm:mx-0">
-      <div className="relative">
+      <div className="relative bg-secondary rounded-none sm:rounded-xl" style={{ aspectRatio: `${width} / ${height}` }}>
         <video
           ref={videoRef}
-          src={src}
+          width={width}
+          height={height}
+          poster={posterReady ? poster : undefined}
           aria-label={label}
-          className="w-full rounded-none outline outline-1 -outline-offset-1 outline-[var(--image-outline)] sm:rounded-xl"
-          autoPlay={!reduceMotion}
+          className="block h-full w-full rounded-none outline outline-1 -outline-offset-1 outline-[var(--image-outline)] sm:rounded-xl"
+          preload="none"
           loop
           muted
           playsInline
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPlay={onPlay}
+          onPause={onPause}
         />
         <motion.button
           type="button"

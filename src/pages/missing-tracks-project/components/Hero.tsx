@@ -16,10 +16,19 @@ export function Hero() {
   const { cover, prefetchNext } = useRandomCover();
   const [hovering, setHovering] = useState(false);
   const [displayCover, setDisplayCover] = useState<string | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   // Kick off the first cover fetch only when the card is first hovered; every
   // later fetch happens on mouse-leave (below) so the back face never changes
   // under the user's eyes.
   const fetchStarted = useRef(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
 
   // Reveal the first loaded cover as soon as it arrives — even mid-hover, since
   // that only replaces the generic fallback. Once a real cover is showing, swap
@@ -90,18 +99,28 @@ export function Hero() {
         aria-hidden='true'>
         <div className='relative h-full w-full [transform-style:preserve-3d] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:[transform:rotateY(180deg)]'>
           <div className='absolute inset-0 overflow-hidden rounded-mt-card [backface-visibility:hidden]'>
-            <img
-              src={heroImg}
-              alt=''
-              className='h-full w-full object-cover'
-            />
+            {isDesktop && (
+              <img
+                src={heroImg}
+                width={1254}
+                height={1254}
+                alt=''
+                decoding='async'
+                className='h-full w-full object-cover'
+              />
+            )}
           </div>
           <div className='absolute inset-0 overflow-hidden rounded-mt-card [backface-visibility:hidden] [transform:rotateY(180deg)]'>
-            <img
-              src={displayCover ?? HOVER_FALLBACK}
-              alt=''
-              className='h-full w-full object-cover'
-            />
+            {isDesktop && (
+              <img
+                src={displayCover ?? HOVER_FALLBACK}
+                width={1050}
+                height={1050}
+                alt=''
+                decoding='async'
+                className='h-full w-full object-cover'
+              />
+            )}
             <RiCheckboxCircleFill className='absolute bottom-3 right-3 size-9 text-mt-green drop-shadow-[0_1px_4px_oklch(0.18_0.02_150/0.7)]' />
           </div>
         </div>

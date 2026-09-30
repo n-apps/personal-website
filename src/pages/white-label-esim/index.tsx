@@ -74,6 +74,8 @@ export function WhiteLabelEsimPage() {
       <SectionAnimate delay={0.08}>
         <CaseFigure
           src='/images/white-label-esim-hero.png'
+          width={1920}
+          height={1080}
           alt='Partner configuration fields feed product rules and update a branded eSIM preview'
           caption='The design artifact accepted the same messy input as the product. Rules sat between the form and preview instead of living in handoff notes.'
           eager
@@ -107,6 +109,8 @@ export function WhiteLabelEsimPage() {
       <SectionAnimate delay={0.15}>
         <CaseFigure
           src='/images/white-label-esim-problem.png'
+          width={1920}
+          height={1080}
           alt='Concept illustration comparing a controlled screen with failures that appear under real partner input'
           caption='Concept illustration: a controlled screen can show the intended look, while real input exposes contrast, crop, empty-content, and layout behaviour. It explains the tool choice; it was not a pre-existing Figma handoff.'
         />
@@ -158,6 +162,8 @@ export function WhiteLabelEsimPage() {
       <SectionAnimate delay={0.21}>
         <CaseFigure
           src='/images/white-label-esim-contrast.png'
+          width={1920}
+          height={1080}
           alt='The prototype compares the contrast of dark and white text against each partner colour and uses the higher ratio'
           caption='The preview now compares real contrast ratios and selects the better foreground. The rule is testable for every valid brand colour.'
         />
@@ -181,6 +187,8 @@ export function WhiteLabelEsimPage() {
       <SectionAnimate delay={0.26}>
         <CaseFigure
           src='/images/white-label-esim-logic.png'
+          width={1920}
+          height={1080}
           alt='Configuration inputs passing through conditional rules into visible or hidden preview regions'
           caption='Input → rule → output: optional settings determine whether whole preview regions exist.'
         />

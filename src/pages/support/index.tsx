@@ -90,9 +90,13 @@ export function SupportPage() {
         <div className='-mx-4 sm:mx-0'>
           <ImageWithFallback
             src={heroImage}
+            width={1920}
+            height={1080}
             alt='Board game pieces and cards'
             className='w-full aspect-[16/9] object-cover rounded-none sm:rounded-xl'
             loading='eager'
+            fetchPriority='high'
+            decoding='async'
           />
         </div>
       </SectionAnimate>

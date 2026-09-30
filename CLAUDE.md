@@ -24,6 +24,8 @@ No lint or general test runner is configured. CI runs type-check, check:theme, b
 
 **Static entries and metadata:** `src/lib/route-metadata.ts` defines metadata for every route. When adding a route in `routes.ts`, add matching metadata here. Vite emits physical route HTML files, a noindex `404.html`, `robots.txt`, and `sitemap.xml`; CI checks that the router and generated entries match. These are client-rendered entry shells, not prerendered page bodies. The shared route metadata hook updates the head during client navigation. Canonicals use trailing slashes to match GitHub Pages directory URLs.
 
+**Media scheduling:** `CaseFigure` requires intrinsic `width`/`height`; `CaseVideo` also requires a poster. Shared `useViewportVideo` assigns case-study sources near the viewport, starts playback only when visible, pauses offscreen/when hidden, preserves manual pauses, and requires explicit Play for reduced motion. Case studies use `.web.mp4` delivery encodes; original MP4s remain source masters. The homepage preloads only its first project cover; later covers are lazy and experience photos load on hover. Desktop-only Missing Tracks art is mounted only at its matching breakpoint.
+
 **Page transitions:** `src/lib/page-transition.ts` exposes `navigateWithTransition(to, preload?)` — an imperative store that drives `PageTransitionOverlay`. Use it (not `router.navigate`/`<Link>`) when a navigation should fade through the overlay; otherwise plain React Router links are fine.
 
 **Layout shell:** `Layout` renders a single 576px-max-width CSS grid (`nav` / `main` / `footer`) centered on the page.

@@ -65,6 +65,8 @@ export function ScoreCounterPage() {
       <SectionAnimate delay={0.1}>
         <CaseFigure
           src='/images/score-counter-hero.jpg'
+          width={1920}
+          height={1080}
           alt='People using Score Counter on a phone during a tabletop game'
           caption='The original job stayed simple: replace a paper score sheet without interrupting the game.'
           eager
@@ -110,7 +112,10 @@ export function ScoreCounterPage() {
 
       <SectionAnimate delay={0.17}>
         <CaseVideo
-          src='/videos/score-counter-flow.mp4'
+          src='/videos/score-counter-flow.web.mp4'
+          poster='/images/score-counter-flow-poster.webp'
+          width={1920}
+          height={1080}
           label='Score Counter core interaction from opening the app to changing a score'
           caption='The core loop stays direct: open → add counters → count. Extra tools remain outside that first interaction.'
         />
@@ -164,6 +169,8 @@ export function ScoreCounterPage() {
       <SectionAnimate delay={0.21}>
         <CaseFigure
           src='/images/score-counter-evolution.png'
+          width={1920}
+          height={1080}
           alt='Score Counter interface in 2018 and 2025, showing the change from small score rows to large named counter cards'
           caption='2018 → 2025: larger targets, clearer player identity, and optional controls improved use at a distance while the basic counting model stayed intact.'
         />
@@ -190,7 +197,10 @@ export function ScoreCounterPage() {
 
       <SectionAnimate delay={0.25}>
         <CaseVideo
-          src='/videos/score-counter-bonus.mp4'
+          src='/videos/score-counter-bonus.web.mp4'
+          poster='/images/score-counter-bonus-poster.webp'
+          width={960}
+          height={540}
           label='Real Score Counter reviews and messages describing unexpected counting uses'
           caption='Direct user evidence: a general counting model supported use cases I did not plan, from sport to household tallies.'
         />

@@ -87,11 +87,13 @@ try {
     assert.equal((html.match(/<title>/g) ?? []).length, 1, `${route}: duplicate title`);
     assert.equal((html.match(/rel="canonical"/g) ?? []).length, 1, `${route}: duplicate canonical`);
     assert.doesNotMatch(html, /name="robots" content="noindex"/);
+    assert.equal((html.match(/rel="preload" as="image"/g) ?? []).length, route === '/' ? 1 : 0,
+      `${route}: homepage image hint must not leak to unrelated entries`);
     for (const key of ['description', 'og:title', 'og:description', 'og:url', 'og:image', 'twitter:title', 'twitter:description', 'twitter:url', 'twitter:image']) {
       assert.equal((html.match(new RegExp(`(?:name|property)="${key}"`, 'g')) ?? []).length, 1,
         `${route}: missing or duplicate ${key}`);
     }
-    for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"?]+)"/g)) {
+    for (const match of html.matchAll(/(?:src|href)="(\/(?:assets|images)\/[^"?]+)"/g)) {
       assert.equal((await fetch(`${base}${match[1]}`)).status, 200, `${route}: missing entry asset ${match[1]}`);
     }
     assert.equal((await fetch(`${base}${new URL(metadata.image).pathname}`)).status, 200,

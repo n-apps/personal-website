@@ -21,8 +21,11 @@ export default defineConfig({
         // Actual files give known deep links a 200 response on GitHub Pages.
         for (const [route, metadata] of Object.entries(routeMetadata)) {
           const source = routeHead(template, metadata);
-          if (route === '/') entry.source = source;
-          else this.emitFile({ type: 'asset', fileName: `${route.slice(1)}/index.html`, source });
+          // The homepage's first visible cover must be discoverable before React executes.
+          const entryHtml = route === '/' ? source.replace('</head>',
+            '<link rel="preload" as="image" href="/images/design-system-cover.png" fetchpriority="high" />\n</head>') : source;
+          if (route === '/') entry.source = entryHtml;
+          else this.emitFile({ type: 'asset', fileName: `${route.slice(1)}/index.html`, source: entryHtml });
         }
         this.emitFile({ type: 'asset', fileName: '404.html', source: routeHead(template, notFoundMetadata, true) });
         this.emitFile({ type: 'asset', fileName: 'robots.txt', source: 'User-agent: *\nAllow: /\nSitemap: https://romamakes.com/sitemap.xml\n' });

@@ -137,6 +137,7 @@ function useDesktopHover() {
 
 function WorkExperienceList() {
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [readyImage, setReadyImage] = useState<string | null>(null);
   const isDesktopHover = useDesktopHover();
   const reduceMotion = useReducedMotion();
   const hasPosition = useRef(false);
@@ -149,13 +150,7 @@ function WorkExperienceList() {
     if (!isDesktopHover) {
       setActiveImage(null);
       hasPosition.current = false;
-      return;
     }
-
-    workExperience.forEach(({ image }) => {
-      const preloader = new Image();
-      preloader.src = image;
-    });
   }, [isDesktopHover]);
 
   const positionPopover = (event: MouseEvent<HTMLDivElement>) => {
@@ -250,7 +245,7 @@ function WorkExperienceList() {
                 initial={
                   reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }
                 }
-                animate={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: readyImage === activeImage ? 1 : 0, scale: 1 }}
                 exit={
                   reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98 }
                 }
@@ -267,9 +262,12 @@ function WorkExperienceList() {
                 }}>
                 <img
                   src={activeImage}
+                  width={672}
+                  height={840}
                   alt=''
                   aria-hidden='true'
                   decoding='async'
+                  onLoad={() => setReadyImage(activeImage)}
                   className='size-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10'
                 />
               </motion.div>
@@ -358,7 +356,7 @@ export function HomePage() {
           <div
             className='flex flex-col'
             style={{ gap: 'clamp(1.25rem, 1rem + 1vw, 2rem)' }}>
-            {selectedWorks.map((project) => (
+            {selectedWorks.map((project, index) => (
               <Link
                 key={project.title}
                 to={project.caseStudy}
@@ -368,7 +366,10 @@ export function HomePage() {
                   <img
                     src={project.cover}
                     alt={project.title}
-                    loading='lazy'
+                    width={1920}
+                    height={1080}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
                     decoding='async'
                     className='w-full aspect-[16/9] object-cover group-hover:scale-[1.02] transition-transform duration-500 ease-out'
                   />
