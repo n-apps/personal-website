@@ -65,7 +65,7 @@ GoatCounter tracking is injected by `src/lib/use-analytics.tsx`, which wraps rou
 
 ## Asset delivery, motion and hosting
 
-`pnpm encode:images` generates hashed responsive AVIF/WebP assets and their manifest; originals remain masters. `python3 scripts/subset-fonts.py` regenerates OpenRunde subsets after new copy; Newsreader is self-hosted with its original variable axes. Use `ResponsiveImage` for manifest-backed assets and accurate `sizes` for layouts narrower than the shell.
+`pnpm encode:images` generates hashed responsive AVIF/WebP assets and their manifest; originals remain masters. `python3 scripts/subset-fonts.py` regenerates OpenRunde subsets after new copy; Newsreader is self-hosted with its original variable axes. `ResponsiveImage` serves original assets after the image-quality rollback; generated variants are not selected. Preserve intrinsic dimensions and loading priorities.
 
 Use `m` from `motion/react`, inside `AppShell`'s strict deferred `LazyMotion` boundary. Missing Tracks uses a CSS backdrop on mobile/reduced-motion/data-saving visits and loads its desktop shader after 800ms; native dialogs and keyboard menus preserve focus. Fiber and Three are needed by the shader. Paper Shaders already pauses its own animation loop.
 

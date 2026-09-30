@@ -15,9 +15,15 @@ try {
   for (const [route, module] of Object.entries(staticRouteModules)) {
     const entry = path.join('dist', route.slice(1), 'index.html');
     const pathname = route === '/' ? '/' : `${route}/`;
-    const body = await render(pathname).catch(error => { throw new Error(`Prerender failed for ${pathname}`, { cause: error }); });
+    let body = await render(pathname).catch(error => { throw new Error(`Prerender failed for ${pathname}`, { cause: error }); });
     if (!body.includes('<h1')) throw new Error(`${route}: no static heading rendered`);
     let html = await readFile(entry, 'utf8');
+    // React can emit an image preload already supplied by the entry head.
+    const existingPreloads = new Set([...html.matchAll(/<link[^>]*rel="preload"[^>]*>/g)]
+      .map(([tag]) => tag.match(/href="([^"]+)"/)?.[1]));
+    body = body.replace(/<link[^>]*rel="preload"[^>]*>/g, tag =>
+      existingPreloads.has(tag.match(/href="([^"]+)"/)?.[1]) ? '' : tag);
+
     const styles = (manifest[module] ?? []).filter(asset => asset.endsWith('.css'));
     for (const href of styles) {
       if (!html.includes(`href="${href}"`)) html = html.replace('</head>', `<link rel="stylesheet" href="${href}" />\n</head>`);

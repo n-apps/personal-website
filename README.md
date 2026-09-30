@@ -31,7 +31,7 @@ Posters are actual clip frames, not generated illustrations. `useViewportVideo` 
 
 ## Asset generation
 
-`pnpm encode:images` uses development-only Sharp to produce checked-in, content-hashed AVIF (4:4:4) and WebP files plus `src/data/responsive-images.json`. Originals remain untouched. `ResponsiveImage` selects by CSS width and device pixel ratio; the root HTML preloads the same responsive AVIF candidates. The favicon is a 48px PNG; the 180px Apple touch icon is separate.
+`pnpm encode:images` uses development-only Sharp to produce checked-in, content-hashed AVIF (4:4:4) and WebP files plus `src/data/responsive-images.json`. Originals remain untouched. `ResponsiveImage` currently serves the original image files after a quality rollback; generated variants are not selected. The root HTML preloads the original first PNG cover. The favicon is a 48px PNG; the 180px Apple touch icon is separate.
 
 For fonts, install Python `fonttools[woff]`, then run `python3 scripts/subset-fonts.py`. OpenRunde's initial subsets cover Latin, punctuation and all current source/data characters; remaining glyphs use the original WOFF2 files only when needed. Regenerate after adding copy in a new script. Newsreader retains both variable axes and is self-hosted using the original Google Fonts Latin faces. Font license notices are in `public/fonts/`. WOFF fallbacks and Google Fonts preconnects are no longer needed for the portfolio; Missing Tracks still loads its own route-only fonts.
 
