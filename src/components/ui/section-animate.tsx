@@ -19,7 +19,7 @@ export function SectionAnimate({
   const staticMarkup = useStaticMarkup();
   const reveal = { opacity: 1, y: 0 };
   const element = useRef<HTMLDivElement>(null);
-  const [viewportReveal, setViewportReveal] = useState<'pending' | 'revealed'>();
+  const [viewportReveal, setViewportReveal] = useState<'pending' | 'revealed' | 'visible'>();
 
   useEffect(() => {
     // Static sections stay readable without JS; viewport gating starts only
@@ -33,8 +33,10 @@ export function SectionAnimate({
     if (!node) return;
     const rect = node.getBoundingClientRect();
     const visibleHeight = Math.max(0, Math.min(rect.bottom, innerHeight) - Math.max(rect.top, 0));
-    if (rect.height > 0 && visibleHeight / rect.height >= 0.1) {
-      setViewportReveal('revealed');
+    // Even a sliver may already have painted from the static HTML. Keep it
+    // visible: entering the "revealed" state would replay the fade from zero.
+    if (visibleHeight > 0) {
+      setViewportReveal('visible');
       return;
     }
     setViewportReveal('pending');
