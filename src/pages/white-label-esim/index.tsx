@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import { RiArrowRightUpLine } from '@remixicon/react';
 import { SectionAnimate } from '@/components/ui/section-animate';
 import { GlowEffect } from '@/components/motion-primitives/glow-effect';
@@ -35,6 +36,8 @@ function Body({ children }: { children: React.ReactNode }) {
   );
 }
 
+const demoPath = '/work/white-label-esim/demo/customize/';
+
 function DemoButton() {
   return (
     <div className='relative isolate transition-transform duration-200 hover:-translate-y-0.5'>
@@ -46,9 +49,14 @@ function DemoButton() {
         scale={1.06}
         className='translate-y-1.5 opacity-50'
       />
-      <button
-        type='button'
-        onClick={() => navigateWithTransition('/work/white-label-esim/demo/customize')}
+      <Link
+        to={demoPath}
+        onClick={(event) => {
+          // Keep new-tab and other modified clicks native; plain clicks fade through the overlay.
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          navigateWithTransition(demoPath);
+        }}
         data-goatcounter-click='white-label-live-prototype'
         className='group relative z-10 flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl bg-foreground p-5 text-left text-background transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-6'>
         <span>
@@ -56,7 +64,7 @@ function DemoButton() {
           <span className='mt-1 block text-pretty text-lg leading-tight'>Open the live configurator</span>
         </span>
         <RiArrowRightUpLine className='shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' aria-hidden />
-      </button>
+      </Link>
     </div>
   );
 }
@@ -251,7 +259,7 @@ export function WhiteLabelEsimPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.34}>
-        <CaseNavigation next='/work/saas-onboarding' />
+        <CaseNavigation next='/work/saas-onboarding/' />
       </SectionAnimate>
     </div>
   );

@@ -211,7 +211,7 @@ export function ScoreCounterPrivacyPage() {
   return (
     <div className='min-h-screen px-5 sm:px-8'>
       <header className='mx-auto flex w-full max-w-3xl items-center justify-between py-6 sm:py-8'>
-        <Link to='/score-counter' data-goatcounter-click='score-counter-privacy-back-to-app' className='inline-flex min-h-11 items-center pr-4 text-sm underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground'>
+        <Link to='/score-counter/' data-goatcounter-click='score-counter-privacy-back-to-app' className='inline-flex min-h-11 items-center pr-4 text-sm underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground'>
           Score Counter
         </Link>
       </header>

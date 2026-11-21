@@ -45,7 +45,7 @@ export function CompanySettingsDemoPage() {
         {/* Back to case study */}
         <m.div variants={reduceMotion ? revealItemReduced : revealItem}>
           <Link
-            to="/work/white-label-esim"
+            to="/work/white-label-esim/"
             data-goatcounter-click="white-label-demo-back-to-case-study"
             className="-ms-2 inline-flex min-h-11 select-none items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-ink-600 transition-[background-color,color,scale] duration-150 ease-out hover:bg-surface-field hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-demo-accent/30 active:scale-[0.96]"
           >
@@ -82,7 +82,7 @@ export function CompanySettingsDemoPage() {
             Company settings
           </h1>
           <Link
-            to="/work/white-label-esim/demo/customize"
+            to="/work/white-label-esim/demo/customize/"
             data-goatcounter-click="white-label-demo-add-brand"
             className="inline-flex h-11 select-none items-center gap-2 self-start rounded-lg bg-ink-900 ps-3.5 pe-4 text-sm font-medium text-white shadow-[0_1px_2px_oklch(0_0_0/0.12),0_4px_12px_-6px_oklch(0_0_0/0.28)] transition-[background-color,scale] duration-150 ease-out hover:bg-ink-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-demo-accent/30 active:scale-[0.96] sm:self-auto"
           >

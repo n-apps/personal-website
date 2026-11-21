@@ -8,4 +8,6 @@ export const staticRouteModules: Record<string, string> = {
   '/support': 'src/pages/support/index.tsx',
   '/score-counter': 'src/pages/score-counter-download/index.tsx',
   '/score-counter/privacy': 'src/pages/score-counter-privacy/index.tsx',
+  '/work/score-counter/reviews': 'src/pages/score-counter/reviews/index.tsx',
+  '/missing-tracks-project/about': 'src/pages/missing-tracks-project/about/index.tsx',
 };

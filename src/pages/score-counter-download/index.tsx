@@ -1013,7 +1013,7 @@ export function ScoreCounterDownloadPage() {
           </Link>
         </span>
         <Link
-          to='/score-counter/privacy'
+          to='/score-counter/privacy/'
           data-goatcounter-click='score-counter-footer-privacy'
           className='inline-flex min-h-11 items-center underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground'>
           Privacy Policy

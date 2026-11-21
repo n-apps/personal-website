@@ -229,7 +229,7 @@ export function DesignSystemPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.34}>
-        <CaseNavigation next='/work/white-label-esim' />
+        <CaseNavigation next='/work/white-label-esim/' />
       </SectionAnimate>
     </div>
   );

@@ -212,7 +212,7 @@ export function SaasOnboardingPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.34}>
-        <CaseNavigation next='/work/score-counter' />
+        <CaseNavigation next='/work/score-counter/' />
       </SectionAnimate>
     </div>
   );

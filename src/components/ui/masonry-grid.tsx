@@ -111,8 +111,33 @@ export function MasonryGrid({ items }: { items: string[] }) {
     [prepared, containerWidth, colCount]
   );
 
+  // Before measurement (prerendered HTML, first client render) the text is laid
+  // out with CSS columns, so the content exists without JavaScript. The same
+  // container stays mounted so the ResizeObserver keeps watching it.
+  const measured = cards.length > 0;
+
   return (
-    <div ref={containerRef} className="relative w-full" style={{ height }}>
+    <div
+      ref={containerRef}
+      className={measured ? "relative w-full" : "w-full columns-1 min-[480px]:columns-2 md:columns-3 lg:columns-4 xl:columns-6"}
+      style={measured ? { height } : { columnGap: gap }}
+    >
+      {!measured && items.map((text, index) => (
+        <div
+          key={index}
+          className="break-inside-avoid rounded-xl bg-card card-shadow"
+          style={{
+            marginBottom: gap,
+            padding: cardPadding,
+            fontSize: 14,
+            lineHeight: `${lineHeight}px`,
+            color: "var(--foreground)",
+            opacity: "0.8",
+          }}
+        >
+          {text}
+        </div>
+      ))}
       {cards.map((card) => (
         <div
           key={card.index}

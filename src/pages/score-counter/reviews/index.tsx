@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { RiArrowLeftLine } from "@remixicon/react";
 import { SectionAnimate } from "@/components/ui/section-animate";
@@ -5,11 +6,17 @@ import { fluidSmall, sectionGap } from "@/lib/typography";
 import { MasonryGrid } from "@/components/ui/masonry-grid";
 import reviewsData from "@/data/reviews.json";
 
-const reviews = [...reviewsData].sort(() => Math.random() - 0.5);
-
 export function ReviewsPage() {
+  // Prerendered HTML and the hydrating client must start from the same order;
+  // shuffle only after mount.
+  const [reviews, setReviews] = useState(reviewsData);
+  useEffect(() => {
+    setReviews([...reviewsData].sort(() => Math.random() - 0.5));
+  }, []);
+
   return (
     <div className="flex flex-col" style={{ gap: sectionGap }}>
+      <h1 className="sr-only">Score Counter reviews</h1>
 
       {/* Masonry grid — full width, no constraint */}
       <SectionAnimate delay={0.1}>
@@ -19,7 +26,7 @@ export function ReviewsPage() {
       {/* Bottom back link */}
       <SectionAnimate delay={0.12}>
         <Link
-          to="/work/score-counter"
+          to="/work/score-counter/"
           data-goatcounter-click="reviews-back-to-case-study-bottom"
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           style={{ fontSize: fluidSmall, lineHeight: 1 }}

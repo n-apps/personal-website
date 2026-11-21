@@ -219,7 +219,7 @@ export function CustomizeEsimDemoPage() {
         {/* Back to case study */}
         <m.div variants={reduceMotion ? revealItemReduced : revealItem}>
           <Link
-            to="/work/white-label-esim"
+            to="/work/white-label-esim/"
             data-goatcounter-click="white-label-demo-back-to-case-study"
             className="-ms-2 inline-flex min-h-11 select-none items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-ink-600 transition-[background-color,color,scale] duration-150 ease-out hover:bg-surface-field hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-demo-accent/30 active:scale-[0.96]"
           >
@@ -253,7 +253,7 @@ export function CustomizeEsimDemoPage() {
           variants={reduceMotion ? revealItemReduced : revealItem}
         >
           <Link
-            to="/work/white-label-esim/demo"
+            to="/work/white-label-esim/demo/"
             data-goatcounter-click="white-label-demo-customize-back-to-settings"
             className="-ms-2 inline-flex min-h-11 select-none items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-ink-600 transition-[background-color,color,scale] duration-150 ease-out hover:bg-surface-field hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-demo-accent/30 active:scale-[0.96]"
           >

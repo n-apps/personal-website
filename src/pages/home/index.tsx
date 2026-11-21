@@ -61,7 +61,7 @@ const selectedWorks = [
     subtitle: 'Yesim',
     description:
       'Unified 3 B2B products; about 4× faster Figma setup and around 30% fewer style QA issues',
-    caseStudy: '/work/design-system',
+    caseStudy: '/work/design-system/',
     cover: designSystemCover,
   },
   {
@@ -69,7 +69,7 @@ const selectedWorks = [
     subtitle: 'Yesim',
     description:
       'Used a working prototype to resolve contrast, validation, and conditional states',
-    caseStudy: '/work/white-label-esim',
+    caseStudy: '/work/white-label-esim/',
     cover: whiteLabelEsimCover,
   },
   {
@@ -77,14 +77,14 @@ const selectedWorks = [
     subtitle: 'Yesim',
     description:
       'Designed the path from an empty account to the first assigned eSIM',
-    caseStudy: '/work/saas-onboarding',
+    caseStudy: '/work/saas-onboarding/',
     cover: saasOnboardingCover,
   },
   {
     title: 'Score Counter',
     subtitle: 'Android app',
     description: 'Designed, built, and ran a solo app to 1M+ installs and 100K MAU',
-    caseStudy: '/work/score-counter',
+    caseStudy: '/work/score-counter/',
     cover: scoreCounterCover,
   },
 ];

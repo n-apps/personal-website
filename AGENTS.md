@@ -1,12 +1,12 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides repository guidance for Codex and Claude Code.
 
 ## Commands
 
 ```bash
 pnpm dev          # Start development server
-pnpm build        # Production client build + eight prerendered content routes
+pnpm build        # Production client build + ten prerendered content routes
 pnpm type-check   # TypeScript type checking (no emit)
 pnpm check:routes # Check built route entries/statuses (run after build; Node 24+)
 pnpm check:theme  # Check storage failure and theme fallback behavior
@@ -22,7 +22,7 @@ No lint or general test runner is configured. CI runs type-check, check:theme, b
 
 **Routing:** The shared tree is in `src/app/route-config.ts`; `src/app/routes.ts` creates the browser router and registers transition navigation. All pages except `HomePage` and `NotFoundPage` are loaded with `React.lazy()`; `Layout` wraps `<Outlet>` in `<Suspense fallback={<RouteLoading />}>`, so new lazy routes work without extra wiring. Case studies live under `/work/`. Sub-routes (e.g. `/work/score-counter/reviews`, `/work/white-label-esim/demo`) use their own layout outside the main `Layout`. A standalone full-bleed experience like `/missing-tracks-project` renders entirely outside `Layout` via its own `MissingTracksLayout` (shared nav + self-scoped theme `src/styles/missing-tracks-theme.css`), hosting child routes for the watchlist app (index) and an About page (`/missing-tracks-project/about`) — the pattern for pages that break the 576px shell. `Layout` auto-scrolls to top on route change.
 
-**Static entries and metadata:** `src/lib/route-metadata.ts` defines metadata for every route. When adding a route in `route-config.ts`, add matching metadata here. Vite emits physical route HTML files, a noindex `404.html`, `robots.txt`, and `sitemap.xml`; CI checks that the router and generated entries match. `src/lib/static-routes.ts` selects eight content pages for build-time rendering via `src/entry-server.tsx`; tools/reviews remain client-rendered. Static content has finished HTML before hydration. `SectionAnimate` uses CSS for prerendered slide/fade entrances; viewport reveals activate after hydration and reduced-motion visits stay static. `scripts/build.mjs` removes temporary server artifacts; route CSS is linked before hydration. The shared route metadata hook updates the head during client navigation. Canonicals use trailing slashes to match GitHub Pages directory URLs.
+**Static entries and metadata:** `src/lib/route-metadata.ts` defines metadata for every route. When adding a route in `route-config.ts`, add matching metadata here. Vite emits physical route HTML files, a noindex `404.html`, `robots.txt`, and `sitemap.xml`; CI checks that the router and generated entries match. `src/lib/static-routes.ts` selects ten content pages (including reviews and the Missing Tracks About page) for build-time rendering via `src/entry-server.tsx`; interactive tools remain client-rendered. Internal links use the trailing-slash canonical paths to avoid directory redirects. Static content has finished HTML before hydration. `SectionAnimate` uses CSS for prerendered slide/fade entrances; viewport reveals activate after hydration and reduced-motion visits stay static. `scripts/build.mjs` removes temporary server artifacts; route CSS is linked before hydration. The shared route metadata hook updates the head during client navigation. Canonicals use trailing slashes to match GitHub Pages directory URLs.
 
 **Media scheduling:** `CaseFigure` requires intrinsic `width`/`height`; `CaseVideo` also requires a poster. Shared `useViewportVideo` assigns case-study sources near the viewport, starts playback only when visible, pauses offscreen/when hidden, preserves manual pauses, and requires explicit Play for reduced motion. Case studies use `.web.mp4` delivery encodes; original MP4s remain source masters. The homepage preloads only its first project cover; later covers are lazy and experience photos load on hover. Desktop-only Missing Tracks art is mounted only at its matching breakpoint.
 
@@ -58,10 +58,6 @@ GoatCounter tracking is injected by `src/lib/use-analytics.tsx`, which wraps rou
 ## Path Alias
 
 `@/*` maps to `./src/*` (configured in both `vite.config.ts` and `tsconfig.json`).
-
-## CLAUDE.md
-
-`CLAUDE.md` at the repo root is a near-verbatim copy of this file for Claude Code. When you change one, mirror the change in the other so the two stay in sync.
 
 ## Asset delivery, motion and hosting
 

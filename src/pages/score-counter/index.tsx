@@ -225,7 +225,7 @@ export function ScoreCounterPage() {
             </blockquote>
           </div>
           <Link
-            to='/work/score-counter/reviews'
+            to='/work/score-counter/reviews/'
             data-goatcounter-click='testimonials-see-all-reviews'
             className='group inline-flex min-h-11 items-center gap-2 self-start text-sm text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground'>
             Read the review wall
@@ -247,7 +247,7 @@ export function ScoreCounterPage() {
 
       <SectionAnimate delay={0.31}>
         <Link
-          to='/score-counter'
+          to='/score-counter/'
           data-goatcounter-click='score-counter-get-app'
           target='_blank'
           rel='noopener noreferrer'
@@ -259,7 +259,7 @@ export function ScoreCounterPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.33}>
-        <CaseNavigation next='/work/design-system' />
+        <CaseNavigation next='/work/design-system/' />
       </SectionAnimate>
     </div>
   );

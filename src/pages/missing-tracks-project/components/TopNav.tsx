@@ -1,8 +1,8 @@
 import { Link, NavLink } from 'react-router';
 import { cn } from '../lib/cn';
 
-const HOME_PATH = '/missing-tracks-project';
-const ABOUT_PATH = '/missing-tracks-project/about';
+const HOME_PATH = '/missing-tracks-project/';
+const ABOUT_PATH = '/missing-tracks-project/about/';
 
 const navLink = ({ isActive }: { isActive: boolean }) =>
   cn(
