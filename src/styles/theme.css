@@ -313,6 +313,12 @@
   }
 }
 
+/* Case-study figures are light-only exports; dim them in dark mode so they
+   read as images on the page rather than bright panels. */
+.dark .case-media {
+  filter: brightness(0.82);
+}
+
 /* Prerendered entrances run on first paint, independently of JS hydration. */
 @keyframes section-reveal {
   from { opacity: 0; transform: translateY(16px); }

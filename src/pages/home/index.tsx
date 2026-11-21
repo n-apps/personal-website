@@ -82,7 +82,7 @@ const selectedWorks = [
   },
   {
     title: 'Score Counter',
-    subtitle: 'Android app',
+    subtitle: 'Android and iOS app',
     description: 'Designed, built, and ran a solo app to 1M+ installs and 100K MAU',
     caseStudy: '/work/score-counter/',
     cover: scoreCounterCover,
@@ -290,7 +290,7 @@ function ConnectListItem({ label, href, download }: ConnectLink) {
         {...(download ?
           { download: true }
         : { target: '_blank', rel: 'noopener noreferrer' })}
-        className='group inline-flex min-h-11 items-center gap-1.5 rounded-full bg-secondary px-4 py-2 text-foreground no-underline transition-[background-color,color,transform] duration-200 ease-out hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.96]'
+        className='group flex w-full min-h-11 items-center justify-center sm:inline-flex sm:w-auto gap-1.5 rounded-full bg-secondary px-4 py-2 text-foreground no-underline transition-[background-color,color,transform] duration-200 ease-out hover:bg-accent hover:text-accent-foreground focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.96]'
         style={{ fontSize: fluidSmall, lineHeight: 1.2 }}>
         <span>{label}</span>
         <span
@@ -427,35 +427,8 @@ export function HomePage() {
         </section>
       </SectionAnimate>
 
-      {/* Skills */}
-      <SectionAnimate delay={0.2}>
-        <section
-          className='flex flex-col'
-          style={{ gap: 'clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)' }}>
-          <h2
-            style={{
-              fontSize: fluidBase,
-              fontWeight: 500,
-              lineHeight: 1.2,
-              letterSpacing: '-0.01em',
-            }}>
-            Skills & tools
-          </h2>
-          <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-            {nbsp(
-              'I work across product discovery, UX systems and end-to-end delivery — from complex B2B flows to solo-shipped mobile products.',
-            )}
-          </p>
-          <p style={{ fontSize: fluidBase, lineHeight: 1.5 }}>
-            {nbsp(
-              'Strong in Figma, design systems, UX logic, prototyping, analytics and A/B testing. I also use AI coding tools to turn concepts into realistic product prototypes.',
-            )}
-          </p>
-        </section>
-      </SectionAnimate>
-
       {/* Connect */}
-      <SectionAnimate delay={0.25}>
+      <SectionAnimate delay={0.2}>
         <section
           className='flex flex-col'
           style={{ gap: 'clamp(0.75rem, 0.7rem + 0.25vw, 1.25rem)' }}>
@@ -472,7 +445,7 @@ export function HomePage() {
             className='flex flex-col'
             style={{ gap: 'clamp(1.5rem, 1.25rem + 1.25vw, 2.5rem)' }}>
             <ul
-              className='flex flex-wrap'
+              className='grid grid-cols-2 sm:flex sm:flex-wrap'
               style={{
                 rowGap: 'clamp(0.75rem, 0.7rem + 0.25vw, 1rem)',
                 columnGap: 'clamp(1rem, 0.75rem + 0.5vw, 1.5rem)',

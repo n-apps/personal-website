@@ -38,7 +38,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
   return (
     <m.button
       onClick={handleToggle}
-      className={`relative flex size-11 cursor-pointer items-center justify-center rounded-full ${className}`}
+      className={`relative flex size-11 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${className}`}
       style={{ color: "var(--foreground)" }}
       aria-label="Toggle color theme"
       whileTap={reduceMotion ? undefined : { scale: 0.96 }}

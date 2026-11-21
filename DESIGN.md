@@ -1,66 +1,64 @@
 ---
 name: Roma Shuliatiev Portfolio
-description: An understated, evidence-led product-design portfolio. Near-monochrome, one hot-coral signal.
+description: An understated, evidence-led product-design portfolio. Near-monochrome, one warm-orange signal.
 colors:
   bg-base: '#fafafa'
+  bg-base-dark: '#111111'
   ink: '#0a0a0a'
+  ink-dark: '#eeeeee'
   card-surface: '#ffffff'
-  surface-secondary: '#f0f0f0'
-  surface-muted: '#e8e8e8'
-  ink-muted: '#6b6b6b'
-  hot-coral: '#F55817'
-  on-coral: '#ffffff'
-  success: '#16a34a'
-  hairline: '#0a0a0a14'
+  card-surface-dark: '#1a1a1a'
+  surface-secondary: '#f2f2f2'
+  surface-secondary-dark: '#222222'
+  surface-muted: '#e9e9e9'
+  surface-muted-dark: '#2d2d2d'
+  ink-muted: '#626262'
+  ink-muted-dark: '#828282'
+  accent: '#c74002'
+  accent-dark: '#f14f03'
+  on-accent: '#ffffff'
+  on-accent-dark: '#111111'
+  success: '#28a323'
+  success-dark: '#50c249'
+  hairline: 'oklch(0 0 0 / 0.08)'
+  hairline-dark: 'oklch(1 0 0 / 0.08)'
 typography:
-  display:
-    fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(2rem, 1rem + 3.5vw, 3.25rem)'
+  name-display:
+    fontFamily: 'Newsreader, Georgia, serif'
+    fontStyle: 'italic (home) / roman (case studies)'
+    fontSize: 'clamp(1.3235rem, 1.147rem + 0.88vw, 1.985rem)'
     fontWeight: 400
-    lineHeight: 1.15
-    letterSpacing: '-0.02em'
-  headline:
-    fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(1.5rem, 1rem + 2vw, 2.25rem)'
-    fontWeight: 400
-    lineHeight: 1.2
-    letterSpacing: '-0.015em'
-  title:
-    fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(1.25rem, 1rem + 1vw, 1.5rem)'
-    fontWeight: 400
-    lineHeight: 1.3
-    letterSpacing: '-0.01em'
+    lineHeight: '1.15–1.2'
+    letterSpacing: '-0.02em to -0.025em'
+  section-serif:
+    fontFamily: 'Newsreader, Georgia, serif'
+    fontSize: 'clamp(0.993rem, 0.926rem + 0.35vw, 1.103rem)'
+    fontWeight: 500
   lead:
     fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem)'
+    fontSize: 'clamp(0.993rem, 0.926rem + 0.35vw, 1.103rem)'
     fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: '-0.011em'
+    lineHeight: 1.55
   body:
     fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)'
+    fontSize: 'clamp(0.875rem, 0.84rem + 0.2vw, 0.9375rem)'
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: '1.5 (home) / 1.6 (case studies)'
     letterSpacing: '-0.011em'
-  label:
+  section-label:
     fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
-    fontSize: 'clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)'
+    fontSize: 'clamp(0.875rem, 0.84rem + 0.2vw, 0.9375rem)'
     fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: 'normal'
-  serif-accent:
-    fontFamily: 'Newsreader, Georgia, serif'
-    fontSize: 'clamp(1rem, 0.94rem + 0.3vw, 1.25rem)'
-    fontWeight: 400
     lineHeight: 1.2
-    letterSpacing: '-0.01em'
+  small:
+    fontFamily: 'OpenRunde, system-ui, -apple-system, sans-serif'
+    fontSize: 'clamp(0.72rem, 0.688rem + 0.13vw, 0.8825rem)'
+    fontWeight: 400
+    lineHeight: '1.4–1.5'
   mono:
-    fontFamily: 'IBM Plex Mono, monospace'
+    fontFamily: "ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace"
     fontSize: '0.875em'
     fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: 'normal'
 rounded:
   sm: '6px'
   md: '8px'
@@ -70,184 +68,200 @@ rounded:
 spacing:
   inner: 'clamp(0.75rem, 0.7rem + 0.25vw, 1rem)'
   section: 'clamp(2.5rem, 2rem + 2.5vw, 4rem)'
-  content-max: '700px'
+  home-section: 'clamp(3rem, 2.5rem + 2.5vw, 5rem)'
+  content-max: '576px'
+  media-max: '1100px'
 components:
-  link-default:
+  link-inline:
+    textColor: '{colors.accent}'
+    decoration: 'none at rest, underline on hover/focus'
+  link-nav:
     textColor: '{colors.ink-muted}'
-    typography: '{typography.body}'
-  link-accent:
-    textColor: '{colors.hot-coral}'
-    typography: '{typography.label}'
+    hover: '{colors.ink}'
   card-work:
     backgroundColor: '{colors.card-surface}'
     rounded: '{rounded.xl}'
-    padding: '16px'
+    padding: '16px / 20px at sm'
+  button-pill:
+    backgroundColor: '{colors.surface-secondary}'
+    hover: '{colors.accent}'
+    rounded: '{rounded.full}'
+    minHeight: '44px'
   button-toggle:
     backgroundColor: 'transparent'
     textColor: '{colors.ink}'
     rounded: '{rounded.full}'
-    height: '32px'
-    width: '32px'
+    size: '44px'
   code-inline:
     backgroundColor: '{colors.surface-secondary}'
     textColor: '{colors.ink}'
     typography: '{typography.mono}'
-    rounded: '5px'
-    padding: '3px 6px'
+    rounded: '0.3em'
+    padding: '0.2em 0.4em'
 ---
 
 # Design System: Roma Shuliatiev Portfolio
+
+Source of truth for tokens is `src/styles/theme.css` (colours, base type, utilities) and `src/lib/typography.ts` (fluid type and spacing). Hex values in this file are sRGB conversions of the oklch tokens there; if the two disagree, the CSS wins and this file should be updated.
 
 ## 1. Overview
 
 **Creative North Star: "The Annotated Specimen"**
 
-This is a designer-who-codes spec sheet, not a marketing site. The page behaves like a well-set type specimen with evidence in the margins: claims arrive next to the number, the artifact, or the working prototype that proves them. Restraint is the whole posture. A near-monochrome grayscale carries almost the entire surface so that the one hot-coral accent reads as a deliberate annotation, never decoration. The work, the metrics, and the prose do the talking; the chrome gets out of the way.
+This is a designer-who-codes spec sheet, not a marketing site. Claims arrive next to the number, the artifact, or the working prototype that proves them. A near-monochrome grayscale carries almost the entire surface so the one warm-orange accent reads as a deliberate annotation, never decoration. The work, the metrics, and the prose do the talking; the chrome gets out of the way.
 
-Density is generous and reading-first. Content lives in a single ~700px column (`spacing.content-max`) with fluid `clamp()` type and varied vertical rhythm, so the page feels paced rather than padded. Depth is flat by default: hairline rings and 1px image outlines define edges instead of drop shadows. Motion is quiet and consistent, a single ease-out curve applied to fades and small state shifts, never choreography for its own sake.
+Content lives in a single 576px column (`max-w-xl`) inside the `Layout` grid, with fluid `clamp()` type and varied vertical rhythm. Case-study media breaks out of that column to a 1100px measure at ≥1024px (`.content-media`). Depth is flat by default: hairlines and 1px image outlines define edges. A faint 42px background grid, masked to fade at the top and bottom, sits behind the first screen.
 
-This system explicitly rejects the loud-SaaS-landing reflex (gradient heroes, animated metric counters, glowing CTAs, feature-grid cards), the generic portfolio template (Framer/Webflow defaults, identical project cards), the Dribbble showpiece (style over substance, mockups floating on gradients), and the over-animated site (scroll-jacking, parallax, motion that performs rather than serves). If it looks like it shipped from a startup template, it is wrong for this portfolio.
+This system explicitly rejects the loud-SaaS-landing reflex (gradient heroes, animated metric counters, feature-grid cards), the generic portfolio template, the Dribbble showpiece, and the over-animated site (scroll-jacking, parallax, motion that performs rather than serves).
 
-**Key Characteristics:**
+**Key characteristics:**
 
-- Near-monochrome neutrals; one hot-coral signal used on ≤10% of any screen.
-- Type-led hierarchy: rounded geometric sans for everything, serif italic for names and asides, mono for code.
-- Flat by default, defined by hairlines and 1px outlines, not shadows.
-- Single-column ~700px reading measure with fluid type and varied spacing.
-- One ease-out motion curve; restrained, feedback-only animation.
-- Dual light/dark theme, system-aware, user-toggleable, persisted.
+- Near-monochrome neutrals; one warm-orange accent used on ≤10% of any screen.
+- Type-led hierarchy: OpenRunde for everything functional, Newsreader for names, page titles and case-study section headings, system monospace for dates, hex values and code.
+- Flat by default, defined by hairlines and 1px outlines.
+- 576px reading column; case-study media at up to 1100px.
+- One ease-out curve for entrances and state changes.
+- Light/dark theme, system-aware, user-toggleable, persisted in `localStorage`.
 
 ## 2. Colors
 
-A crisp, near-monochrome grayscale with a single warm-red signal. The neutrals are intentionally clean rather than tinted; the accent is the only chromatic event on the page.
+A crisp grayscale with a single warm-orange signal. Neutrals are untinted; the accent is the only chromatic UI colour. (Project covers, case-study figures and the footer easter egg carry their own colour; they are content, not UI.)
 
-### Primary
+### Accent
 
-- **Hot Coral** (`#F55817`): The single accent and the system's one voice. Used for inline links, active/hover affordances on work titles, the pull-quote mark, and the `R—S` interaction. Identical in light and dark. Its scarcity is the point. On coral fills, text is **On Coral** (`#ffffff`).
+- **Accent** (`#c74002` light / `#f14f03` dark, `--accent`): The system's one voice. It is darker in light mode so text and fills hold contrast on the off-white field, and brighter in dark mode. Used for inline links, work-card titles on hover, the contact pills on hover/focus, and the pull-quote mark and rule.
+- **On Accent** (`#ffffff` light / `#111111` dark): Text on accent fills.
 
 ### Neutral
 
-- **Base Background** (`#fafafa` light / `#111111` dark): The page field. Off-white in light, near-black in dark; never pure white or pure black for the field.
-- **Ink** (`#0a0a0a` light / `#ededed` dark): Primary text and the highest-contrast UI.
-- **Ink Muted** (`#6b6b6b` light / `#8b8b8b` dark): Secondary text, metadata, dates, captions, default link color.
-- **Card Surface** (`#ffffff` light / `#1a1a1a` dark): Raised reading surfaces (work cards, placeholders).
-- **Surface Secondary** (`#f0f0f0` light / `#222222` dark): Inline code background, quiet fills.
-- **Surface Muted** (`#e8e8e8` light / `#2a2a2a` dark): The faintest fill tier (chips, dividers' parent fills).
-- **Hairline** (`rgba(0,0,0,0.08)` light / `rgba(255,255,255,0.08)` dark): Borders, dividers, and the 1px image outline. Carries definition where shadows would otherwise be used.
+- **Base Background** (`#fafafa` / `#111111`): The page field. Never pure white or pure black.
+- **Ink** (`#0a0a0a` / `#eeeeee`): Primary text.
+- **Ink Muted** (`#626262` / `#828282`): Secondary text, metadata, dates, captions, nav links at rest.
+- **Card Surface** (`#ffffff` / `#1a1a1a`): Work cards, case-study callouts, coded figures.
+- **Surface Secondary** (`#f2f2f2` / `#222222`): Inline code, contact pills at rest.
+- **Surface Muted** (`#e9e9e9` / `#2d2d2d`): The faintest fill tier.
+- **Hairline** (`oklch(0 0 0 / 0.08)` / `oklch(1 0 0 / 0.08)`): Borders and dividers. Image outlines use `--image-outline` at 0.1.
 
 ### Functional
 
-- **Success** (`#16a34a` light / `#22c55e` dark): Reserved for the pulsing "open to roles" availability dot. Not a general-purpose green.
+- **Success** (`#28a323` / `#50c249`): Reserved for the pulsing "open to roles" dot.
 
-### Named Rules
+### Named rules
 
-**The One Voice Rule.** Hot Coral appears on no more than ~10% of any screen. It marks exactly one kind of thing at a time (a link, an active state, a quote). If two unrelated elements both fight for it, neither gets it.
+**The One Voice Rule.** The accent appears on no more than ~10% of any screen and marks one kind of thing at a time. On the homepage it appears only on interaction (hover/focus); at rest the page is monochrome apart from the covers and the availability dot.
 
-**The Clean Neutral Rule.** Neutrals stay near-true grayscale; do not tint them toward the accent. The contrast between flat gray chrome and the lone warm accent is the identity. Keep the field off-pure (`#fafafa` / `#111111`), never `#ffffff` or `#000000` on the page background.
+**The Clean Neutral Rule.** Neutrals stay true grayscale; do not tint them toward the accent. Keep the field off-pure.
 
 ## 3. Typography
 
-**Display / Body Font:** OpenRunde (with `system-ui, -apple-system, sans-serif`)
-**Serif Accent Font:** Newsreader (with `Georgia, serif`)
-**Mono Font:** IBM Plex Mono (with `monospace`)
+**Sans:** OpenRunde, weights 400 and 500 only (`system-ui, -apple-system, sans-serif` fallback).
+**Serif:** Newsreader, self-hosted variable (roman and italic).
+**Mono:** the system monospace stack (`ui-monospace, SFMono-Regular, Consolas, Liberation Mono`). No webfont is loaded for mono.
 
-**Character:** OpenRunde is a soft, rounded geometric sans that does the entire functional load, headings and body alike, with a calm, modern neutrality. Newsreader italic enters only for human and editorial notes: the name, project subtitles, section headings, pull quotes. IBM Plex Mono is strictly for code. The pairing reads precise and considered, an engineer's specimen sheet with an editorial hand.
+Most page type is set inline from the tokens in `src/lib/typography.ts`; the `h1`–`h4` base styles in `theme.css` apply only where a page does not override them.
 
 ### Hierarchy
 
-- **Display** (400, `clamp(2rem, 1rem + 3.5vw, 3.25rem)`, lh 1.15, `-0.02em`, `text-wrap: balance`): Page-level `h1`. One per page.
-- **Headline** (400, `clamp(1.5rem, 1rem + 2vw, 2.25rem)`, lh 1.2, `-0.015em`): Major section titles (`h2`). The name on the home page uses this size set in Newsreader italic.
-- **Title** (400, `clamp(1.25rem, 1rem + 1vw, 1.5rem)`, lh 1.3, `-0.01em`): Sub-section headings (`h3`).
-- **Lead** (400, `clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem)`, lh 1.5): The opening statement under a name or section. One short paragraph that sets intent.
-- **Body** (400, `clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem)`, lh 1.5, `-0.011em`, `text-wrap: pretty`): Default reading text. Held to the ~700px measure (≈65–75ch).
-- **Label** (500, `clamp(0.8125rem, 0.78rem + 0.15vw, 1rem)`, lh 1.4): Metadata, dates (tabular-nums), inline link affordances, small UI.
-- **Serif Accent** (400 italic, `clamp(1rem, 0.94rem + 0.3vw, 1.25rem)`, `-0.01em`): Newsreader. Names, project subtitles, section headings in case studies, pull-quote body.
-- **Mono** (400, `0.875em`): IBM Plex Mono, inline `code` only.
+- **Name / page title** (`fluidH1`, 1.32–1.99rem, 400): Newsreader. Italic for the name on the homepage, roman for case-study titles. One per page.
+- **Case-study section heading** (`fluidLead`, 500): Newsreader roman.
+- **Lead** (`fluidLead`, 400, lh 1.55): The case-study intro under the title, max 34rem.
+- **Body** (`fluidBase`, 0.875–0.94rem, 400): lh 1.5 on the homepage, 1.6 and `foreground/80` in case studies. `text-wrap: pretty`.
+- **Section label** (`fluidBase`, 500, lh 1.2): Homepage section titles ("Selected work", "Work experience", "Get in touch") and case-study subheadings. Same size as body; hierarchy comes from weight and space, not scale.
+- **Small** (`fluidSmall`, 0.72–0.88rem): Captions, metadata, footer, experience descriptions.
+- **Mono** (`0.875em` or `fluidSmall`): Inline code, experience dates (tabular), hex values in figures, case-study stat values.
 
-### Named Rules
+### Named rules
 
-**The Two-Weight Rule.** OpenRunde ships in 400 and 500 only. Hierarchy comes from scale, color, and the serif/sans contrast, not from a ladder of weights. Never reach for 600+ to add emphasis; change size, switch to Ink, or set it in serif italic.
+**The Two-Weight Rule.** OpenRunde ships in 400 and 500 only. Build hierarchy from size, colour, and the serif/sans contrast. (Known exception: case-study stat values use `font-mono font-semibold` in the system mono.)
 
-**The Serif-for-Human Rule.** Newsreader italic is reserved for human and editorial register (names, asides, quotes). It never sets functional UI or running body copy.
+**The Serif-for-Human Rule.** Newsreader is for the name, page titles, case-study section headings, project subtitles ("Yesim", "Android and iOS app") and pull quotes. It never sets functional UI or running body copy.
 
 ## 4. Elevation
 
-Flat by default. Depth is communicated through hairlines and tonal surface steps, not drop shadows. Images carry a 1px inset outline (`outline: 1px solid var(--image-outline); outline-offset: -1px`) so they read as crisp specimens rather than floating objects. The one shadow in the system, `card-shadow`, is a near-invisible composite (a 1px ring plus two whisper-soft offsets) used to lift a reading surface a hair off the page, never to dramatize it.
+Flat by default. Images carry a 1px inset outline (`outline: 1px solid var(--image-outline); outline-offset: -1px`), except inside `.card-shadow`, `.work-card` and `.phone-preview`.
 
-### Shadow Vocabulary
+### Shadow vocabulary
 
-- **card-shadow** (`box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.06), 0px 1px 2px -1px rgba(0,0,0,0.06), 0px 2px 4px 0px rgba(0,0,0,0.04)`): The only sanctioned elevation. A hairline ring doing most of the work, with a barely-there lift. Dark mode swaps the tints to `rgba(255,255,255,0.06)` / `0.04`.
+- **card-shadow** (`0 0 0 1px --shadow-border-1, 0 1px 2px -1px --shadow-border-2, 0 2px 4px 0 --shadow-border-3`): A hairline ring with a barely-there lift. Used for case-study callout cards.
+- **Experience hover image** (`0 12px 32px oklch(0 0 0 / 0.18)`, 0.4 in dark): The one floating element on the homepage, so it carries the one real drop shadow.
 
-### Named Rules
+### Named rules
 
-**The Hairline Rule.** Edges are defined by 1px borders, 1px image outlines, and tonal surface steps. If a surface needs separation, reach for a hairline or the next tonal tier before reaching for a shadow. Dramatic, blurred drop shadows are forbidden: this is a specimen sheet, not a card stack.
+**The Hairline Rule.** Reach for a hairline or the next tonal tier before a shadow. Work cards use a 1px border, not a shadow.
 
 ## 5. Components
 
-The system has almost no traditional "controls." Interaction lives in text links, one icon button (the theme toggle), and a few signature editorial elements. Everything is refined, restrained, and content-first: controls recede, content leads, feedback is subtle.
-
 ### Buttons
 
-- **Shape:** Round for icon controls (`rounded.full`); the system has no large filled CTA button by design.
-- **Theme toggle:** A 32px transparent round button holding a 16px contrast icon, colored **Ink**. Press feedback is `scale: 0.96` (Motion `whileTap`), no background change.
-- **Hover / Focus:** Subtle by default. No glowing or filled hover states; affordance comes from the inline-link treatment below.
+- **Theme toggle:** 44px round transparent button with a 16px contrast icon in Ink. `whileTap` scale 0.96. Plays a short toggle sound (`src/lib/ui-sounds.ts`, volume 0.12).
+- **Contact pills:** Surface Secondary pills, min-height 44px, with a trailing `↗` (external) or `↓` (CV download). Hover/focus fills them with the accent and nudges the arrow; active scales to 0.96. A 2×2 grid of equal-width pills below `sm`, a wrapping row from `sm` up.
+- **Demo CTA (eSIM case study):** A dark full-width link card ("Working artifact / Open the live configurator") over a soft multicolour `GlowEffect`. It is the only filled CTA and the only glow on the site; keep it unique.
 
 ### Links
 
-- **Default:** **Ink Muted**, no underline at rest, underline on hover/focus (`underline-offset: 2px`) plus a slight opacity drop. The reading-first default.
-- **Accent:** **Hot Coral**, used for outbound/primary links, often with a trailing `↗`. Same underline-on-hover behavior.
-- **Work title (in cards):** Ink at rest, transitions to **Hot Coral** on card hover (`group-hover`).
+- **Inline (case studies):** Accent text, no underline at rest, underline on hover/focus.
+- **Case-study navigation (Home / Next work):** Ink Muted, Ink on hover/focus, 44px hit area.
+- **Work card title:** Ink at rest, Accent on card hover.
 
-### Cards / Containers
+### Cards / containers
 
-- **Use sparingly.** The only routine card is the work-preview card; most content sits directly on the page with no container.
-- **Corner Style:** `rounded.xl` (14px).
-- **Background:** **Card Surface**; cover image fills a 16:9 top crop that scales to 1.02 on hover (`duration-500 ease-out`), clipped by `overflow-hidden`.
-- **Border:** A 1px **Hairline** border defines the card edge against the near-tonal field, deepening to **Ink Muted / 30%** on hover. This is the Hairline Rule applied: separation comes from the edge, not a shadow.
-- **Shadow Strategy:** Flat. No drop shadow on cards; reserve `card-shadow` for surfaces that genuinely need to lift off the page.
-- **Internal Padding:** 16px (`p-4`), 20px (`p-5`) at `sm` and up.
+- **Work cards** (homepage): Card Surface, `rounded.xl`, 1px Hairline border that deepens to `muted-foreground/30` on hover. A 16:9 cover on top scales to 1.02 on hover (500ms ease-out). Padding 16px, 20px at `sm`. The first cover loads eagerly with high priority; the rest are lazy.
+- **Callout cards** (case studies): Card Surface, `rounded.xl`, `card-shadow`, 20px padding, small uppercase muted label over a short sentence. Uppercase is limited to these labels and the demo CTA's eyebrow.
 
-### Inputs / Fields
+### Figures
 
-- **Style:** Transparent border at rest; fill is **Input Background** (`#f3f3f5` light) or `#2a2a2a` dark. Body weight (400), not medium.
-- **Focus:** A 1px **Ring** (`#a0a0a0` light / `#555555` dark) via the global `outline-ring/50` base, no glow.
-- (Inputs are concentrated in the white-label eSIM demo, which carries its own scoped token set in `demo-theme.css`; the brand surface itself is read-only.)
+- **CaseFigure / CaseVideo:** Edge-to-edge on mobile, `rounded.xl` from `sm`, breaking out to 1100px at ≥1024px. They require intrinsic width/height (and a poster for video). Figures are light-only exports, so `.case-media` dims them to `brightness(0.82)` in dark mode.
+- **Coded figures:** When a figure explains logic, build it in code rather than exporting an image, so values are computed, theme-aware and readable by screen readers. Example: `src/pages/white-label-esim/contrast-figure.tsx` scores sample brand colours with the same contrast rule the prototype uses.
 
 ### Navigation
 
-- **Style:** A bare top bar, no background or border. Left: the `R—S` wordmark. Right: the theme toggle. Enters with a 0.4s fade-and-drop from `y: -10`.
-- **States:** The wordmark expands its em-dash and tracking on hover/focus (`letter-spacing` and `width` transitions, 420ms, `cubic-bezier(.2,.7,.2,1)`), respecting `prefers-reduced-motion`.
+- A bare top bar: the `R—S` wordmark on the left, the theme toggle on the right. Fades down from `y: -10` over 0.4s on client renders; static on prerendered and reduced-motion visits. The wordmark is hidden on `/support`.
 
-### Signature Components
+### Footer
 
-- **The `R—S` Wordmark.** The home logo. On hover the center em-dash widens (`1em → 1.8em`) and letter-spacing opens to `0.12em`. A quiet, mechanical flourish, the one piece of pure delight.
-- **Pulsing Availability Dot.** A 0.375em **Success** dot with an expanding ring (`pulsing-dot`, 3s loop) preceding the "open to roles" line. Animation disabled under `prefers-reduced-motion`.
-- **Dashed Divider.** A full-width 1px dashed rule at **Ink Muted / 30%**, via Radix `Separator`. The default between-section separator.
-- **Pull Quote.** An editorial callout: a `RiDoubleQuotesL` mark in **Hot Coral** above serif-italic body. It carries a 3px Hot Coral left rule. This is the single sanctioned vertical accent rule in the entire system (see Don'ts).
+- Three small muted dots, then a three-column row: Kyiv time (updates each minute while visible), current Kyiv weather with an icon (falls back to 🇺🇦), and a typewriter cycling "Ship fast. / Iterate. / Repeat." (static first phrase under reduced motion).
 
-### Named Rules
+### Signature components
 
-**The Ease-Out Rule.** Entrance and state motion uses one curve, `cubic-bezier(0.4, 0, 0.2, 1)`, at 0.4–0.5s. Section content fades up from `y: 16`, staggered ~0.1s per section. No bounce, no elastic, no spring overshoot.
+- **The `R—S` wordmark.** On hover/focus the em-dash widens (`1em → 1.8em`) and letter-spacing opens to `0.12em` (420ms, `cubic-bezier(.2,.7,.2,1)`).
+- **Pulsing availability dot.** A 0.375em Success dot with an expanding ring (3s loop) before "Currently open for full-time roles". Off under reduced motion.
+- **Experience hover image.** On desktop with a fine pointer, hovering a work-experience row shows a 224×280 photo that follows the cursor on a spring (stiffness 200, damping 30), flips left near the viewport edge, and fades in only once loaded. Decorative (`aria-hidden`); no keyboard equivalent.
+- **Dashed divider.** A 1px dashed rule at `muted-foreground/30` between experience rows.
+- **Pull quote.** Accent `RiDoubleQuotesL` mark over Newsreader body, with a 3px accent left rule. The only coloured vertical rule in the system.
+- **Easter egg footer.** Fully hidden at rest (zero height, `inert`). Overscrolling past the bottom of a page (600px of wheel, 140px of touch) reveals a 200px hill scene with day/night variants and a pixel dog; clicking the dog shows a short bark message with a pop sound. Resets on route change.
 
-## 6. Do's and Don'ts
+## 6. Motion
 
-### Do:
+- **Entrances:** `SectionAnimate` fades sections up from `y: 16` over 0.5s with `cubic-bezier(0.4, 0, 0.2, 1)`, staggered by small per-section delays. Prerendered pages run this in CSS on first paint; viewport-triggered reveals start after hydration and never replay on content that was already visible.
+- **Page transitions:** `navigateWithTransition` slides a full-screen Ink panel across (300ms in, 300ms out). Used only for the jump into the eSIM demo.
+- **Feedback:** Press scales of 0.96, hover colour changes of 200ms, card image zoom of 1.02.
+- **Reduced motion:** Every animation above is disabled or made instant under `prefers-reduced-motion`; videos require an explicit Play.
+- **Sound:** The theme toggle and the easter-egg dog play short UI sounds. Nothing else makes sound.
 
-- **Do** keep Hot Coral (`#F55817`) to ≤10% of any screen, marking one kind of thing at a time. Its rarity is the signal.
-- **Do** build hierarchy from scale + the serif/sans contrast, using only OpenRunde 400 and 500.
-- **Do** define edges with hairlines (1px borders, 1px image outlines) and tonal surface steps before reaching for any shadow.
-- **Do** hold running text to the ~700px measure (≈65–75ch) and vary vertical rhythm for pacing.
-- **Do** animate with the single ease-out curve (`cubic-bezier(0.4, 0, 0.2, 1)`, 0.4–0.5s) and gate every animation behind `prefers-reduced-motion`.
-- **Do** keep the field off-pure: `#fafafa` / `#111111`, never `#ffffff` or `#000000` as the page background.
-- **Do** reserve Newsreader italic for names, asides, and quotes; reserve IBM Plex Mono for code.
+### Known exceptions
 
-### Don't:
+These ship today and do not follow the single-curve, feedback-only intent. Review them before adding more of the same: the spring on the experience hover image, the continuous typewriter and cursor blink in the footer, the multicolour glow behind the demo CTA, and the pulsing dot loop.
 
-- **Don't** build a loud SaaS landing: no gradient heroes, animated metric counters, glowing or large filled CTAs, or feature-grid cards.
-- **Don't** ship the generic portfolio template look: Framer/Webflow defaults, identical same-size project cards, "passionate creative" framing.
-- **Don't** make a Dribbble showpiece: no decorative mockups floating on gradients; every visual ties to a real problem and outcome.
-- **Don't** over-animate: no scroll-jacking, parallax, spring/bounce, or motion that performs instead of serving comprehension.
-- **Don't** use `border-left`/`border-right` greater than 1px as a colored accent stripe on cards, list items, or alerts. The Pull Quote is the **only** exception in this system; do not extend the pattern elsewhere.
-- **Don't** use gradient text (`background-clip: text`), decorative glassmorphism/blur, or the big-number hero-metric template.
-- **Don't** tint the neutrals toward coral, or add a second accent color. One voice only.
-- **Don't** introduce drop shadows to dramatize surfaces; if it looks like a 2014 card stack, the shadow is wrong for this system.
+## 7. Do's and don'ts
+
+### Do
+
+- **Do** keep the accent to ≤10% of any screen, marking one kind of thing at a time.
+- **Do** take colours and type from `theme.css` and `typography.ts`, not hard-coded values.
+- **Do** build hierarchy from weight, space and the serif/sans contrast with OpenRunde 400/500.
+- **Do** define edges with hairlines and 1px outlines before reaching for a shadow.
+- **Do** hold running text to the 576px column and let only media break out to 1100px.
+- **Do** gate every animation behind `prefers-reduced-motion`.
+- **Do** check both themes for any new figure; build explanatory figures in code where possible.
+- **Do** keep hit targets at 44px minimum.
+
+### Don't
+
+- **Don't** build a loud SaaS landing: no gradient heroes, animated metric counters, or feature-grid cards.
+- **Don't** add another glowing or filled CTA; the eSIM demo button is the one exception.
+- **Don't** ship mockups floating on gradients; every visual ties to a real problem and outcome.
+- **Don't** add scroll-jacking, parallax, or bounce. Don't add new continuous ambient motion.
+- **Don't** use a coloured `border-left`/`border-right` over 1px except on the pull quote.
+- **Don't** use gradient text, decorative blur, or the big-number hero-metric template.
+- **Don't** tint the neutrals toward the accent or add a second UI accent.
+- **Don't** let a diagram contradict its copy. If the text describes a rule, the figure shows that rule.

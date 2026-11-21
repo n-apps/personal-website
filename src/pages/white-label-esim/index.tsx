@@ -18,6 +18,7 @@ import {
   SectionHeading,
   SubHeading,
 } from '@/components/case-study/case-study-components';
+import { ContrastFigure } from './contrast-figure';
 
 const facts = [
   { label: 'Role', value: 'Designer · prototype developer' },
@@ -168,13 +169,7 @@ export function WhiteLabelEsimPage() {
       </SectionAnimate>
 
       <SectionAnimate delay={0.21}>
-        <CaseFigure
-          src='/images/white-label-esim-contrast.png'
-          width={1920}
-          height={1080}
-          alt='The prototype compares the contrast of dark and white text against each partner colour and uses the higher ratio'
-          caption='The preview now compares real contrast ratios and selects the better foreground. The rule is testable for every valid brand colour.'
-        />
+        <ContrastFigure />
       </SectionAnimate>
 
       <SectionAnimate delay={0.22}>

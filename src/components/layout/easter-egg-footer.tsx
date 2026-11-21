@@ -20,7 +20,6 @@ const BORKS = [
 const BORK_DURATION_MS = 2200;
 const DOG_WIDTH = 'clamp(30px, 4vw, 55px)';
 const DOG_HEIGHT = 'clamp(24.78px, 3.3vw, 45.43px)';
-const DOG_PEEK_HEIGHT = 'clamp(8.26px, 1.1vw, 15.14px)';
 const DOG_REVEALED_BOTTOM = 'clamp(0.25rem, 1.5vw, 1rem)';
 const REVEALED_HEIGHT = 'clamp(110px, 13.89vw, 200px)';
 const REVEAL_EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
@@ -64,11 +63,6 @@ export function EasterEggFooter() {
 
   const handleDogClick = () => {
     playPopSound();
-    if (!revealed) {
-      setRevealed(true);
-      return;
-    }
-
     if (borkTimerRef.current) window.clearTimeout(borkTimerRef.current);
     let next = Math.floor(Math.random() * BORKS.length);
     if (next === borkIndexRef.current) next = (next + 1) % BORKS.length;
@@ -168,10 +162,13 @@ export function EasterEggFooter() {
   }, [revealed]);
 
   return (
+    // Fully hidden at rest; overscrolling past the footer reveals it.
     <div
       className='relative w-full overflow-hidden'
+      inert={!revealed}
       style={{
-        height: revealed ? REVEALED_HEIGHT : DOG_PEEK_HEIGHT,
+        height: revealed ? REVEALED_HEIGHT : 0,
+        visibility: revealed ? 'visible' : 'hidden',
         transition: reduceMotion
           ? 'none'
           : `height ${REVEAL_DURATION_MS}ms ${REVEAL_EASE}`,
@@ -209,7 +206,7 @@ export function EasterEggFooter() {
         }}>
         <button
           type='button'
-          aria-label={revealed ? 'Make the dog bork' : 'Reveal the easter egg'}
+          aria-label='Make the dog bork'
           onClick={handleDogClick}
           data-goatcounter-click='annoying-dog'
           style={{

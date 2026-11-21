@@ -24,8 +24,8 @@ export function Navigation() {
         <Link
           to="/"
           data-goatcounter-click="nav-home-logo"
-          className="group -my-1.5 inline-flex min-h-11 items-center pr-4 select-none text-foreground"
-          aria-label="R—S"
+          className="group -my-1.5 inline-flex min-h-11 items-center rounded-md -ml-2 pl-2 pr-2 select-none text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+          aria-label="Roma Shuliatiev, home"
         >
           <span
             className="inline-block tracking-normal transition-[letter-spacing] duration-[420ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:tracking-[0.12em] group-focus-visible:tracking-[0.12em] motion-reduce:transition-none"

@@ -244,7 +244,7 @@ export function CaseFigure({
         width={width}
         height={height}
         alt={alt}
-        className="w-full rounded-none sm:rounded-xl"
+        className="case-media w-full rounded-none sm:rounded-xl"
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
         decoding="async"
@@ -288,7 +288,7 @@ export function CaseVideo({
           height={height}
           poster={posterReady ? poster : undefined}
           aria-label={label}
-          className="block h-full w-full rounded-none outline outline-1 -outline-offset-1 outline-[var(--image-outline)] sm:rounded-xl"
+          className="case-media block h-full w-full rounded-none outline outline-1 -outline-offset-1 outline-[var(--image-outline)] sm:rounded-xl"
           preload="none"
           loop
           muted
