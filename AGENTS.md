@@ -2,6 +2,15 @@
 
 This file provides repository guidance for Codex and Claude Code.
 
+## Project overview
+
+romamakes-web is the personal product-design portfolio served at romamakes.com. It
+hosts case studies under `/work/` (Score Counter, SaaS onboarding, white-label eSIM
+with an interactive demo), Score Counter download/privacy/support pages, a design
+system page, and the standalone Missing Tracks experience. It is a client-rendered
+React SPA with prerendered content routes, deployed as static files to GitHub Pages.
+Follow the existing route/metadata, page-composition, and theme-token patterns below.
+
 ## Commands
 
 ```bash
@@ -13,6 +22,12 @@ pnpm check:theme  # Check storage failure and theme fallback behavior
 ```
 
 No lint or general test runner is configured. CI runs type-check, check:theme, build, and check:routes on pull requests and main. Only main pushes or manual runs deploy.
+
+## Git workflow
+
+- Work only on `main`. Do not create new branches.
+- Commit directly on `main` and push to `origin/main`. Every push to `main` deploys to production, so run the commands above before pushing.
+- Preserve existing uncommitted work and stage only files belonging to the task.
 
 ## Architecture
 
