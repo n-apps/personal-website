@@ -11,10 +11,13 @@ const sections = [
           Score Counter does not require you to create an account or provide your name, email address, or other directly identifying information.
         </p>
         <p>
-          Information you enter into Score Counter, such as counter names, player names, scores, session information, game information, app settings, and preferences, is primarily stored locally on your device.
+          Information you enter into Score Counter, such as counter names, player names, scores, session information, game information, game templates, app settings, and preferences, is stored locally on your device.
         </p>
         <p>
-          n-apps does not operate a user-account system or a server that receives this locally stored content.
+          n-apps does not operate a user-account system or a server that receives this locally stored content. Your counter names, player names, and scores are never included in the optional usage data described in Section 2.
+        </p>
+        <p>
+          Score Counter lets you export your data to a backup file and import it again, and share game results as text or images. These actions happen only when you start them, and the file or image goes only where you choose to send or save it. n-apps does not receive a copy.
         </p>
         <p>
           You can delete locally stored information by deleting the app. On Android, you can also clear Score Counter's storage through your device settings.
@@ -23,13 +26,29 @@ const sections = [
     ),
   },
   {
-    title: '2. Crash and diagnostic information',
+    title: '2. Optional usage and crash data',
     content: (
       <>
         <p>
-          Score Counter uses Firebase Crashlytics, a service provided by Google, to identify crashes, errors, and stability problems.
+          Score Counter can share anonymous usage data and crash diagnostics to help n-apps understand how the app is used and fix problems. <strong>Sharing is off until you turn it on.</strong> You can turn it on or off at any time with the <strong>Share anonymous usage and crash data</strong> setting, which appears when you first open the app and in <strong>Settings → General</strong>. One setting controls both kinds of data.
         </p>
-        <p>When the app crashes or encounters an error, Firebase Crashlytics may automatically collect and process diagnostic information such as:</p>
+        <h3>Usage data (PostHog)</h3>
+        <p>When sharing is on, Score Counter sends a small set of app activity events to PostHog, a product-analytics service. The events are:</p>
+        <ul>
+          <li>The app was used on a given day.</li>
+          <li>A counter was created, and whether it was created manually or with Quick Start.</li>
+          <li>A scoring session started.</li>
+          <li>Dice were rolled.</li>
+          <li>The Pro screen was viewed, a Pro purchase was started, or a Pro purchase was completed, together with the product identifier and where in the app the Pro screen was opened.</li>
+        </ul>
+        <p>
+          Each event includes the platform, the app version, the time of the event, and a random installation identifier created by the app. This identifier is not linked to your name, email address, Google Account, or Apple Account. A new identifier is created each time you turn sharing on.
+        </p>
+        <p>
+          The app asks PostHog not to look up your location from your IP address and not to build a personal profile from the events. Events are sent over an encrypted connection in batches. Your IP address is visible to PostHog when the data is received, as with any internet connection.
+        </p>
+        <h3>Crash diagnostics (Firebase Crashlytics)</h3>
+        <p>When sharing is on, Score Counter uses Firebase Crashlytics, a service provided by Google, to identify crashes, errors, and stability problems. Crash reports may include:</p>
         <ul>
           <li>Crash stack traces and error information.</li>
           <li>Relevant application state at the time of the error.</li>
@@ -39,11 +58,10 @@ const sections = [
           <li>The date and time associated with the crash or error.</li>
           <li>Firebase and Crashlytics installation identifiers.</li>
         </ul>
+        <p>n-apps does not intentionally attach your name, email address, or other directly identifying information to crash reports.</p>
+        <h3>Turning sharing off</h3>
         <p>
-          This information is used to diagnose technical problems, improve app stability, and maintain the app. n-apps does not intentionally attach your name, email address, or other directly identifying account information to Crashlytics reports.
-        </p>
-        <p>
-          Firebase Crashlytics is operated by Google. Information processed by Crashlytics is subject to Google's and Firebase's applicable privacy, security, and retention policies.
+          When you turn sharing off, Score Counter stops collecting and sending usage events, deletes usage events that are waiting on your device, discards the installation identifier, and does not send crash reports that have not yet been sent. Data that was already sent remains with PostHog or Firebase until it is deleted under their retention policies (see Section 10).
         </p>
       </>
     ),
@@ -53,7 +71,7 @@ const sections = [
     content: (
       <>
         <p>
-          Depending on your device and backup settings, Android may back up or transfer some locally stored app data to your Google account or another device. iOS may include locally stored app information in an iCloud or device backup.
+          Depending on your device and backup settings, Android may back up or transfer some locally stored app data to your Google Account or another device. On Android, only your game data (games, scores, players, history, and templates) is included; app settings are not. iOS may include locally stored app information in an iCloud or device backup.
         </p>
         <p>
           These backup and transfer features are operated and controlled by Google, Apple, and your device manufacturer rather than by n-apps. You can manage them through your device or account settings.
@@ -65,12 +83,12 @@ const sections = [
     title: '4. Optional in-app purchases',
     content: (
       <>
-        <p>Score Counter may offer optional one-time purchases or subscriptions that allow users to support the app.</p>
+        <p>Score Counter offers an optional purchase that unlocks Pro features. Earlier versions of the app offered subscriptions to support the app.</p>
         <p>
-          Purchases made through Google Play are processed by Google. Purchases made through the App Store are processed by Apple. n-apps does not receive your complete payment-card or bank-account information, your Apple Account password, or other credentials used to access Apple services.
+          Purchases made through Google Play are processed by Google. Purchases made through the App Store are processed by Apple. n-apps does not receive your complete payment-card or bank-account information, your Apple Account password, or other credentials used to access Google or Apple services.
         </p>
         <p>
-          n-apps may receive limited transaction information necessary to verify or manage a purchase, such as the purchased product, purchase status, transaction or order identifiers, and related purchase information. Google and Apple process payment and transaction information according to their applicable privacy policies and store terms.
+          The app may receive limited transaction information necessary to verify or manage a purchase, such as the purchased product, purchase status, transaction or order identifiers, and related purchase information. This includes checking whether you have an active subscription from an earlier version of the app. Google and Apple process payment and transaction information according to their applicable privacy policies and store terms.
         </p>
       </>
     ),
@@ -99,8 +117,9 @@ const sections = [
       <>
         <p>Score Counter uses or relies on the following platform and third-party services:</p>
         <ul>
-          <li>Firebase Crashlytics, provided by Google, for crash reporting and app-stability monitoring.</li>
-          <li>Google Play services and Google Play Billing for Android platform functionality and purchases.</li>
+          <li>PostHog, for optional usage analytics (only when you turn on sharing).</li>
+          <li>Firebase Crashlytics, provided by Google, for optional crash reporting and app-stability monitoring (only when you turn on sharing).</li>
+          <li>Google Play services, Google Play Billing, and the Google Play In-App Review API for Android platform functionality, purchases, and asking whether you'd like to rate the app.</li>
           <li>Apple App Store and iOS services for app distribution, purchases, operating-system functionality, backups, security, and related platform services.</li>
         </ul>
         <p>These providers may process information according to their own privacy policies and terms.</p>
@@ -112,8 +131,8 @@ const sections = [
     content: (
       <>
         <p>Score Counter does not contain third-party advertising.</p>
-        <p>The app does not use personal information for targeted advertising and does not use third-party analytics services.</p>
-        <p>Firebase Crashlytics is used only for crash reporting, diagnostics, and app-stability monitoring.</p>
+        <p>The app does not use personal information for targeted advertising, and usage data is not sold or used to build advertising profiles.</p>
+        <p>Usage analytics and crash reporting are optional and are described in Section 2. They are used only to understand which features are used, improve the app, and fix problems.</p>
       </>
     ),
   },
@@ -125,6 +144,7 @@ const sections = [
         <ul>
           <li>Provide and maintain the app.</li>
           <li>Store counters, scores, settings, and preferences on your device.</li>
+          <li>Understand which features are used, if you turn on sharing.</li>
           <li>Diagnose crashes and technical errors.</li>
           <li>Improve app stability, performance, and reliability.</li>
           <li>Process and verify optional purchases.</li>
@@ -141,7 +161,7 @@ const sections = [
       <>
         <p>n-apps does not sell or rent users' personal information.</p>
         <p>
-          Crash and diagnostic information may be processed by Google through Firebase Crashlytics. Purchase-related information may be processed by Google or Apple as necessary to provide store payment and transaction services. Backup-related information may be processed by Google or Apple according to your account and device settings.
+          If you turn on sharing, usage data is processed by PostHog and crash diagnostics are processed by Google through Firebase Crashlytics. These providers may process this data on servers in the United States. Purchase-related information may be processed by Google or Apple as necessary to provide store payment and transaction services. Backup-related information may be processed by Google or Apple according to your account and device settings.
         </p>
         <p>
           Information may also be disclosed when reasonably necessary to comply with applicable law, respond to a valid legal request, investigate fraud or security issues, or protect the rights and safety of n-apps, users, or others.
@@ -156,12 +176,12 @@ const sections = [
         <p>
           Locally stored counters, scores, player information, session information, settings, and preferences remain on your device until you delete them, remove the app, or clear the app's data. Copies created through Android backup, iCloud, or device backup may remain according to your Google Account, Apple Account, and backup settings.
         </p>
-        <p>Crash and diagnostic information is retained by Firebase Crashlytics according to Firebase's applicable retention policies.</p>
+        <p>Usage data is retained by PostHog for up to 1 year. Crash diagnostics are retained by Firebase Crashlytics according to Firebase's applicable retention policies.</p>
         <p>
           Support emails and related correspondence are retained only for as long as reasonably necessary to respond to the request, investigate an issue, maintain appropriate support records, or comply with legal obligations.
         </p>
         <p>
-          You may request deletion of personal information that you have directly provided to n-apps by email. Because Score Counter does not maintain user accounts and Crashlytics reports are not intentionally associated with your name or email address, n-apps may not always be able to identify a specific anonymous diagnostic record as belonging to you.
+          You may request deletion of personal information that you have directly provided to n-apps by email. Because Score Counter does not maintain user accounts and usage and crash data are not associated with your name or email address, n-apps may not be able to identify which anonymous records belong to you. Turning sharing off, as described in Section 2, stops further collection and prevents data that has not yet been sent from being sent.
         </p>
       </>
     ),
@@ -170,7 +190,7 @@ const sections = [
     title: '11. Security',
     content: (
       <p>
-        n-apps takes reasonable precautions when handling information processed in connection with the app and uses established service providers for crash reporting and payment processing. However, no method of electronic storage or transmission is completely secure, and absolute security cannot be guaranteed.
+        n-apps takes reasonable precautions when handling information processed in connection with the app and uses established service providers for analytics, crash reporting, and payment processing. However, no method of electronic storage or transmission is completely secure, and absolute security cannot be guaranteed.
       </p>
     ),
   },
@@ -217,7 +237,7 @@ export function ScoreCounterPrivacyPage() {
       </header>
       <main className='mx-auto w-full max-w-3xl pb-16 sm:pb-24'>
         <article className='policy-copy'>
-          <p className='mb-5 text-sm text-muted-foreground'>Last updated: September 8, 2026</p>
+          <p className='mb-5 text-sm text-muted-foreground'>Last updated: November 27, 2026</p>
           <h1>Score Counter Privacy Policy</h1>
           <p className='policy-scope'>This Privacy Policy applies to Score Counter on Android and iOS.</p>
           <p>

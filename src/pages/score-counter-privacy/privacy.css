@@ -68,3 +68,9 @@
   font-style: normal;
   margin-top: 0.85rem;
 }
+
+.policy-copy h3 {
+  color: var(--foreground);
+  font-size: 1em;
+  margin: 1.5rem 0 0;
+}
